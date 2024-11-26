@@ -2,13 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   total: 0,
-  cartItems: []
+  cartItems: [],
+  isloading: false
 };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
-  reducers: {}
+  reducers: {},
+  extraReducers: builder => {
+    builder.addCase("cart/addItem", () => {});
+    builder.addCase("cart/removeItem", () => {});
+  }
 });
 
 export default cartSlice.reducer;
