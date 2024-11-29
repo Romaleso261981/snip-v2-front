@@ -1,0 +1,37 @@
+{
+  "HomePage": {
+    "title": "About us",
+    "description": "SNIP is a straw products workshop where we are inspired by traditional culture to interpret it in a modern interior. The value of our products is that they are created by hand from grain to stem, from straw to spider. We sow rye on our native fields, grow and take care of it, then harvest it by hand and prepare rye straw for the next work. "
+  },
+  "Header": {
+    "title": "SNIP"
+  },
+  "Footer": {
+    "navMenu": {
+      "title": "Mеню:",
+      "doItYourself": "Do it yourself",
+      "buyFromUs": "Buy from us",
+      "inviteUs": "Invite us",
+      "aboutUs": "About us"
+    },
+    "contacts": {
+      "title": "Contacts:",
+      "phone": "Tel",
+      "address": "Address",
+      "email": "Gmail"
+    },
+    "info": {
+      "title": "Informations:",
+      "policy": "Privacy policy",
+      "shippingAndPayment": "Delivery and payment",
+      "return": "Return and exchange",
+      "publicContract": "Public contract"
+    },
+    "logo": {
+      "description": "Rye… Born from the earth… warmed by the sun… watered by the rain… wrapped in the wind… created by hand…"
+    },
+    "copyright": {
+      "text": "Ⓒ2024 СНІП | Design:"
+    }
+  }
+}
