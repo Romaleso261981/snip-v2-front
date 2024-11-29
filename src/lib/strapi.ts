@@ -1,6 +1,10 @@
 import { api } from "@/configs/axiosConfig";
+import { LOCALE } from "@/configs/constants";
 
-export const getStrapiData = async (url: string, params = { locale: "en" }) => {
+export const getStrapiData = async (
+  url: string,
+  params = { locale: LOCALE }
+) => {
   try {
     const { data } = await api.get(url, { params });
 
