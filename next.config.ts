@@ -4,6 +4,12 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: [
+      "genuine-leader-12ee988260.media.strapiapp.com",
+      "intuitive-spontaneity-snip.up.railway.app"
+    ]
+  },
   webpack(config) {
     // Configure SVGR
     config.module.rules.push({
@@ -13,14 +19,14 @@ const nextConfig = {
           loader: "@svgr/webpack",
           options: {
             icon: true, // Makes SVG more easily sizeable
-            typescript: true, // Generates TypeScript props
-          },
-        },
-      ],
+            typescript: true // Generates TypeScript props
+          }
+        }
+      ]
     });
 
     return config;
-  },
+  }
 };
 
 export default withNextIntl(nextConfig);

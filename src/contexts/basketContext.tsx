@@ -6,6 +6,7 @@ import { ProductItemTypes } from "@/types/ProductItemTypes";
 import { createContext, ReactNode, MouseEvent as ReactMouseEvent } from "react";
 
 type BasketContextType = {
+  getCurrentLocale: () => string;
   showBasket: boolean;
   handleToggleBasket: (e: ReactMouseEvent<HTMLDivElement, MouseEvent>) => void;
   basketItems: ProductItemTypes[];
@@ -22,6 +23,16 @@ type BasketProviderProps = {
 export const BasketContext = createContext({} as BasketContextType);
 
 export function BasketProvider({ children }: BasketProviderProps) {
+  const getCurrentLocale = () => {
+    const locale = localStorage.getItem("locale");
+    if (locale) {
+      return locale;
+    } else {
+      localStorage.setItem("locale", "en");
+      return "en";
+    }
+  };
+
   const {
     decreaseCount,
     getTotalCout,
@@ -35,6 +46,7 @@ export function BasketProvider({ children }: BasketProviderProps) {
   return (
     <BasketContext.Provider
       value={{
+        getCurrentLocale,
         showBasket,
         basketItems,
         handleToggleBasket,
