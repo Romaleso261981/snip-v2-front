@@ -14,6 +14,7 @@ export const useWarehouses = (
   cityData: { ref: string; deliveryCity: string } | null
 ) => {
   return useQuery({
+    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
     queryKey: novaPostKeys.warehouses(cityData?.deliveryCity!),
     queryFn: () => {
       if (!cityData) throw new Error("City not selected");
