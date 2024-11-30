@@ -4,20 +4,22 @@ import { FC } from "react";
 import Image from "next/image";
 import EmblaCarousel from "@/components/ui/Carousel/Carousel";
 
-import image1 from "@/assets/galery/GaleryImg1.png";
-import image2 from "@/assets/galery/GaleryImg2.png";
-import image3 from "@/assets/galery/GaleryImg3.png";
-import image4 from "@/assets/galery/GaleryImg4.png";
-
-const images = [
-  { id: 1, src: image1, alt: "Galery Image 1" },
-  { id: 2, src: image2, alt: "Galery Image 2" },
-  { id: 3, src: image3, alt: "Galery Image 3" },
-  { id: 4, src: image4, alt: "Galery Image 4" },
-];
+import { StrapiImageRespons } from "./HeroSection";
+import { getStrapiMedia } from "@/lib/strapi";
 
 
-const Galery: FC = () => {
+type GaleryProps = {
+  data: {
+    galleryCard: {
+      id: string;
+      href: string;
+      img: StrapiImageRespons[];
+    }[];
+  };
+};
+
+
+const Galery: FC<GaleryProps> = ({data}) => {
 
   const width = 460;
   const height = 440;
@@ -27,19 +29,21 @@ const Galery: FC = () => {
   return (
     <div className="container mx-auto">
       <div className="hidden md:flex md:flex-row justify-center items-center text-center p-4 pb-8">
-        {images.map((image) => (
+        {data.galleryCard.map((image) => {
+          const url = getStrapiMedia(image.img[0].url );
+          return (
           <div className="w-full md:w-1/4 p-2" key={image.id}>
             <Image
-              src={image.src ?? imageFallback}
-              alt={image.alt}
+              src={url ?? imageFallback}
+              alt="Galery Image"
               width={width}
               height={height}
               objectFit="cover"
             />
           </div>
-        ))}
+        )})}
       </div>
-      <EmblaCarousel images={images} width={width} height={height} />
+      <EmblaCarousel images={data.galleryCard} width={width} height={height} />
     </div>
   );
 };
