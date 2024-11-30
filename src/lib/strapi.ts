@@ -7,7 +7,7 @@ export const getStrapiData = async (
 ) => {
   try {
     const { data } = await api.get(url, { params });
-
+    console.log("data-------", data.data);
     return {
       data: data.data
     };

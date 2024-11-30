@@ -17,14 +17,7 @@ const images = [
 ];
 
 
-type GaleryProps = {
-  data: any;
-};
-
-const Galery: FC<GaleryProps> = ({data: {galary}}) => {
-
-console.log("galary", galary);
-
+const Galery: FC = () => {
 
   const width = 460;
   const height = 440;
