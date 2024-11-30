@@ -33,6 +33,8 @@ const HomePageSection: FC = async () => {
   const response = await fetch(`${BASE_URL}/home?${query}`);
   const { data } = await response.json();
 
+  console.log("data--------------", data);
+
   return (
     <div>
       <section className="container mx-auto">
@@ -47,9 +49,9 @@ const HomePageSection: FC = async () => {
             </p>
             <Link
               className="md:w-[210px] md:h-[50px] md:mt-16 flex mt-16 justify-center items-center w-full h-12 text-md text-gold border-gold border-2 shadow hover:bg-gray-100"
-              href={data.button.href}
+              href="/"
             >
-              {data.button.text}
+              {data.button ? data.button.text : "Load More"}
             </Link>
           </div>
         </div>
