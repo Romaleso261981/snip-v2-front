@@ -16,3 +16,13 @@ export const getStrapiData = async (
     throw new Error("Server error");
   }
 };
+
+export const getStrapiMedia = (url: string) => {
+  if (url == null) {
+    return null;
+  }
+  if (url.startsWith("/")) {
+    return `${process.env.NEXT_PUBLIC_STRAPI_URL_IMG}${url}`;
+  }
+  return url;
+};

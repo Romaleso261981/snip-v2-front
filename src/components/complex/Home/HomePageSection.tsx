@@ -27,15 +27,15 @@ const HomePageSection: FC = async () => {
       encodeValuesOnly: true
     }
   );
-  const response = await fetch(`${BASE_URL}home?${query}`);
-  const result = await response.json();
+  const response = await fetch(`${BASE_URL}/home?${query}`);
+  const data = await response.json();
 
-  console.log(result);
+  console.log(data);
 
   return (
     <div>
       <section className="container mx-auto">
-        <Hero />
+        <Hero data={data} />
         <div className="flex flex-col mx-auto pt-10 justify-center items-center md:w-full sm:max-w-3xl md:my-24">
           <div className="flex flex-col justify-center items-center w-full text-center p-4 pb-8 ">
             <h2 className="text-gold font-medium text-3xl leading-[38.4px]">
