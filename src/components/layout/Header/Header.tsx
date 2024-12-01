@@ -24,10 +24,10 @@ const Header = () => {
 
   const { basketItems, showBasket } = useContext(BasketContext);
 
-  const isUaActive = pathname.includes("/ua");
+  const isUaActive = pathname.includes("/uk");
   const isEnActive = pathname.includes("/en");
 
-  const handleLocaleChange = (locale: "ua" | "en") => {
+  const handleLocaleChange = (locale: "uk" | "en") => {
     const pathWithoutLocale = pathname.split("/").slice(2).join("/");
 
     const query = searchParams.toString();
@@ -50,7 +50,7 @@ const Header = () => {
       <div className="flex gap-2 text-md text-gold cursor-pointer">
         {basketItems.length > 0 && <ShoppingBag />}
         <span
-          onClick={() => handleLocaleChange("ua")}
+          onClick={() => handleLocaleChange("uk")}
           className={clsx("hover:underline", isUaActive && "font-bold")}
         >
           UA

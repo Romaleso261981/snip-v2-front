@@ -1,10 +1,24 @@
 import React, { FC, useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from 'embla-carousel-autoplay';
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+
+export type StrapiImageRespons = {
+  id: number;
+  documentId: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  name: string;
+  size: number;
+  url: string;
+  width: number;
+  height: number;
+  createdAt: string;
+};
 
 type EmblaCarouselProps = {
-  images: { id: number; src: StaticImageData; alt: string }[];
+  images: StrapiImageRespons[];
   width: number;
   height: number;
 };
@@ -33,8 +47,8 @@ const EmblaCarousel: FC<EmblaCarouselProps> = ({ images, width, height }) => {
           {images.map((image) => (
             <div className="flex-shrink-0 flex-grow-0 flex-basis-full min-w-0" key={image.id}>
               <Image
-                src={image.src ?? imageFallback}
-                alt={image.alt}
+                src={image.url ?? imageFallback}
+                alt="Galery Image"
                 width={width}
                 height={height}
                 objectFit="cover"

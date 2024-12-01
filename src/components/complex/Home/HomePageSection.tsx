@@ -1,12 +1,62 @@
-import Link from "next/link";
-import Galery from "@/components/complex/Home/GalerySection";
-import Hero from "./HeroSection";
-import { FC } from "react";
-import { getStrapiData } from "@/lib/strapi";
-import { Endpoints } from "@/configs/endpoints";
+"use client";
 
-const HomePageSection: FC = async () => {
-  const { data } = await getStrapiData(Endpoints.getHomeData);
+import Link from "next/link";
+import { FC, useCallback, useEffect, useState } from "react";
+import { fetchAPI } from "@/utils/fetch-api";
+import Loader from "@/components/Loader";
+import { usePathname } from "next/navigation";
+import Hero from "./HeroSection";
+
+const HomePageSection: FC = () => {
+  const [data, setData] = useState<any>([]);
+  const [isLoading, setLoading] = useState(true);
+
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1];
+
+  const fetchData = useCallback(
+    async (start: number, limit: number) => {
+      setLoading(true);
+      try {
+        const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+        const path = `/home`;
+        const urlParamsObject = {
+          populate: {
+            button: {
+              populate: "*"
+            }
+          },
+          pagination: {
+            start: start,
+            limit: limit
+          },
+          locale: locale
+        };
+        const options = { headers: { Authorization: `Bearer ${token}` } };
+        const responseData = await fetchAPI(path, urlParamsObject, options);
+
+        if (start === 0) {
+          setData(responseData.data);
+        } else {
+          setData((prevData: any[]) => [...prevData, ...responseData.data]);
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [locale]
+  );
+
+  useEffect(
+    () => {
+      fetchData(0, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
+    },
+    [fetchData]
+  );
+
+  if (isLoading) return <Loader />;
 
   return (
     <div>
@@ -28,7 +78,7 @@ const HomePageSection: FC = async () => {
             </Link>
           </div>
         </div>
-        <Galery data={data} />
+        {/* <Galery /> */}
       </section>
     </div>
   );
