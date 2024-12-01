@@ -2,40 +2,18 @@ import { FC } from "react";
 import Image from "next/image";
 
 import defaultImageBg from "@/assets/hero/heroBg.jpg";
-import { getStrapiMedia } from "@/lib/strapi";
+import { getStrapiData } from "@/lib/strapi";
+import { Endpoints } from "@/configs/endpoints";
 
-export type StrapiImageRespons = {
-  id: number;
-  documentId: string;
-  hash: string;
-  ext: string;
-  mime: string;
-  name: string;
-  size: number;
-  url: string;
-  width: number;
-  height: number;
-  createdAt: string;
-};
+const Hero: FC = async () => {
+  const { data } = await getStrapiData(Endpoints.getHomeData);
 
-type HeroProps = {
-  data: {
-    Hero: {
-      id: string;
-      heroTitle: string;
-      heroBg: StrapiImageRespons;
-    };
-  };
-};
-
-const Hero: FC<HeroProps> = ({ data }) => {
-  if (!data.Hero) return null;
-  const url = getStrapiMedia(data.Hero.heroBg.url);
+  console.log(data.Hero.heroTitle);
 
   return (
     <div className="relative overflow-hidden h-screen">
       <Image
-        src={url || defaultImageBg}
+        src={defaultImageBg}
         alt="Galery Image"
         layout="fill"
         objectFit="cover"

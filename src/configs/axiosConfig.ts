@@ -6,10 +6,6 @@ export const api: AxiosInstance = axios.create({
     "Content-Type": "application/json"
   },
   params: {
-    populate: {
-      Hero: {
-        fields: ["heroTitle", "heroBg"]
-      }
-    }
+    populate: "*"
   }
 });

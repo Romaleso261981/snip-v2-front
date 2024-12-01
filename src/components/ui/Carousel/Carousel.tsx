@@ -1,16 +1,10 @@
 import React, { FC, useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from 'embla-carousel-autoplay';
-import Image from "next/image";
-import { StrapiImageRespons } from "@/components/complex/Home/HeroSection";
-import { getStrapiMedia } from "@/lib/strapi";
+import Image, { StaticImageData } from "next/image";
 
 type EmblaCarouselProps = {
-  images: {
-    id: string;
-    href: string;
-    img: StrapiImageRespons[];
-  }[];
+  images: { id: number; src: StaticImageData; alt: string }[];
   width: number;
   height: number;
 };
@@ -36,19 +30,17 @@ const EmblaCarousel: FC<EmblaCarouselProps> = ({ images, width, height }) => {
     <div className="relative block md:hidden">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
-          {images.map((image) => {
-            const url = getStrapiMedia(image.img[0].url);
-            return (
+          {images.map((image) => (
             <div className="flex-shrink-0 flex-grow-0 flex-basis-full min-w-0" key={image.id}>
               <Image
-                src={url ?? imageFallback}
-                alt="Galery Image"
+                src={image.src ?? imageFallback}
+                alt={image.alt}
                 width={width}
                 height={height}
                 objectFit="cover"
               />
             </div>
-          )})}
+          ))}
         </div>
       </div>
       <div className="absolute bottom-0 left-0 right-0 flex justify-center p-4 space-x-2">
