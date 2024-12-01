@@ -1,12 +1,12 @@
 "use client";
 
-// import image1 from "@/assets/BuyFromUs/img1.png";
 import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { fetchAPI } from "@/utils/fetch-api";
 import Loader from "@/components/Loader";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function BuyFromUs() {
   const [data, setData] = useState<any>([]);
@@ -75,27 +75,26 @@ export default function BuyFromUs() {
         {data.cards.map((card: any) => {
           const imageUrl = getStrapiMedia(card.img[0].url);
           return (
-            <div
-              className="flex flex-col w-full justify-around mt-4 px-6 py-4"
-              key={card.id}
-            >
-              {imageUrl &&
-                <Image
-                  src={imageUrl || ""}
-                  alt={"none provided"}
-                  className="object-cover w-full h-full overflow-hidden"
-                  width={400}
-                  height={400}
-                />}
-              <div className="flex flex-row justify-around py-5">
-                <h4 className="font-weight-500 text-2xs">
-                  {card.title}
-                </h4>
-                <span>
-                  {card.cost} {card.currency}
-                </span>
+            <Link href={`product/${card.id}`} key={card.id}>
+              <div className="flex flex-col w-full justify-around mt-4 px-6 py-4">
+                {imageUrl &&
+                  <Image
+                    src={imageUrl || ""}
+                    alt={"none provided"}
+                    className="object-cover w-full h-full overflow-hidden"
+                    width={400}
+                    height={400}
+                  />}
+                <div className="flex flex-row justify-around py-5">
+                  <h4 className="font-weight-500 text-2xs">
+                    {card.title}
+                  </h4>
+                  <span>
+                    {card.cost} {card.currency}
+                  </span>
+                </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

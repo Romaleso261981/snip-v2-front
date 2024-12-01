@@ -5,6 +5,7 @@ import defaultImageBg from "@/assets/hero/heroBg.jpg";
 import { usePathname } from "next/navigation";
 import { fetchAPI } from "@/utils/fetch-api";
 import Loader from "@/components/Loader";
+import { getStrapiMedia } from "@/utils/api-helpers";
 
 const Hero: FC = () => {
   const [data, setData] = useState<any>([]);
@@ -60,10 +61,13 @@ const Hero: FC = () => {
 
   if (isLoading) return <Loader />;
 
+  const imageUrl = getStrapiMedia(data.heroBg.url);
+  console.log("Hero data", imageUrl);
+
   return (
     <div className="relative overflow-hidden h-screen">
       <Image
-        src={defaultImageBg}
+        src={imageUrl || defaultImageBg}
         alt="Galery Image"
         layout="fill"
         objectFit="cover"

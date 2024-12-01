@@ -43,6 +43,10 @@ export function useBasketCart() {
     setBacetItems(newCards);
   };
 
+  const addCardToBasket = (card: ProductItemTypes) => {
+    setBacetItems(state => [...state, card]);
+  };
+
   const increaseCount = (id: number) => {
     setBacetItems(state =>
       state.map(
@@ -64,6 +68,7 @@ export function useBasketCart() {
 
   return {
     basketItems,
+    addCardToBasket,
     increaseCount,
     decreaseCount,
     removeCardById,

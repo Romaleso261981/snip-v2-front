@@ -14,6 +14,7 @@ type BasketContextType = {
   getTotalCout: () => number;
   increaseCount: (id: number) => void;
   removeCardById: (id: number) => void;
+  addCardToBasket: (card: ProductItemTypes) => void;
 };
 
 type BasketProviderProps = {
@@ -38,6 +39,7 @@ export function BasketProvider({ children }: BasketProviderProps) {
     getTotalCout,
     increaseCount,
     removeCardById,
+    addCardToBasket,
     basketItems
   } = useBasketCart();
 
@@ -53,7 +55,8 @@ export function BasketProvider({ children }: BasketProviderProps) {
         decreaseCount,
         getTotalCout,
         increaseCount,
-        removeCardById
+        removeCardById,
+        addCardToBasket
       }}
     >
       {children}
