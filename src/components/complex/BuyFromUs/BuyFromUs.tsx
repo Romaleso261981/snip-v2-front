@@ -76,23 +76,25 @@ export default function BuyFromUs() {
           const imageUrl = getStrapiMedia(card.img[0].url);
           return (
             <div
-              className="flex flex-col w-full justify-around mt-4 px-4 py-4"
+              className="flex flex-col w-full justify-around mt-4 px-6 py-4"
               key={card.id}
             >
               {imageUrl &&
                 <Image
                   src={imageUrl || ""}
                   alt={"none provided"}
-                  className="object-cover w-full h-full rounded-lg overflow-hidden"
+                  className="object-cover w-full h-full overflow-hidden"
                   width={400}
                   height={400}
                 />}
-              <h4 className="text-black font-montserrat font-weight-500 text-2xs">
-                {card.title}
-              </h4>
-              <span>
-                {card.cost} {card.currency}
-              </span>
+              <div className="flex flex-row justify-around py-5">
+                <h4 className="font-weight-500 text-2xs">
+                  {card.title}
+                </h4>
+                <span>
+                  {card.cost} {card.currency}
+                </span>
+              </div>
             </div>
           );
         })}
