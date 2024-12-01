@@ -22,8 +22,6 @@ export async function fetchAPI(
       `/api${path}${queryString ? `?${queryString}` : ""}`
     )}`;
 
-    console.log("URL---------------------------------------", requestUrl);
-
     // Trigger API call
     const response = await fetch(requestUrl, mergedOptions);
     const data = await response.json();
