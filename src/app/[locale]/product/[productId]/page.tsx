@@ -5,6 +5,7 @@ import { BasketContext } from "@/contexts/basketContext";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import { fetchAPI } from "@/utils/fetch-api";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useContext, useEffect, useState } from "react";
 
@@ -67,6 +68,19 @@ export default function ProductPage() {
 
   if (isLoading) return <Loader />;
 
+  const currentProduct2 = {
+    dimensionsTitle: "Складений виріб:",
+    dimensionsDescription: "35*35*45",
+    dimensionsUnits: "см",
+    materialTitle: "Матеріал:",
+    materialDescription: "Жито:",
+    compositionTitle: "До набору входять:",
+    compositionDescription:
+      "Соломини необхідної довжини та кількості, додаткові",
+    compositionDescriptionMore: " ... більше",
+    buttonText: "Придбати"
+  };
+
   const currentProduct = data.find(
     (product: any) => product.id === Number(productId)
   );
@@ -75,7 +89,7 @@ export default function ProductPage() {
   const imageUrl = getStrapiMedia(currentProduct.img[0].url);
 
   return (
-    <div className="flex flex-row w-full justify-around mt-4 px-6 py-4">
+    <div className="flex flex-col w-full justify-around px-4">
       {imageUrl &&
         <Image
           src={imageUrl || ""}
@@ -85,17 +99,49 @@ export default function ProductPage() {
           height={400}
         />}
       <div
-        className="flex flex-col py-5"
+        className="flex flex-col justify-center items-center py-5"
         onClick={() => addCardToBasket(currentProduct)}
       >
-        <h4 className="font-weight-500 text-2xs">
-          {currentProduct.title}
-        </h4>
-        <span>
-          {currentProduct.cost} {currentProduct.currency}
-        </span>
-        <button className="inline-block px-4 py-2 mt-4 text-sm font-semibold text-white transition duration-200 ease-in-out bg-gold hover:bg-zinc-600">
-          Add to basket
+        <div className="w-full flex flex-col items-start justify-start font-weight-500 text-black">
+          <h4 className="border-b border-gold py-2">
+            {currentProduct.title}
+          </h4>
+          <span className="py-2">
+            {currentProduct.cost} {currentProduct.currency}
+          </span>
+        </div>
+        <div>
+          <div>
+            <h4 className="py-2">
+              {currentProduct2.dimensionsTitle}
+            </h4>
+            <p>
+              {currentProduct2.dimensionsDescription}
+              {currentProduct2.dimensionsUnits}
+            </p>
+          </div>
+          <div className="pt-5">
+            <h4 className="py-2">
+              {currentProduct2.materialTitle}
+            </h4>
+            <p className="text-black">
+              {currentProduct2.materialDescription}
+            </p>
+          </div>
+          <div className="pt-5">
+            <h4 className="py-2">
+              {currentProduct2.compositionTitle}
+            </h4>
+            <p className="text-black">
+              {currentProduct2.compositionDescription}
+            </p>
+            <Link href={"/"}>
+              {currentProduct.compositionDescriptionMore}
+            </Link>
+          </div>
+        </div>
+        <button className="inline-block px-4 py-2 mt-4 text-sm w-full font-semibold text-white transition duration-200 ease-in-out bg-gold hover:bg-zinc-600">
+          {currentProduct2.buttonText}
         </button>
       </div>
     </div>
