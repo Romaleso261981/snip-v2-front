@@ -78,7 +78,8 @@ export default function ProductPage() {
     compositionDescription:
       "Соломини необхідної довжини та кількості, додаткові",
     compositionDescriptionMore: " ... більше",
-    buttonText: "Придбати"
+    buttonText: "Придбати",
+    TopBottonText: "Назад"
   };
 
   const currentProduct = data.find(
@@ -89,7 +90,12 @@ export default function ProductPage() {
   const imageUrl = getStrapiMedia(currentProduct.img[0].url);
 
   return (
-    <div className="flex flex-col w-full justify-around px-4">
+    <div className="flex flex-col items-center w-full justify-around px-4">
+      <div className="w-full flex flex-row justify-start ">
+        <Link href={"/"} className="flex items-center mx-4 mb-3 cursor-pointer">
+          {currentProduct2.TopBottonText}
+        </Link>
+      </div>
       {imageUrl &&
         <Image
           src={imageUrl || ""}

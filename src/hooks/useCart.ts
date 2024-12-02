@@ -32,7 +32,7 @@ export const cards: ProductItemTypes[] = [
 ];
 
 export function useBasketCart() {
-  const [basketItems, setBacetItems] = useState<ProductItemTypes[]>([...cards]);
+  const [basketItems, setBacetItems] = useState<ProductItemTypes[]>([]);
 
   const getTotalCout = () => {
     return basketItems.reduce((acc, card) => acc + card.price * card.count, 0);
@@ -44,7 +44,13 @@ export function useBasketCart() {
   };
 
   const addCardToBasket = (card: ProductItemTypes) => {
-    setBacetItems(state => [...state, card]);
+    const isCardExist = basketItems.some(item => item.id === card.id);
+
+    if (isCardExist) {
+      alert("Card already exist in basket");
+    } else {
+      setBacetItems(state => [...state, card]);
+    }
   };
 
   const increaseCount = (id: number) => {
