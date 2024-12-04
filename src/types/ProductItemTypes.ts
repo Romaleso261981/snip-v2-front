@@ -1,5 +1,19 @@
 import { StaticImageData } from "next/image";
 
+export type ImageStrapiResponce = {
+  url: string;
+};
+
+export type CardsStrapiResponce = {
+  id: number;
+  title: string;
+  cost: number;
+  count: number;
+  currency: string;
+  href: string;
+  img: ImageStrapiResponce[];
+};
+
 export type ProductItemTypes = {
   id: number;
   category?: string;
@@ -7,4 +21,33 @@ export type ProductItemTypes = {
   price: number;
   image: string | StaticImageData;
   count: number;
+};
+
+export type HomeStrapiResponce = {
+  cards: CardsStrapiResponce[];
+  description: string;
+  title: string;
+};
+
+export type ByFromUsStrapiResponce = {
+  cards: CardsStrapiResponce[];
+  description: string;
+  title: string;
+};
+
+export type BasketStrapiResponce = {
+  cards: CardsStrapiResponce[];
+  description: string;
+  title: string;
+};
+
+export type BasketStrapiRespons = {
+  title: string;
+  cost: number;
+  curency: string;
+  count: number
+  cardButton: string;
+  totalCount: string;
+  totalCountUnion: number;
+  bottomButton: string;
 };

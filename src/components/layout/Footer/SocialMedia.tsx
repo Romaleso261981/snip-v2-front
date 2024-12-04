@@ -1,14 +1,14 @@
 "use client";
-import InstagramIcon from "@/assets/icons/footer/InstagramIcon.svg";
-import YouTubeIcon from "@/assets/icons/footer/YoutubeIcon.svg";
-import TiktokIcon from "@/assets/icons/footer/TiktokIcon.svg";
-import FacebookIcon from "@/assets/icons/footer/FacebookIcon.svg";
+import InstagramIcon from "@/assets/icons/instagram.svg";
+import YouTubeIcon from "@/assets/icons/youtube.svg";
+import TiktokIcon from "@/assets/icons/tiktok.svg";
+import FacebookIcon from "@/assets/icons/facebook.svg";
 
 import { Link } from "@/i18n/routing";
 
 const SocialMedia = () => {
   return (
-    <ul className="flex gap-2 mt-5 text-dark text-[14px] items-start md:mt-6">
+    <ul className="flex gap-2 mt-5 text-dark text-sm items-start md:mt-6">
       <li>
         <Link href="https://instagram.com">
           <InstagramIcon className="w-8 h-8" />

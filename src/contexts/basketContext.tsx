@@ -2,19 +2,21 @@
 
 import { useBasketCart } from "@/hooks/useCart";
 import { useToggleBasket } from "@/hooks/useToggleBasket";
-import { ProductItemTypes } from "@/types/ProductItemTypes";
-import { createContext, ReactNode, MouseEvent as ReactMouseEvent } from "react";
+import { CardsStrapiResponce } from "@/types/ProductItemTypes";
+import { createContext, ReactNode } from "react";
 
 type BasketContextType = {
+  locale: string;
+  setLocale: (locale: string) => void;
   getCurrentLocale: () => string;
   showBasket: boolean;
-  handleToggleBasket: (e: ReactMouseEvent<HTMLDivElement, MouseEvent>) => void;
-  basketItems: ProductItemTypes[];
+  addCardToBasket: (item: CardsStrapiResponce) => void;
+  handleToggleBasket: () => void;
+  basketItems: CardsStrapiResponce[];
   decreaseCount: (id: number) => void;
   getTotalCout: () => number;
   increaseCount: (id: number) => void;
   removeCardById: (id: number) => void;
-  addCardToBasket: (card: ProductItemTypes) => void;
 };
 
 type BasketProviderProps = {
@@ -34,6 +36,8 @@ export function BasketProvider({ children }: BasketProviderProps) {
     }
   };
 
+  const locale = getCurrentLocale();
+
   const {
     decreaseCount,
     getTotalCout,
@@ -43,20 +47,26 @@ export function BasketProvider({ children }: BasketProviderProps) {
     basketItems
   } = useBasketCart();
 
+  const setLocale = (locale: string) => {
+    localStorage.setItem("locale", locale);
+  };
+
   const { showBasket, handleToggleBasket } = useToggleBasket();
 
   return (
     <BasketContext.Provider
       value={{
+        locale,
         getCurrentLocale,
         showBasket,
         basketItems,
+        setLocale,
         handleToggleBasket,
+        addCardToBasket,
         decreaseCount,
         getTotalCout,
         increaseCount,
-        removeCardById,
-        addCardToBasket
+        removeCardById
       }}
     >
       {children}

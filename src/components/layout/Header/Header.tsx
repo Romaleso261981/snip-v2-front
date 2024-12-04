@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useContext } from "react";
+import { useState, useContext, FC } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -10,12 +10,15 @@ import { Routes } from "@/const/routes";
 import MobileMenu from "./MobileMenu";
 import BurgerMenuIcon from "@/assets/icons/burger-menu.svg";
 import LogoIcon from "@/assets/icons/logo.svg";
-import Basket from "./Basket";
 import ShoppingBag from "./ShoppingBag";
-
 import { BasketContext } from "@/contexts/basketContext";
+import Basket from "./Basket/Basket"; // імпорт компоненту Basket
 
-const Header = () => {
+type HeaderProps = {
+  className: string;
+};
+
+const Header: FC<HeaderProps> = ({ className }) => {
   const [isOpen, setIsOpen] = useState<boolean>();
   const pathname = usePathname();
   const router = useRouter();
@@ -37,17 +40,22 @@ const Header = () => {
   };
 
   return (
-    <div className="container mx-auto w-full flex justify-between items-center h-12 py-16 px-6 relative">
+    <div
+      className={clsx(
+        "w-full flex justify-between items-center h-[66px] px-6",
+        className
+      )}
+    >
       <div onClick={() => setIsOpen(true)}>
         <BurgerMenuIcon className="cursor-pointer" />
       </div>
       <Link href={Routes.Home} className="flex flex-col items-center ml-20">
         <LogoIcon className="w-9 h-9" />
-        <span className="text-gold text-xs">
+        <span className="text-xs">
           {t("title")}
         </span>
       </Link>
-      <div className="flex gap-2 text-md text-gold cursor-pointer">
+      <div className="flex gap-2 text-md cursor-pointer">
         {basketItems.length > 0 && <ShoppingBag />}
         <span
           onClick={() => handleLocaleChange("uk")}

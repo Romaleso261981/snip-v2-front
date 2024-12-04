@@ -19,7 +19,6 @@ export default function BuyFromUs() {
     async (start: number, limit: number) => {
       setLoading(true);
       try {
-        const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
         const path = `/buyfromus`;
         const urlParamsObject = {
           populate: {
@@ -33,8 +32,7 @@ export default function BuyFromUs() {
           },
           locale: locale
         };
-        const options = { headers: { Authorization: `Bearer ${token}` } };
-        const responseData = await fetchAPI(path, urlParamsObject, options);
+        const responseData = await fetchAPI(path, urlParamsObject);
 
         if (start === 0) {
           setData(responseData.data);

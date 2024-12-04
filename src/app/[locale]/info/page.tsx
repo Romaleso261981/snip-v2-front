@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 
+import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
 import ShippingAndPayment from "@/components/complex/Info/ShippingAndPayment";
 
 export const metadata: Metadata = {
@@ -9,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function InfoPage() {
   return (
-    <section className="container mx-auto">
+    <GeneralLayout>
       <ShippingAndPayment />
-    </section>
+    </GeneralLayout>
   );
 }
