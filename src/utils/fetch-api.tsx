@@ -1,25 +1,23 @@
 import qs from "qs";
-import { getStrapiURL } from "./api-helpers";
+import { getStrapiURL, getToken } from "./api-helpers";
 
-export async function fetchAPI(
-  path: string,
-  urlParamsObject = {},
-  options = {}
-) {
+export async function fetchAPI(path: string, urlParamsObject = {}) {
   try {
+    const token = getToken();
+
     // Merge default and user options
     const mergedOptions = {
       next: { revalidate: 60 },
       headers: {
-        "Content-Type": "application/json"
-      },
-      ...options
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
     };
 
     // Build request URL
     const queryString = qs.stringify(urlParamsObject);
     const requestUrl = `${getStrapiURL(
-      `/api${path}${queryString ? `?${queryString}` : ""}`
+      `${path}${queryString ? `?${queryString}` : ""}`
     )}`;
 
     // Trigger API call

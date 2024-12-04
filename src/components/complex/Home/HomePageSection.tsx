@@ -32,6 +32,7 @@ const HomePageSection: FC = () => {
           },
           locale: locale
         };
+
         const options = { headers: { Authorization: `Bearer ${token}` } };
         const responseData = await fetchAPI(path, urlParamsObject, options);
 

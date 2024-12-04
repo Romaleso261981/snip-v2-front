@@ -1,41 +1,19 @@
 "use client";
 
-import { ProductItemTypes } from "@/types/ProductItemTypes";
+import { CardsStrapiResponce } from "@/types/ProductItemTypes";
 import { useState } from "react";
 
-import image1 from "@/assets/BuyFromUs/img1.png";
-import image2 from "@/assets/BuyFromUs/img2.png";
-import image3 from "@/assets/BuyFromUs/img3.png";
-
-export const cards: ProductItemTypes[] = [
-  {
-    id: 1,
-    image: image1,
-    title: "ПАВУК “КЛАСИЧНИЙ”",
-    count: 1,
-    price: 1850
-  },
-  {
-    id: 2,
-    image: image2,
-    title: "ПАВУК “КЛАСИЧНИЙ”",
-    count: 1,
-    price: 3050
-  },
-  {
-    id: 3,
-    image: image3,
-    title: "ПАВУК “КЛАСИЧНИЙ”",
-    count: 1,
-    price: 2850
-  }
-];
-
 export function useBasketCart() {
-  const [basketItems, setBacetItems] = useState<ProductItemTypes[]>([]);
+  const [basketItems, setBacetItems] = useState<CardsStrapiResponce[]>(() => {
+    const saved = localStorage.getItem("basket");
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    return [];
+  });
 
   const getTotalCout = () => {
-    return basketItems.reduce((acc, card) => acc + card.price * card.count, 0);
+    return basketItems.reduce((acc, card) => acc + card.cost * card.count, 0);
   };
 
   const removeCardById = (id: number) => {
@@ -43,14 +21,18 @@ export function useBasketCart() {
     setBacetItems(newCards);
   };
 
-  const addCardToBasket = (card: ProductItemTypes) => {
-    const isCardExist = basketItems.some(item => item.id === card.id);
-
-    if (isCardExist) {
-      alert("Card already exist in basket");
-    } else {
-      setBacetItems(state => [...state, card]);
-    }
+  const addCardToBasket = (card: CardsStrapiResponce) => {
+    setBacetItems(state => {
+      const isCardExist = state.find(item => item.id === card.id);
+      if (isCardExist) {
+        return state.map(
+          item =>
+            item.id === card.id ? { ...item, count: item.count + 1 } : item
+        );
+      }
+      localStorage.setItem("basket", JSON.stringify([...state, card]));
+      return [...state, { ...card, count: 1 }];
+    });
   };
 
   const increaseCount = (id: number) => {

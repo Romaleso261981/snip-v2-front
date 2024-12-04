@@ -2,9 +2,6 @@ import { ReactNode } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
-import Footer from "@/components/layout/Footer/Footer";
-import Header from "@/components/layout/Header/Header";
-
 import "@/app/globals.css";
 import { ReactQueryProvider } from "@/lib/react-query";
 import { BasketProvider } from "@/contexts/basketContext";
@@ -22,14 +19,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
 
   return (
     <html lang={locale}>
-      <body className="pb-10 text-gold leading-[22.4px]">
+      <body>
         <BasketProvider>
           <NextIntlClientProvider messages={messages}>
-            <ReactQueryProvider>
-              <Header />
-              {children}
-              <Footer />
-            </ReactQueryProvider>
+            <ReactQueryProvider>{children}</ReactQueryProvider>
           </NextIntlClientProvider>
         </BasketProvider>
       </body>

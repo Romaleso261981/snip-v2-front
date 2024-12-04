@@ -1,11 +1,9 @@
-import { MouseEvent, useState } from "react";
+import { useState } from "react";
 
 export function useToggleBasket() {
   const [showBasket, setShowBasket] = useState<boolean>(false);
 
-  function handleToggleBasket(e: MouseEvent<HTMLDivElement>) {
-    e.preventDefault();
-
+  function handleToggleBasket() {
     setShowBasket(!showBasket);
   }
 
