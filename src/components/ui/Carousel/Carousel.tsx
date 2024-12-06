@@ -5,12 +5,13 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { getStrapiMedia } from "@/utils/api-helpers";
+import { GalleryStrapiData } from "@/types/apiStrapiTypes";
 
 type EmblaCarouselProps = {
-  images: any[];
+  data: GalleryStrapiData[];
 };
 
-const EmblaCarousel: FC<EmblaCarouselProps> = ({ images }) => {
+const EmblaCarousel: FC<EmblaCarouselProps> = ({ data }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false }, [Autoplay()]);
 
@@ -35,7 +36,7 @@ const EmblaCarousel: FC<EmblaCarouselProps> = ({ images }) => {
     <div className="relative block md:hidden">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
-          {images.map(image => {
+          {data.map(image => {
             const imageUrl = getStrapiMedia(image.images.url);
             return (
               <div
@@ -54,7 +55,7 @@ const EmblaCarousel: FC<EmblaCarouselProps> = ({ images }) => {
         </div>
       </div>
       <div className="absolute bottom-0 left-0 right-0 flex justify-center p-4 space-x-2">
-        {images.map((image, index) =>
+        {data.map((image, index) =>
           <button
             key={image.id}
             className={`w-2 h-2 ${selectedIndex === index

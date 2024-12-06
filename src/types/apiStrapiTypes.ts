@@ -1,22 +1,19 @@
 export type HeroStrapiData = {
   text: string;
-  image: {
-    url: string;
-    width: number;
-    height: number;
-    name: string;
-  };
+  image: StrapiImage;
 };
 
 export type GalleryStrapiData = {
   id: string;
-  images: {
-    id: string;
-    url: string;
-    width: number;
-    height: number;
-    name: string;
-  };
+  images: StrapiImage;
+};
+
+export type StrapiImage = {
+  id: string;
+  url: string;
+  width: number;
+  height: number;
+  name: string;
 };
 
 export type AboutStrapiData = {
@@ -41,20 +38,8 @@ export type HomeStrapiResponce = {
 export type AboutStrapiResponce = {
   bottomFirstText: string;
   bottomSecondText: string;
-  mobileImage: {
-    id: string;
-    url: string;
-    width: number;
-    height: number;
-    name: string;
-  };
-  desctopImages: {
-    id: string;
-    url: string;
-    width: number;
-    height: number;
-    name: string;
-  }[];
+  mobileImage: StrapiImage;
+  desctopImages: StrapiImage[];
   leftFounder: string;
   main: {
     id: string;
@@ -64,12 +49,7 @@ export type AboutStrapiResponce = {
   };
   mainBottomText: string;
   rightFounder: string;
-  separatorImage: {
-    url: string;
-    width: number;
-    height: number;
-    name: string;
-  };
+  separatorImage: StrapiImage;
 };
 
 export type BuyFromUsResponce = {
@@ -86,12 +66,7 @@ export type Card = {
   id: number;
   bottomText: string;
   buttonText: string;
-  image: {
-    url: string;
-    width: number;
-    height: number;
-    name: string;
-  };
+  image: StrapiImage;
   includesDescription: string;
   includesTitle: string;
   materialDescription: string;

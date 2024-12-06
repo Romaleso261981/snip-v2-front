@@ -10,9 +10,9 @@ type GallerySectionProps = {
 };
 
 const GallerySection: FC<GallerySectionProps> = ({ data }) => {
-  console.log(data);
-
   if (!data) return <Loader />;
+
+  console.log(data.gallery);
 
   return (
     <div className="container mx-auto">
@@ -30,7 +30,7 @@ const GallerySection: FC<GallerySectionProps> = ({ data }) => {
           );
         })}
       </div>
-      <EmblaCarousel images={data.gallery} />
+      <EmblaCarousel data={data.gallery} />
     </div>
   );
 };
