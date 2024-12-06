@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useEffect, useState } from "react";
 import BasketDescription from "./ui/BasketDescription";
 import { endpoints } from "@/configs/endpoints";
@@ -30,8 +32,6 @@ const Basket: FC = () => {
     }
     fetchBasketData();
   }, []);
-
-  console.log("Basket data", basketData);
 
   if (!basketData) return <Loader />;
 

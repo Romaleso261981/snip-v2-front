@@ -13,14 +13,14 @@ const BasketDescription: FC<BasketProps> = ({ data }) => {
   const {
     basketItems,
     decreaseCount,
-    getTotalCout,
+    getTotalCount,
     increaseCount,
     removeCardById,
     handleToggleBasket
   } = useContext(BasketContext);
 
   return (
-    <div className="fixed h-full top-0 right-0 p-2 z-20 bg-white md:w-2/6 md:p-6">
+    <div className="fixed h-full top-0 right-0 p-2 z-20 bg-white text-gold md:w-2/6 md:p-6">
       <div className="flex flex-col justify-between items-start text-center p-2 pb-8 h-full ">
         <div
           className="flex gap-5 flex-row-reverse mb-10 pl-3 pt-3 md:p-0"
@@ -46,15 +46,25 @@ const BasketDescription: FC<BasketProps> = ({ data }) => {
                   <h4>
                     {data.count}
                   </h4>
-                  <div className="flex flex-row items-center gap-2 px-4">
-                    <button onClick={() => increaseCount(card.id)}>+</button>
-                    <p>
+                  <div className="flex flex-row items-center gap-3 px-6 pb-5">
+                    <button
+                      onClick={() => increaseCount(card.id)}
+                      className="flex justify-center items-center rounded-md w-7 h-7 border-collapse border-gold border-2"
+                    >
+                      +
+                    </button>
+                    <p className="text-black text-base">
                       {card.count}
                     </p>
-                    <button onClick={() => decreaseCount(card.id)}>-</button>
+                    <button
+                      onClick={() => decreaseCount(card.id)}
+                      className="flex justify-center items-center rounded-md w-7 h-7 border-collapse border-gold border-2"
+                    >
+                      -
+                    </button>
                   </div>
                 </div>
-                <div className="flex flex-row pb-3 gap-2">
+                <div className="flex flex-row pb-5 gap-2">
                   <h4>
                     {data.cost}
                   </h4>
@@ -77,7 +87,7 @@ const BasketDescription: FC<BasketProps> = ({ data }) => {
             {data.totalCount}
           </h4>
           <p>
-            {getTotalCout()}
+            {getTotalCount()}
           </p>
           <span>
             {data.totalCountUnion}

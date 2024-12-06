@@ -1,12 +1,14 @@
 import { Metadata } from "next";
 
 import HomeLayout from "@/components/layout/HomeLayout/HomeLayout";
-import HeroSection from "@/components/complex/Home/Hero";
-import DescriptionSection from "@/components/complex/Home/Description";
-import GallerySection from "@/components/complex/Home/Gallery";
 
 import { endpoints } from "@/configs/endpoints";
 import { fetchAPI } from "@/utils/fetch-api";
+import Loader from "@/components/Loader";
+import { HomeStrapiResponce } from "@/types/apiStrapiTypes";
+import HeroSection from "@/components/complex/Home/Hero";
+import DescriptionSection from "@/components/complex/Home/Description";
+import GallerySection from "@/components/complex/Home/Gallery";
 
 export const metadata: Metadata = {
   title: "СНІП",
@@ -17,24 +19,40 @@ export const metadata: Metadata = {
 export default async function HomePage({
   params
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+
   const urlParamsObject = {
-    populate: "*",
-    locale: params.locale
+    populate: {
+      hero: {
+        populate: "*"
+      },
+      about: {
+        populate: "*"
+      },
+      button: {
+        populate: "*"
+      },
+      gallery: {
+        populate: "*"
+      }
+    },
+    locale: locale
   };
 
-  const { data } = await fetchAPI(endpoints.home, urlParamsObject);
+  const { data }: { data: HomeStrapiResponce } = await fetchAPI(
+    endpoints.home,
+    urlParamsObject
+  );
+
+  if (!data) return <Loader />;
 
   return (
     <HomeLayout>
-      <HeroSection locale={params.locale} />
-      <DescriptionSection
-        title={data.title}
-        description={data.description}
-        button={data.button}
-      />
-      <GallerySection locale={params.locale} />
+      <HeroSection data={data.hero} />
+      <DescriptionSection about={data.about} button={data.button} />
+      <GallerySection data={data} />
     </HomeLayout>
   );
 }

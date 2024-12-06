@@ -14,10 +14,12 @@ export const metadata: Metadata = {
 };
 
 export default async function page({
-  params: { locale }
+  params
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+
   const urlParamsObject = {
     populate: {
       cards: {
@@ -31,8 +33,6 @@ export default async function page({
     endpoints.byFromUs,
     urlParamsObject
   );
-
-  console.log("ByFromUs data", data);
 
   return (
     <GeneralLayout>

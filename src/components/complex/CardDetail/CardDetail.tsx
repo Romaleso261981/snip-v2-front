@@ -1,21 +1,16 @@
-"use client";
-
-import { BasketContext } from "@/contexts/basketContext";
 import { CardsStrapiResponce } from "@/types/ProductItemTypes";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext } from "react";
+import AddToBasketButton from "./ui/AddToBasketButton";
 
-export default function CardDetail({
+export default async function CardDetail({
   product,
   locale
 }: {
-  product: CardsStrapiResponce;
   locale: string;
+  product: CardsStrapiResponce;
 }) {
-  const { addCardToBasket } = useContext(BasketContext);
-
   const currentProduct2MockData = {
     dimensionsTitle: "Складений виріб:",
     dimensionsDescription: "35*35*45",
@@ -32,8 +27,6 @@ export default function CardDetail({
     TopBottonText: "Назад"
   };
 
-  console.log("URL", product.img[0].url);
-
   const imageUrl = getStrapiMedia(product.img[0].url);
 
   return (
@@ -47,17 +40,16 @@ export default function CardDetail({
         </Link>
       </div>
       <div className="flex flex-col md:flex-row-reverse items-center w-full justify-around ">
-        <Image
-          src={imageUrl || ""}
-          alt={"none provided"}
-          className="object-cover overflow-hidden"
-          width={400}
-          height={400}
-        />
-        <div
-          className="container flex flex-col justify-center items-center py-5 px-10"
-          onClick={() => addCardToBasket(product)}
-        >
+        <div className="w-5/6 py-6 md:w-1/2">
+          <Image
+            src={imageUrl || ""}
+            alt="Image description"
+            layout="responsive"
+            width={100}
+            height={200}
+          />
+        </div>
+        <div className="container flex flex-col justify-center items-center py-5 px-10">
           <div className="w-full flex flex-col items-start justify-start font-weight-500 text-black ">
             <h4 className="border-b border-gold py-2 md:text-xl md:pb-5">
               {product.title}
@@ -100,9 +92,10 @@ export default function CardDetail({
               </Link>
             </div>
           </div>
-          <button className="inline-block px-4 py-2 mt-4 text-sm w-full font-semibold text-white transition duration-200 ease-in-out bg-gold hover:bg-zinc-600">
-            {currentProduct2MockData.buttonText}
-          </button>
+          <AddToBasketButton
+            buttonText={currentProduct2MockData.buttonText}
+            product={product}
+          />
         </div>
       </div>
     </div>

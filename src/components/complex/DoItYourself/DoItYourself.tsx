@@ -2,7 +2,9 @@ import Image from "next/image";
 
 import bg from "@/assets/doItYourself/bg.png";
 
-export default function DoItYourself() {
+export default function DoItYourself({ locale }: { locale: string }) {
+  console.log(locale);
+
   return (
     <div>
       <div className="flex flex-col justify-center items-center px-8">

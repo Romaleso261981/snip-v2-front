@@ -36,7 +36,7 @@ const EmblaCarousel: FC<EmblaCarouselProps> = ({ images }) => {
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {images.map(image => {
-            const imageUrl = getStrapiMedia(image.img[0].url);
+            const imageUrl = getStrapiMedia(image.images.url);
             return (
               <div
                 className="flex-shrink-0 flex-grow-0 flex-basis-full min-w-0"

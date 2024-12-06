@@ -6,15 +6,13 @@ import { CardsStrapiResponce } from "@/types/ProductItemTypes";
 import { createContext, ReactNode } from "react";
 
 type BasketContextType = {
-  locale: string;
   setLocale: (locale: string) => void;
-  getCurrentLocale: () => string;
   showBasket: boolean;
   addCardToBasket: (item: CardsStrapiResponce) => void;
   handleToggleBasket: () => void;
   basketItems: CardsStrapiResponce[];
   decreaseCount: (id: number) => void;
-  getTotalCout: () => number;
+  getTotalCount: () => number;
   increaseCount: (id: number) => void;
   removeCardById: (id: number) => void;
 };
@@ -26,21 +24,9 @@ type BasketProviderProps = {
 export const BasketContext = createContext({} as BasketContextType);
 
 export function BasketProvider({ children }: BasketProviderProps) {
-  const getCurrentLocale = () => {
-    const locale = localStorage.getItem("locale");
-    if (locale) {
-      return locale;
-    } else {
-      localStorage.setItem("locale", "en");
-      return "en";
-    }
-  };
-
-  const locale = getCurrentLocale();
-
   const {
     decreaseCount,
-    getTotalCout,
+    getTotalCount,
     increaseCount,
     removeCardById,
     addCardToBasket,
@@ -56,15 +42,13 @@ export function BasketProvider({ children }: BasketProviderProps) {
   return (
     <BasketContext.Provider
       value={{
-        locale,
-        getCurrentLocale,
         showBasket,
         basketItems,
         setLocale,
         handleToggleBasket,
         addCardToBasket,
         decreaseCount,
-        getTotalCout,
+        getTotalCount,
         increaseCount,
         removeCardById
       }}

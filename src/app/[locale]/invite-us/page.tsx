@@ -1,4 +1,5 @@
 import InviteUs from "@/components/complex/InviteUs/InviteUs";
+import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <section className="container mx-auto">
+    <GeneralLayout>
       <InviteUs />
-    </section>
+    </GeneralLayout>
   );
 }

@@ -5,7 +5,11 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["intuitive-spontaneity-snip.up.railway.app"]
+    domains: [
+      "intuitive-spontaneity-snip.up.railway.app",
+      "strapi-cms-production-f73b.up.railway.app",
+      "localhost:3000"
+    ]
   },
   webpack(config) {
     // Configure SVGR

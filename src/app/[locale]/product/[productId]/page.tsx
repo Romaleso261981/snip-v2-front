@@ -6,10 +6,12 @@ import { ByFromUsStrapiResponce } from "@/types/ProductItemTypes";
 import { fetchAPI } from "@/utils/fetch-api";
 
 export default async function Page({
-  params: { productId, locale }
+  params
 }: {
-  params: { locale: string; productId: string };
+  params: Promise<{ locale: string; productId: string }>;
 }) {
+  const { productId, locale } = await params;
+
   const urlParamsObject = {
     populate: {
       cards: {
@@ -27,6 +29,8 @@ export default async function Page({
   const currentProduct = data.cards.find(
     product => product.id === Number(productId)
   );
+
+  console.log("CardDetail data", data);
 
   if (!currentProduct) return <Loader />;
 

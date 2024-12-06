@@ -12,7 +12,7 @@ import BurgerMenuIcon from "@/assets/icons/burger-menu.svg";
 import LogoIcon from "@/assets/icons/logo.svg";
 import ShoppingBag from "./ShoppingBag";
 import { BasketContext } from "@/contexts/basketContext";
-import Basket from "./Basket/Basket"; // імпорт компоненту Basket
+import Basket from "./Basket/Basket";
 
 type HeaderProps = {
   className: string;
@@ -25,7 +25,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
   const searchParams = useSearchParams();
   const t = useTranslations("Header");
 
-  const { basketItems, showBasket } = useContext(BasketContext);
+  const { showBasket } = useContext(BasketContext);
 
   const isUaActive = pathname.includes("/uk");
   const isEnActive = pathname.includes("/en");
@@ -56,7 +56,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
         </span>
       </Link>
       <div className="flex gap-2 text-md cursor-pointer">
-        {basketItems.length > 0 && <ShoppingBag />}
+        <ShoppingBag />
         <span
           onClick={() => handleLocaleChange("uk")}
           className={clsx("hover:underline", isUaActive && "font-bold")}
