@@ -4,12 +4,12 @@ import { FC, useContext } from "react";
 import Image from "next/image";
 import cross from "@/assets/mobMenu/cross-mob-menu.png";
 import { BasketContext } from "@/contexts/basketContext";
-import { BasketStrapiRespons } from "@/types/ProductItemTypes";
 import BasketImage from "./BasketImage";
+import { useTranslations } from "next-intl";
 
-type BasketProps = { data: BasketStrapiRespons };
+const BasketDescription: FC = () => {
+  const t = useTranslations("Basket");
 
-const BasketDescription: FC<BasketProps> = ({ data }) => {
   const {
     basketItems,
     decreaseCount,
@@ -29,7 +29,7 @@ const BasketDescription: FC<BasketProps> = ({ data }) => {
           <Image src={cross} alt="cross" />
         </div>
         <h2 className="mb-5 text-xl">
-          {data.title}
+          {t("mainTitle")}
         </h2>
         <div className="flex flex-col justify-start items-start w-full flex-grow overflow-auto">
           {basketItems.map((card, index) =>
@@ -37,14 +37,14 @@ const BasketDescription: FC<BasketProps> = ({ data }) => {
               key={index}
               className="flex justify-between items-center w-full mb-5 border-gold border-b-2 pb-4"
             >
-              <BasketImage image={card.img[0].url} />
+              <BasketImage image={card.image.url} />
               <div className="w-full h-full flex pl-4 flex-col items-start">
                 <p className="pb-8">
-                  {card.title}
+                  {card.name}
                 </p>
                 <div className="w-2/3 flex flex-row pb-1">
                   <h4>
-                    {data.count}
+                    {t("count")}
                   </h4>
                   <div className="flex flex-row items-center gap-3 px-6 pb-5">
                     <button
@@ -66,36 +66,36 @@ const BasketDescription: FC<BasketProps> = ({ data }) => {
                 </div>
                 <div className="flex flex-row pb-5 gap-2">
                   <h4>
-                    {data.cost}
+                    {t("price")}
                   </h4>
                   <p>
-                    {card.cost}
+                    {card.price}
                   </p>
                   <span>
-                    {data.curency}
+                    {card.union}
                   </span>
                 </div>
                 <button onClick={() => removeCardById(card.id)}>
-                  {data.cardButton}
+                  {t("cardbuttonText")}
                 </button>
               </div>
             </div>
           )}
+          <div className="flex flex-row py-6">
+            <h4>
+              {t("toBePaid")}
+            </h4>
+            <p>
+              {getTotalCount()}
+            </p>
+            <span>
+              {t("totalCoutUnion")}
+            </span>
+          </div>
+          <button className="flex justify-center items-center w-[80%] h-12 bc text-md bg-gold text-[#fff]">
+            {t("buttonText")}
+          </button>
         </div>
-        <div className="flex flex-row py-6">
-          <h4>
-            {data.totalCount}
-          </h4>
-          <p>
-            {getTotalCount()}
-          </p>
-          <span>
-            {data.totalCountUnion}
-          </span>
-        </div>
-        <button className="flex justify-center items-center w-[80%] h-12 bc text-md bg-gold text-[#fff]">
-          {data.bottomButton}
-        </button>
       </div>
     </div>
   );

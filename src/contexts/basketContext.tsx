@@ -2,15 +2,15 @@
 
 import { useBasketCart } from "@/hooks/useCart";
 import { useToggleBasket } from "@/hooks/useToggleBasket";
-import { CardsStrapiResponce } from "@/types/ProductItemTypes";
+import { Card } from "@/types/apiStrapiTypes";
 import { createContext, ReactNode } from "react";
 
 type BasketContextType = {
   setLocale: (locale: string) => void;
   showBasket: boolean;
-  addCardToBasket: (item: CardsStrapiResponce) => void;
+  addCardToBasket: (item: Card) => void;
   handleToggleBasket: () => void;
-  basketItems: CardsStrapiResponce[];
+  basketItems: Card[];
   decreaseCount: (id: number) => void;
   getTotalCount: () => number;
   increaseCount: (id: number) => void;

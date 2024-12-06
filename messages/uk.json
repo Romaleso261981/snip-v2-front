@@ -33,5 +33,14 @@
     "copyright": {
       "text": "Ⓒ2024 СНІП | Design:"
     }
+  },
+  "Basket": {
+    "mainTitle": "У вашій корзині:",
+    "count": "К-сть:",
+    "price": "Ціна:",
+    "toBePaid": "До сплати:",
+    "totalCoutUnion": "Грн.",
+    "buttonText": "Оформити замовлення.",
+    "cardbuttonText": "Видалити."
   }
 }

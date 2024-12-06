@@ -23,8 +23,9 @@ export default function CardList({ cards }: CardListProps) {
                   src={imageUrl || defaultImageUrl}
                   alt={"none provided"}
                   className="object-cover w-full h-full overflow-hidden"
-                  width={400}
-                  height={400}
+                  layout="responsive"
+                  width={card.image.width}
+                  height={card.image.height}
                 />}
               <div className="flex flex-row justify-around py-5">
                 <h4 className="font-weight-500 text-2xs">

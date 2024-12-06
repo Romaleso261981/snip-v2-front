@@ -101,6 +101,7 @@ export type Card = {
   sizeTitle: string;
   union: string;
   price: number;
+  count: number;
 };
 
 export type NaboriResponce = Card[];

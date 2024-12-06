@@ -33,5 +33,14 @@
     "copyright": {
       "text": "Ⓒ2024 СНІП | Design:"
     }
+  },
+  "Basket": {
+    "mainTitle": "In your shopping cart:",
+    "count": "Count:",
+    "price": "Price:",
+    "toBePaid": "To be paid:",
+    "totalCoutUnion": "Grn.",
+    "buttonText": "Make an order.",
+    "cardbuttonText": "Remove."
   }
 }

@@ -1,24 +1,20 @@
 "use client";
 
-import { CardsStrapiResponce } from "@/types/ProductItemTypes";
+import { Card } from "@/types/apiStrapiTypes";
 import { useState } from "react";
 
 export function useBasketCart() {
-  const [basketItems, setBasketItems] = useState<CardsStrapiResponce[]>(() => {
-    try {
-      const saved = localStorage.getItem("basket");
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  const initialBasket = localStorage.getItem("basket");
+  const [basketItems, setBasketItems] = useState<Card[]>(
+    initialBasket ? JSON.parse(initialBasket) : []
+  );
 
-  const updateLocalStorage = (items: CardsStrapiResponce[]) => {
+  const updateLocalStorage = (items: Card[]) => {
     localStorage.setItem("basket", JSON.stringify(items));
   };
 
   const getTotalCount = () => {
-    return basketItems.reduce((acc, card) => acc + card.cost * card.count, 0);
+    return basketItems.reduce((acc, card) => acc + card.price * card.count, 0);
   };
 
   const removeCardById = (id: number) => {
@@ -27,12 +23,13 @@ export function useBasketCart() {
     updateLocalStorage(newCards);
   };
 
-  const addCardToBasket = (card: CardsStrapiResponce) => {
+  const addCardToBasket = (card: Card) => {
     setBasketItems(state => {
       const isCardExist = state.find(item => item.id === card.id);
       const updatedState = isCardExist
-        ? state.map(item =>
-            item.id === card.id ? { ...item, count: item.count + 1 } : item
+        ? state.map(
+            item =>
+              item.id === card.id ? { ...item, count: item.count + 1 } : item
           )
         : [...state, { ...card, count: 1 }];
       updateLocalStorage(updatedState);
@@ -42,8 +39,8 @@ export function useBasketCart() {
 
   const increaseCount = (id: number) => {
     setBasketItems(state => {
-      const updatedState = state.map(card =>
-        card.id === id ? { ...card, count: card.count + 1 } : card
+      const updatedState = state.map(
+        card => (card.id === id ? { ...card, count: card.count + 1 } : card)
       );
       updateLocalStorage(updatedState);
       return updatedState;
@@ -52,10 +49,11 @@ export function useBasketCart() {
 
   const decreaseCount = (id: number) => {
     setBasketItems(state => {
-      const updatedState = state.map(card =>
-        card.id === id && card.count > 1
-          ? { ...card, count: card.count - 1 }
-          : card
+      const updatedState = state.map(
+        card =>
+          card.id === id && card.count > 1
+            ? { ...card, count: card.count - 1 }
+            : card
       );
       updateLocalStorage(updatedState);
       return updatedState;
@@ -68,6 +66,6 @@ export function useBasketCart() {
     increaseCount,
     decreaseCount,
     removeCardById,
-    getTotalCount,
+    getTotalCount
   };
 }
