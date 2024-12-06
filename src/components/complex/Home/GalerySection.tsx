@@ -33,7 +33,6 @@ const Galery: FC = () => {
     async (start: number, limit: number) => {
       setLoading(true);
       try {
-        const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
         const path = `/home`;
         const urlParamsObject = {
           populate: {
@@ -47,8 +46,7 @@ const Galery: FC = () => {
           },
           locale: locale
         };
-        const options = { headers: { Authorization: `Bearer ${token}` } };
-        const responseData = await fetchAPI(path, urlParamsObject, options);
+        const responseData = await fetchAPI(path, urlParamsObject);
 
         if (start === 0) {
           setData(responseData.data.galary.galleryCard);
