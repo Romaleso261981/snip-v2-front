@@ -3,8 +3,11 @@ import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
 import { fetchAPI } from "@/utils/fetch-api";
 import { endpoints } from "@/configs/endpoints";
 import Loader from "@/components/Loader";
-import AboutUs from "@/components/complex/About/AboutUs";
 import { AboutStrapiResponce } from "@/types/apiStrapiTypes";
+import TopDescription from "@/components/complex/About/TopDescription";
+import MidleDescription from "@/components/complex/About/MidleDescription";
+import SeparatorImage from "@/components/complex/About/SeparatorImage";
+import BottomDescription from "@/components/complex/About/BottomDescription";
 
 export const metadata: Metadata = {
   title: "About US",
@@ -29,12 +32,23 @@ export default async function AboutUsPage({
     urlParamsObject
   );
 
-  console.log("About Us", data);
-
   if (!data) return <Loader />;
   return (
     <GeneralLayout>
-      <AboutUs data={data} />
+      <div className="container mx-auto flex flex-col justify-center items-center w-full text-center pt-10 md:p-0">
+        <TopDescription main={data.main} />
+        <MidleDescription
+          rightFounder={data.rightFounder}
+          leftFounder={data.leftFounder}
+          mobileImage={data.mobileImage}
+          desctopImages={data.desctopImages}
+        />
+        <SeparatorImage separatorImage={data.separatorImage} />
+        <BottomDescription
+          bottomFirstText={data.bottomFirstText}
+          bottomSecondText={data.bottomSecondText}
+        />
+      </div>
     </GeneralLayout>
   );
 }

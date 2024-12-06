@@ -71,3 +71,36 @@ export type AboutStrapiResponce = {
     name: string;
   };
 };
+
+export type BuyFromUsResponce = {
+  id: number;
+  main: {
+    id: number;
+    text: string;
+    title: string;
+    title2: string;
+  };
+};
+
+export type Card = {
+  id: number;
+  bottomText: string;
+  buttonText: string;
+  image: {
+    url: string;
+    width: number;
+    height: number;
+    name: string;
+  };
+  includesDescription: string;
+  includesTitle: string;
+  materialDescription: string;
+  materialTitle: string;
+  name: string;
+  sizeDescription: string;
+  sizeTitle: string;
+  union: string;
+  price: number;
+};
+
+export type NaboriResponce = Card[];

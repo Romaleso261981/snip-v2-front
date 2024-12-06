@@ -2,7 +2,7 @@ import CardDetail from "@/components/complex/CardDetail/CardDetail";
 import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
 import Loader from "@/components/Loader";
 import { endpoints } from "@/configs/endpoints";
-import { ByFromUsStrapiResponce } from "@/types/ProductItemTypes";
+import { NaboriResponce } from "@/types/apiStrapiTypes";
 import { fetchAPI } from "@/utils/fetch-api";
 
 export default async function Page({
@@ -12,25 +12,17 @@ export default async function Page({
 }) {
   const { productId, locale } = await params;
 
-  const urlParamsObject = {
-    populate: {
-      cards: {
-        populate: "*"
-      }
-    },
+  const urlParamsNabori = {
+    populate: "*",
     locale: locale
   };
 
-  const { data }: { data: ByFromUsStrapiResponce } = await fetchAPI(
-    endpoints.byFromUs,
-    urlParamsObject
+  const { data }: { data: NaboriResponce } = await fetchAPI(
+    endpoints.naboris,
+    urlParamsNabori
   );
 
-  const currentProduct = data.cards.find(
-    product => product.id === Number(productId)
-  );
-
-  console.log("CardDetail data", data);
+  const currentProduct = data.find(product => product.id === Number(productId));
 
   if (!currentProduct) return <Loader />;
 

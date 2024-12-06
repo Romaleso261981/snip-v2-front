@@ -34,20 +34,3 @@ export type ByFromUsStrapiResponce = {
   description: string;
   title: string;
 };
-
-export type BasketStrapiResponce = {
-  cards: CardsStrapiResponce[];
-  description: string;
-  title: string;
-};
-
-export type BasketStrapiRespons = {
-  title: string;
-  cost: number;
-  curency: string;
-  count: number
-  cardButton: string;
-  totalCount: string;
-  totalCountUnion: number;
-  bottomButton: string;
-};
