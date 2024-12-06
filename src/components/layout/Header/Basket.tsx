@@ -4,6 +4,7 @@ import { FC, useContext } from "react";
 import Image from "next/image";
 import cross from "@/assets/mobMenu/cross-mob-menu.png";
 import { BasketContext } from "@/contexts/basketContext";
+import { getStrapiMedia } from "@/utils/api-helpers";
 
 const BasketStrapiData = {
   title: {
@@ -36,7 +37,7 @@ const Basket: FC = () => {
   const {
     basketItems,
     decreaseCount,
-    getTotalCout,
+    getTotalCount,
     increaseCount,
     removeCardById,
     handleToggleBasket
@@ -47,7 +48,7 @@ const Basket: FC = () => {
       <div className="flex flex-col justify-between items-start text-center p-2 pb-8 h-full ">
         <div
           className="flex gap-5 flex-row-reverse mb-10 pl-3 pt-3 md:p-0"
-          onClick={e => handleToggleBasket(e)}
+          onClick={() => handleToggleBasket()}
         >
           <Image src={cross} alt="cross" />
         </div>
@@ -61,7 +62,10 @@ const Basket: FC = () => {
               className="flex justify-between items-center w-full mb-5 border-gold border-b-2 pb-4"
             >
               <div className="w-1/3 flex flex-row justify-between">
-                <Image src={card.image} alt="image" />
+                <Image
+                  src={getStrapiMedia(card.img[0].url) || ""}
+                  alt="image"
+                />
               </div>
               <div className="w-full h-full flex pl-4 flex-col items-start">
                 <p className="pb-8">
@@ -84,7 +88,7 @@ const Basket: FC = () => {
                     {BasketStrapiData.cost.ua}
                   </h4>
                   <p>
-                    {card.price}
+                    {card.cost}
                   </p>
                   <span>
                     {BasketStrapiData.curensu.ua}
@@ -100,7 +104,7 @@ const Basket: FC = () => {
         <div className="flex flex-row py-6">
           <h4>До сплати:</h4>
           <p>
-            {getTotalCout()}
+            {getTotalCount()}
           </p>
           <span>грн</span>
         </div>
