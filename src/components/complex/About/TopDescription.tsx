@@ -9,7 +9,7 @@ const TopDescription = ({
   };
 }) => {
   return (
-    <div className="">
+    <div className="flex flex-col justify-center items-center">
       <h2 className="text-xxl mb-5 ma:mb-10">
         {title}
       </h2>

@@ -35,7 +35,7 @@ export default async function MidleDescription({
           objectFit="cover"
         />
       </div>
-      <div className="hidden md:flex flex-row ">
+      <div className="hidden md:flex flex-row gap-11 ">
         {desctopImages.map((image, index) => {
           const url = getStrapiMedia(image.url);
           return (

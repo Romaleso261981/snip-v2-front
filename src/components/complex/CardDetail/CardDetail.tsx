@@ -33,7 +33,7 @@ export default async function CardDetail({
             height={200}
           />
         </div>
-        <div className="container flex flex-col justify-center items-center py-5 px-10">
+        <div className="flex flex-col justify-center items-center py-5 md:px-10">
           <div className="w-full flex flex-col items-start justify-start font-weight-500 text-black ">
             <h4 className="border-b border-gold py-2 md:text-xl md:pb-5">
               {product.name}

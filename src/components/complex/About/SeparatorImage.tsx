@@ -13,21 +13,22 @@ export default async function SeparatorImage({
 }) {
   return (
     <div className="">
-      <div className="hidden md:flex flex-row">
+      <div className="hidden md:flex">
         <Image
           src={getStrapiMedia(separatorImage.url) || ""}
           alt="image6"
-          width={separatorImage.width}
-          height={separatorImage.height}
+          width={2400}
+          height={10}
           objectFit="cover"
           loading="lazy"
         />
       </div>
-      <div className="w-full flex md:hidden">
+      <div className="flex md:hidden">
         <Image
           src={getStrapiMedia(separatorImage.url) || ""}
-          width={separatorImage.width}
+          width={2400}
           height={separatorImage.height}
+          objectFit="cover"
           alt="image6"
           loading="lazy"
         />
