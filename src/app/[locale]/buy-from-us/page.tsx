@@ -1,9 +1,7 @@
 import BuyFromUsDescription from "@/components/complex/BuyFromUs/BuyFromUsDescription";
 import CardList from "@/components/complex/BuyFromUs/CardList";
 import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
-import { endpoints } from "@/configs/endpoints";
-import { BuyFromUsResponce, NaboriResponce } from "@/types/apiStrapiTypes";
-import { fetchAPI } from "@/utils/fetch-api";
+import { getAboutStrapiData } from "@/utils/fetch-api";
 import { Metadata } from "next";
 import React from "react";
 
@@ -20,25 +18,7 @@ export default async function page({
 }) {
   const { locale } = await params;
 
-  const urlParamsObject = {
-    populate: "*",
-    locale: locale
-  };
-
-  const urlParamsNabori = {
-    populate: "*",
-    locale: locale
-  };
-
-  const { data }: { data: BuyFromUsResponce } = await fetchAPI(
-    endpoints.byFromUs,
-    urlParamsObject
-  );
-
-  const { data: naboris }: { data: NaboriResponce } = await fetchAPI(
-    endpoints.naboris,
-    urlParamsNabori
-  );
+  const { data, naboris } = await getAboutStrapiData(locale);
 
   return (
     <GeneralLayout>

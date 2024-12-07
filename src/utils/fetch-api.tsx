@@ -1,5 +1,7 @@
 import qs from "qs";
 import { getStrapiURL, getToken } from "./api-helpers";
+import { BuyFromUsResponce, NaboriResponce } from "@/types/apiStrapiTypes";
+import { endpoints } from "@/configs/endpoints";
 
 export async function fetchAPI(path: string, urlParamsObject = {}) {
   try {
@@ -24,6 +26,35 @@ export async function fetchAPI(path: string, urlParamsObject = {}) {
     const response = await fetch(requestUrl, mergedOptions);
     const data = await response.json();
     return data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(
+      `Please check if your server is running and you set all the required tokens.`
+    );
+  }
+}
+export async function getAboutStrapiData(locale: string = "uk") {
+  try {
+    const urlParamsObject = {
+      populate: "*",
+      locale: locale
+    };
+
+    const urlParamsNabori = {
+      populate: "*",
+      locale: locale
+    };
+
+    const { data }: { data: BuyFromUsResponce } = await fetchAPI(
+      endpoints.byFromUs,
+      urlParamsObject
+    );
+
+    const { data: naboris }: { data: NaboriResponce } = await fetchAPI(
+      endpoints.naboris,
+      urlParamsNabori
+    );
+    return { data, naboris };
   } catch (error) {
     console.error(error);
     throw new Error(

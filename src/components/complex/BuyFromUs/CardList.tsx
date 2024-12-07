@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 import { getStrapiMedia } from "@/utils/api-helpers";
 import Link from "next/link";
 import { Card, NaboriResponce } from "@/types/apiStrapiTypes";
@@ -12,23 +11,25 @@ type CardListProps = {
 
 export default function CardList({ cards }: CardListProps) {
   return (
-    <div className="text-center flex flex-col items-center mt-14 mb-14">
+    <div className="w-full text-center text-gold flex flex-wrap gap-3 justify-center border-gold mt-15 mb-14 md:my-5">
       {cards.map((card: Card) => {
         const imageUrl = getStrapiMedia(card.image.url);
         return (
-          <Link href={`product/${card.id}`} key={card.id}>
-            <div className="flex flex-col w-full justify-around mt-4 px-6 py-4">
+          <Link
+            href={`product/${card.id}`}
+            key={card.id}
+            className="flex items-center justify-center w-full md:w-1/3"
+          >
+            <div className="flex flex-col items-center justify-center w-full md:w-1/2 border border-gold p-4 rounded-sm shadow-lg">
               {imageUrl &&
                 <Image
                   src={imageUrl || defaultImageUrl}
                   alt={"none provided"}
-                  className="object-cover w-full h-full overflow-hidden"
-                  layout="responsive"
                   width={card.image.width}
                   height={card.image.height}
                 />}
-              <div className="flex flex-row justify-around py-5">
-                <h4 className="font-weight-500 text-2xs">
+              <div className="flex items-center gap-2 py-5 md:flex-col">
+                <h4 className="font-medium text-sm">
                   {card.name}
                 </h4>
                 <span>
