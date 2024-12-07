@@ -8,7 +8,8 @@ const nextConfig = {
     domains: [
       "intuitive-spontaneity-snip.up.railway.app",
       "strapi-cms-production-f73b.up.railway.app",
-      "localhost:3000"
+      "localhost:3000",
+      "via.placeholder.com"
     ]
   },
   webpack(config) {

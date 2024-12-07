@@ -81,6 +81,26 @@ export async function getDoItYourselfStrapiData(locale: string = "uk") {
     );
   }
 }
+export async function getInviteUsStrapiData(locale: string = "uk") {
+  try {
+    const urlParamsObject = {
+      populate: "*",
+      locale: locale
+    };
+
+    const { data }: { data: BuyFromUsResponce } = await fetchAPI(
+      endpoints.inviteUs,
+      urlParamsObject
+    );
+
+    return { data };
+  } catch (error) {
+    console.error(error);
+    throw new Error(
+      `Please check if your server is running and you set all the required tokens.`
+    );
+  }
+}
 export async function getByFromUsStrapiData(locale: string = "uk") {
   try {
     const urlParamsObject = {
