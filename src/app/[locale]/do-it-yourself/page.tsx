@@ -1,5 +1,7 @@
 import DoItYourself from "@/components/complex/DoItYourself/DoItYourself";
 import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
+import { BuyFromUsResponce } from "@/types/apiStrapiTypes";
+import { getDoItYourselfStrapiData } from "@/utils/fetch-api";
 import { Metadata } from "next";
 import React from "react";
 
@@ -16,9 +18,13 @@ export default async function page({
 }) {
   const { locale } = await params;
 
+  const { data }: { data: BuyFromUsResponce } = await getDoItYourselfStrapiData(
+    locale
+  );
+
   return (
     <GeneralLayout>
-      <DoItYourself locale={locale} />
+      <DoItYourself data={data} />
     </GeneralLayout>
   );
 }

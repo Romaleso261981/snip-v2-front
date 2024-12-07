@@ -18,7 +18,7 @@ export default function CardList({ cards }: CardListProps) {
           <Link
             href={`product/${card.id}`}
             key={card.id}
-            className="flex items-center justify-center w-full md:w-1/3"
+            className="flex items-center justify-center w-full md:w-1/4"
           >
             <div className="flex flex-col items-center justify-center w-full md:w-1/2 border border-gold p-4 rounded-sm shadow-lg">
               {imageUrl &&

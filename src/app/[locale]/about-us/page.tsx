@@ -1,9 +1,7 @@
 import { Metadata } from "next";
 import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
-import { fetchAPI } from "@/utils/fetch-api";
-import { endpoints } from "@/configs/endpoints";
+import { getAboutStrapiData } from "@/utils/fetch-api";
 import Loader from "@/components/Loader";
-import { AboutStrapiResponce } from "@/types/apiStrapiTypes";
 import TopDescription from "@/components/complex/About/TopDescription";
 import MidleDescription from "@/components/complex/About/MidleDescription";
 import SeparatorImage from "@/components/complex/About/SeparatorImage";
@@ -22,15 +20,7 @@ export default async function AboutUsPage({
 }) {
   const { locale } = await params;
 
-  const urlParamsObject = {
-    populate: "*",
-    locale: locale
-  };
-
-  const { data }: { data: AboutStrapiResponce } = await fetchAPI(
-    endpoints.about,
-    urlParamsObject
-  );
+  const { data } = await getAboutStrapiData(locale);
 
   if (!data) return <Loader />;
   return (

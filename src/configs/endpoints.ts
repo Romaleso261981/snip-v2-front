@@ -3,5 +3,5 @@ export const endpoints = {
   about: "about-us",
   naboris: "naboris",
   byFromUs: "buy-from-us",
-  basket: "basket"
+  doItYourself: "do-it-yourself"
 };

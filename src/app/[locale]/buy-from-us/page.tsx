@@ -1,7 +1,7 @@
 import BuyFromUsDescription from "@/components/complex/BuyFromUs/BuyFromUsDescription";
 import CardList from "@/components/complex/BuyFromUs/CardList";
 import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
-import { getAboutStrapiData } from "@/utils/fetch-api";
+import { getByFromUsStrapiData } from "@/utils/fetch-api";
 import { Metadata } from "next";
 import React from "react";
 
@@ -18,7 +18,7 @@ export default async function page({
 }) {
   const { locale } = await params;
 
-  const { data, naboris } = await getAboutStrapiData(locale);
+  const { data, naboris } = await getByFromUsStrapiData(locale);
 
   return (
     <GeneralLayout>

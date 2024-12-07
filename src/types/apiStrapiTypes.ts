@@ -54,6 +54,24 @@ export type AboutStrapiResponce = {
 
 export type BuyFromUsResponce = {
   id: number;
+  examples: {
+    id: number;
+    text: string;
+    image: StrapiImage;
+  };
+  locale: string;
+  localizations: [
+    {
+      id: number;
+      locale: string;
+      mainBottomText: string;
+    }
+  ];
+  main: { id: number; text: string; title: string; text2: string };
+};
+
+export type DoItYourselfResponce = {
+  id: number;
   main: {
     id: number;
     text: string;

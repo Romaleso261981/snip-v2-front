@@ -1,6 +1,10 @@
 import qs from "qs";
 import { getStrapiURL, getToken } from "./api-helpers";
-import { BuyFromUsResponce, NaboriResponce } from "@/types/apiStrapiTypes";
+import {
+  AboutStrapiResponce,
+  BuyFromUsResponce,
+  NaboriResponce
+} from "@/types/apiStrapiTypes";
 import { endpoints } from "@/configs/endpoints";
 
 export async function fetchAPI(path: string, urlParamsObject = {}) {
@@ -34,6 +38,50 @@ export async function fetchAPI(path: string, urlParamsObject = {}) {
   }
 }
 export async function getAboutStrapiData(locale: string = "uk") {
+  try {
+    const urlParamsObject = {
+      populate: "*",
+      locale: locale
+    };
+
+    const { data }: { data: AboutStrapiResponce } = await fetchAPI(
+      endpoints.about,
+      urlParamsObject
+    );
+
+    return { data };
+  } catch (error) {
+    console.error(error);
+    throw new Error(
+      `Please check if your server is running and you set all the required tokens.`
+    );
+  }
+}
+export async function getDoItYourselfStrapiData(locale: string = "uk") {
+  try {
+    const urlParamsObject = {
+      populate: {
+        examples: { populate: "*" },
+        main: { populate: "*" }
+      },
+
+      locale: locale
+    };
+
+    const { data }: { data: BuyFromUsResponce } = await fetchAPI(
+      endpoints.doItYourself,
+      urlParamsObject
+    );
+
+    return { data };
+  } catch (error) {
+    console.error(error);
+    throw new Error(
+      `Please check if your server is running and you set all the required tokens.`
+    );
+  }
+}
+export async function getByFromUsStrapiData(locale: string = "uk") {
   try {
     const urlParamsObject = {
       populate: "*",
