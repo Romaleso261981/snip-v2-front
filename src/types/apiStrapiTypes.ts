@@ -50,6 +50,7 @@ export type AboutStrapiResponce = {
   mainBottomText: string;
   rightFounder: string;
   separatorImage: StrapiImage;
+  separatorImage2: StrapiImage;
 };
 
 export type BuyFromUsResponce = {

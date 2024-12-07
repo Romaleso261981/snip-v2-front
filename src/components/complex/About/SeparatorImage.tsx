@@ -2,8 +2,15 @@ import { getStrapiMedia } from "@/utils/api-helpers";
 import Image from "next/image";
 
 export default async function SeparatorImage({
-  separatorImage
+  separatorImage,
+  separatorImage2
 }: {
+  separatorImage2: {
+    url: string;
+    width: number;
+    height: number;
+    name: string;
+  };
   separatorImage: {
     url: string;
     width: number;
@@ -15,7 +22,7 @@ export default async function SeparatorImage({
     <div className="">
       <div className="hidden md:flex">
         <Image
-          src={getStrapiMedia(separatorImage.url) || ""}
+          src={getStrapiMedia(separatorImage2.url) || ""}
           alt="image6"
           width={2400}
           height={10}

@@ -22,6 +22,8 @@ export default async function AboutUsPage({
 
   const { data } = await getAboutStrapiData(locale);
 
+  console.log("separatorImage", data);
+
   if (!data) return <Loader />;
   return (
     <GeneralLayout>
@@ -33,7 +35,10 @@ export default async function AboutUsPage({
           mobileImage={data.mobileImage}
           desctopImages={data.desctopImages}
         />
-        <SeparatorImage separatorImage={data.separatorImage} />
+        <SeparatorImage
+          separatorImage={data.separatorImage}
+          separatorImage2={data.separatorImage2}
+        />
         <BottomDescription
           bottomFirstText={data.bottomFirstText}
           bottomSecondText={data.bottomSecondText}
