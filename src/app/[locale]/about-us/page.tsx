@@ -22,8 +22,6 @@ export default async function AboutUsPage({
 
   const { data } = await getAboutStrapiData(locale);
 
-  console.log("separatorImage", data);
-
   if (!data) return <Loader />;
   return (
     <GeneralLayout>

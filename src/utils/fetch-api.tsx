@@ -3,6 +3,8 @@ import { getStrapiURL, getToken } from "./api-helpers";
 import {
   AboutStrapiResponce,
   BuyFromUsResponce,
+  InviteUsCardsStrapiResponce,
+  InviteUsStrapiResponce,
   NaboriResponce
 } from "@/types/apiStrapiTypes";
 import { endpoints } from "@/configs/endpoints";
@@ -84,16 +86,33 @@ export async function getDoItYourselfStrapiData(locale: string = "uk") {
 export async function getInviteUsStrapiData(locale: string = "uk") {
   try {
     const urlParamsObject = {
+      populate: {
+        gallery: { populate: "*" }
+      },
+      locale: locale
+    };
+
+    const urlParamsObject2 = {
       populate: "*",
       locale: locale
     };
 
-    const { data }: { data: BuyFromUsResponce } = await fetchAPI(
+    const { data }: { data: InviteUsStrapiResponce } = await fetchAPI(
       endpoints.inviteUs,
       urlParamsObject
     );
 
-    return { data };
+    const {
+      data: cards
+    }: { data: InviteUsCardsStrapiResponce[] } = await fetchAPI(
+      endpoints.masterKlasi,
+      urlParamsObject2
+    );
+
+    return {
+      data,
+      cards
+    };
   } catch (error) {
     console.error(error);
     throw new Error(
@@ -122,6 +141,7 @@ export async function getByFromUsStrapiData(locale: string = "uk") {
       endpoints.naboris,
       urlParamsNabori
     );
+
     return { data, naboris };
   } catch (error) {
     console.error(error);

@@ -81,6 +81,27 @@ export type DoItYourselfResponce = {
   };
 };
 
+export type InviteUsResponce = {
+  data: InviteUsStrapiResponce;
+  cards: InviteUsCardsStrapiResponce[];
+};
+
+export type InviteUsStrapiResponce = {
+  id: number;
+  gallery: StrapiImage[];
+  locale: string;
+  text: string;
+  title: string;
+};
+
+export type InviteUsCardsStrapiResponce = {
+  id: number;
+  img: StrapiImage;
+  text: string;
+  title: string;
+  buttontext: string;
+};
+
 export type Card = {
   id: number;
   bottomText: string;
