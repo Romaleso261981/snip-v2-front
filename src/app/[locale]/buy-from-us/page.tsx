@@ -1,5 +1,5 @@
 import BuyFromUsDescription from "@/components/complex/BuyFromUs/BuyFromUsDescription";
-import CardList from "@/components/complex/BuyFromUs/CardList";
+import ProductList from "@/components/complex/BuyFromUs/ProductList";
 import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
 import { getByFromUsStrapiData } from "@/utils/fetch-api";
 import { Metadata } from "next";
@@ -26,7 +26,7 @@ export default async function page({
         description={data.main.text}
         title={data.main.title}
       />
-      <CardList cards={naboris} />
+      <ProductList cards={naboris} />
     </GeneralLayout>
   );
 }

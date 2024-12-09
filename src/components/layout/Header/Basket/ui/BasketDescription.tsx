@@ -7,8 +7,13 @@ import { BasketContext } from "@/contexts/basketContext";
 import BasketImage from "./BasketImage";
 import { useTranslations } from "next-intl";
 
-const BasketDescription: FC = () => {
+type BasketDescriptionProps = {
+  locale?: string;
+};
+
+const BasketDescription: FC<BasketDescriptionProps> = () => {
   const t = useTranslations("Basket");
+  // const router = useRouter();
 
   const {
     basketItems,
@@ -19,9 +24,32 @@ const BasketDescription: FC = () => {
     handleToggleBasket
   } = useContext(BasketContext);
 
+  // const checkOut = (basketItems: Card[]) => {
+  //   console.log(basketItems);
+  //   router.push({
+  //     pathname: `/${locale}/checkout`
+  //   });
+  // };
+
+  if (basketItems.length === 0) {
+    return (
+      <div className="fixed h-full top-0 right-0 p-2 z-20 bg-white text-gold md:w-2/6 md:p-6">
+        <div className="flex flex-col justify-between items-start text-center p-2 pb-8 h-full">
+          <div
+            className="flex gap-5 flex-row-reverse mb-10 pl-3 pt-3 md:p-0"
+            onClick={() => handleToggleBasket()}
+          >
+            <Image src={cross} alt="cross" />
+          </div>
+          <h2 className="mb-5 text-xl">Ваша корзина пуста</h2>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="fixed h-full top-0 right-0 p-2 z-20 bg-white text-gold md:w-2/6 md:p-6">
-      <div className="flex flex-col justify-between items-start text-center p-2 pb-8 h-full ">
+      <div className="flex flex-col justify-between items-start text-center p-2 pb-8 h-full">
         <div
           className="flex gap-5 flex-row-reverse mb-10 pl-3 pt-3 md:p-0"
           onClick={() => handleToggleBasket()}
@@ -81,21 +109,21 @@ const BasketDescription: FC = () => {
               </div>
             </div>
           )}
-          <div className="flex flex-row py-6">
-            <h4>
-              {t("toBePaid")}
-            </h4>
-            <p>
-              {getTotalCount()}
-            </p>
-            <span>
-              {t("totalCoutUnion")}
-            </span>
-          </div>
-          <button className="flex justify-center items-center w-[80%] h-12 bc text-md bg-gold text-[#fff]">
-            {t("buttonText")}
-          </button>
         </div>
+        <div className="flex flex-row py-6">
+          <h4>
+            {t("toBePaid")}
+          </h4>
+          <p>
+            {getTotalCount()}
+          </p>
+          <span>
+            {t("totalCoutUnion")}
+          </span>
+        </div>
+        <button className="flex justify-center items-center w-[80%] h-12 bc text-md bg-gold text-[#fff]">
+          {t("buttonText")}
+        </button>
       </div>
     </div>
   );

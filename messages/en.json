@@ -34,6 +34,22 @@
       "text": "Ⓒ2024 СНІП | Design:"
     }
   },
+  "InviteUs": {
+    "descriptionTitle": "Invite us",
+    "descriptionText": "Today, growing rye requires more effort, resources, and opportunities than ever before. Living in a metropolis, not everyone can prepare straw by hand. But everyone can do it themselves.",
+    "cardListbuttonText": "Find out contacts",
+    "cardListText": "We are happy to conduct live master classes on making spiders for your friends, employees, or clients. To do this, write to us or call us at the contact details provided and we will agree on the details of the meeting.",
+    "cardListTitle": "Master class"
+  },
+  "DoItYourself": {
+    "title": "Do it yourself",
+    "text": "It is known that activities related to creativity and crafts have a therapeutic effect on a person, and the result created by one's own hands gives a sense of self-worth and joy.",
+    "mainBottomText": "Here you will find video instructions for weaving spiders from your own rye straw.",
+    "examplesText": "Spider made of straw 'Classic'"
+  },
+  "ProductCard": {
+    "backButtonText": "Back"
+  },
   "Basket": {
     "mainTitle": "In your shopping cart:",
     "count": "Count:",

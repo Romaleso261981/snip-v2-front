@@ -4,7 +4,6 @@ import { getAboutStrapiData } from "@/utils/fetch-api";
 import Loader from "@/components/Loader";
 import TopDescription from "@/components/complex/About/TopDescription";
 import MidleDescription from "@/components/complex/About/MidleDescription";
-import SeparatorImage from "@/components/complex/About/SeparatorImage";
 import BottomDescription from "@/components/complex/About/BottomDescription";
 
 export const metadata: Metadata = {
@@ -33,13 +32,11 @@ export default async function AboutUsPage({
           mobileImage={data.mobileImage}
           desctopImages={data.desctopImages}
         />
-        <SeparatorImage
-          separatorImage={data.separatorImage}
-          separatorImage2={data.separatorImage2}
-        />
         <BottomDescription
           bottomFirstText={data.bottomFirstText}
           bottomSecondText={data.bottomSecondText}
+          separatorImage={data.separatorImage}
+          separatorImage2={data.separatorImage2}
         />
       </div>
     </GeneralLayout>

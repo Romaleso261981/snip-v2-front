@@ -2,10 +2,8 @@ import { Metadata } from "next";
 
 import HomeLayout from "@/components/layout/HomeLayout/HomeLayout";
 
-import { endpoints } from "@/configs/endpoints";
-import { fetchAPI } from "@/utils/fetch-api";
+import { getMainStrapiData } from "@/utils/fetch-api";
 import Loader from "@/components/Loader";
-import { HomeStrapiResponce } from "@/types/apiStrapiTypes";
 import HeroSection from "@/components/complex/Home/Hero";
 import DescriptionSection from "@/components/complex/Home/Description";
 import GallerySection from "@/components/complex/Home/Gallery";
@@ -23,28 +21,7 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
 
-  const urlParamsObject = {
-    populate: {
-      hero: {
-        populate: "*"
-      },
-      about: {
-        populate: "*"
-      },
-      button: {
-        populate: "*"
-      },
-      gallery: {
-        populate: "*"
-      }
-    },
-    locale: locale
-  };
-
-  const { data }: { data: HomeStrapiResponce } = await fetchAPI(
-    endpoints.home,
-    urlParamsObject
-  );
+  const { data } = await getMainStrapiData(locale);
 
   if (!data) return <Loader />;
 

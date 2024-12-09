@@ -6,6 +6,5 @@ export const endpoints = {
   inviteUs: "invite-us",
   byFromUs: "buy-from-us",
   doItYourself: "do-it-yourself",
-  masterKlasi: "majsterklas",
-  zamovlennyas: "zamovlennyas"
+  masterKlasi: "majsterklas"
 };

@@ -14,6 +14,14 @@ export type StrapiImage = {
   width: number;
   height: number;
   name: string;
+  formats: {
+    thumbnail: {
+      url: string;
+      width: number;
+      height: number;
+      name: string;
+    };
+  };
 };
 
 export type AboutStrapiData = {
@@ -68,7 +76,8 @@ export type BuyFromUsResponce = {
       mainBottomText: string;
     }
   ];
-  main: { id: number; text: string; title: string; text2: string };
+  main: { id: number; text: string; title: string };
+  mainBottomText: string;
 };
 
 export type DoItYourselfResponce = {

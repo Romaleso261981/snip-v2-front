@@ -13,14 +13,14 @@ type NovaPostResponse<T> = {
   errors?: string[];
 };
 
-type CityAddress = {
+export type CityAddress = {
   Present: string;
   Warehouses: number;
   MainDescription: string;
   Area: string;
   Region: string;
   Ref: string;
-  DeliveryCity: string; 
+  DeliveryCity: string;
 };
 
 type CityData = {
@@ -38,7 +38,7 @@ export const novaPostService = {
   searchCities: async (cityName: string) => {
     const { data } = await novaPostApi.post<NovaPostResponse<CityData[]>>("", {
       apiKey: process.env.NEXT_NOVA_POST_API_KEY,
-      modelName: "Address",
+      modelName: "AddressGeneral",
       calledMethod: "searchSettlements",
       methodProperties: {
         CityName: cityName,

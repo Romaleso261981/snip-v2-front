@@ -1,4 +1,4 @@
-import CardDetail from "@/components/complex/CardDetail/CardDetail";
+import ProductCard from "@/components/complex/ProductCard/ProductCard";
 import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
 import Loader from "@/components/Loader";
 import { endpoints } from "@/configs/endpoints";
@@ -28,7 +28,7 @@ export default async function Page({
 
   return (
     <GeneralLayout>
-      <CardDetail product={currentProduct} locale={locale} />
+      <ProductCard product={currentProduct} locale={locale} />
     </GeneralLayout>
   );
 }

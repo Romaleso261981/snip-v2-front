@@ -3,6 +3,7 @@ import { getStrapiURL, getToken } from "./api-helpers";
 import {
   AboutStrapiResponce,
   BuyFromUsResponce,
+  HomeStrapiResponce,
   InviteUsCardsStrapiResponce,
   InviteUsStrapiResponce,
   NaboriResponce
@@ -28,10 +29,45 @@ export async function fetchAPI(path: string, urlParamsObject = {}) {
       `${path}${queryString ? `?${queryString}` : ""}`
     )}`;
 
+    console.log("Request URL", requestUrl);
+
     // Trigger API call
     const response = await fetch(requestUrl, mergedOptions);
     const data = await response.json();
     return data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(
+      `Please check if your server is running and you set all the required tokens.`
+    );
+  }
+}
+export async function getMainStrapiData(locale: string = "uk") {
+  try {
+    const urlParamsObject = {
+      populate: {
+        hero: {
+          populate: "*"
+        },
+        about: {
+          populate: "*"
+        },
+        button: {
+          populate: "*"
+        },
+        gallery: {
+          populate: "*"
+        }
+      },
+      locale: locale
+    };
+
+    const { data }: { data: HomeStrapiResponce } = await fetchAPI(
+      endpoints.home,
+      urlParamsObject
+    );
+
+    return { data };
   } catch (error) {
     console.error(error);
     throw new Error(
