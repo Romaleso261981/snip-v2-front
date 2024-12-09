@@ -20,10 +20,15 @@ const MainDescription: FC<MainDescriptionProps> = ({ data }) => {
           mobileImage={data.mobileImage}
           desctopImages={data.desctopImages}
         />
-        <SeparatorImage separatorImage={data.separatorImage} />
+        <SeparatorImage
+          separatorImage={data.separatorImage}
+          separatorImage2={data.separatorImage2}
+        />
         <BottomDescription
           bottomFirstText={data.bottomFirstText}
           bottomSecondText={data.bottomSecondText}
+          separatorImage2={data.separatorImage2}
+          separatorImage={data.separatorImage}
         />
       </div>
     </div>
