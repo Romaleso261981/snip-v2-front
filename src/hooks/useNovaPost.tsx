@@ -5,9 +5,9 @@ import { useState } from "react";
 
 export function useNovaPost() {
   const [addresses, setAddresses] = useState<CityAddress[]>([]);
-  const [currentСity, setСurrentСity] = useState<CityAddress>(
+  const [currentCity, setCurrentCity] = useState<CityAddress>(
     {} as CityAddress
   );
 
-  return { addresses, setAddresses, currentСity, setСurrentСity };
+  return { addresses, setAddresses, currentCity, setCurrentCity };
 }

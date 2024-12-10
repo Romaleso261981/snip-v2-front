@@ -1,6 +1,16 @@
-import React from "react";
+"use client";
+
+import Button from "@/components/ui/Button/Button";
+import { CheckOutContext } from "@/contexts/checkOutContext";
+import React, { useContext } from "react";
 
 export default function CheckoutTotal() {
+  const { checkOutContext } = useContext(CheckOutContext);
+
+  const checkOutSubmit = () => {
+    alert((checkOutContext?.deliveryAddress?.Present || "Виберіть місто") + " " + checkOutContext?.user.name + " " + checkOutContext?.user.surname + " " + checkOutContext?.user.phone + " " + checkOutContext?.user.email);
+  };
+
   return (
     <div className="w-full mt-2 border shadow bg-[#f5f5f5] border-[#e9e9e9] rounded-md p-4 sm:w-2/5 md:min-w-3/12">
       <h4 className="mb-4 text-xl text-black text-900">
@@ -24,10 +34,8 @@ export default function CheckoutTotal() {
           </span>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center p-5">
-        <button className="h-[auto] w-11/12 rounded-md bg-green-500 text-white py-1 px-3 md:w-3/5">
-          Замовлення підтверджую
-        </button>
+      <div className="mt-4" onClick={checkOutSubmit}>
+        <Button>Замовлення підтверджую</Button>
       </div>
       <span className="mt-3 text-black text-xs">
         Отримання замовлення від

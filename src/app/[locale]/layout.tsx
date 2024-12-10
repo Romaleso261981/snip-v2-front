@@ -5,7 +5,7 @@ import { getMessages } from "next-intl/server";
 import "@/app/globals.css";
 import { ReactQueryProvider } from "@/lib/react-query";
 import { BasketProvider } from "@/contexts/basketContext";
-import { NovaPostProvider } from "@/contexts/novaPostContext";
+import { CheckOutProvider } from "@/contexts/checkOutContext";
 
 type Params = { locale: string };
 
@@ -21,7 +21,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   return (
     <html lang={locale}>
       <body>
-        <NovaPostProvider>
+        <CheckOutProvider>
           <BasketProvider>
             <NextIntlClientProvider messages={messages}>
               <ReactQueryProvider>
@@ -29,7 +29,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
               </ReactQueryProvider>
             </NextIntlClientProvider>
           </BasketProvider>
-        </NovaPostProvider>
+        </CheckOutProvider>
       </body>
     </html>
   );

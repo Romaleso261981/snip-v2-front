@@ -1,9 +1,10 @@
 "use client";
 
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useContext, useRef, useState } from "react";
 import debounce from "lodash.debounce";
 import { FaTruck, FaTimes } from "react-icons/fa";
 import { CityAddress, novaPostService } from "@/api/novaPost";
+import { CheckOutContext } from "@/contexts/checkOutContext";
 
 type CitySelectionModalProps = {
   toggleShowCitySelectionModal: () => void;
@@ -16,7 +17,9 @@ const CitySelectionModal: FC<CitySelectionModalProps> = ({
 }) => {
   const [cityName, setCityName] = useState<string>("");
   const [addresses, setAddresses] = useState<CityAddress[]>([]);
-  const [currentСity, setСurrentСity] = useState<CityAddress | null>(null);
+  const [currentCity, setCurrentCity] = useState<CityAddress | null>(null);
+
+  const { setAddress } = useContext(CheckOutContext);
 
   const handleSearchDebounced = useRef(
     debounce(async (name: string) => {
@@ -37,17 +40,17 @@ const CitySelectionModal: FC<CitySelectionModalProps> = ({
   };
 
   const applyCitySelection = () => {
-    if (currentСity) {
-      setdeliveryAddress(currentСity);
-
+    if (currentCity) {
+      setdeliveryAddress(currentCity);
+      setAddress(currentCity);
       toggleShowCitySelectionModal();
     } else {
       alert("Будь ласка, оберіть місто перед застосуванням.");
     }
   };
 
-  const handleСurrentСity = (city: CityAddress) => {
-    setСurrentСity(city);
+  const handleCurrentCity = (city: CityAddress) => {
+    setCurrentCity(city);
     setCityName(city.Present);
   };
 
@@ -109,7 +112,7 @@ const CitySelectionModal: FC<CitySelectionModalProps> = ({
                     <li
                       key={index}
                       className="text-gray-700 px-3 py-2 hover:bg-gray-100 cursor-pointer"
-                      onClick={() => handleСurrentСity(address)}
+                      onClick={() => handleCurrentCity(address)}
                     >
                       {address.Present}
                     </li>

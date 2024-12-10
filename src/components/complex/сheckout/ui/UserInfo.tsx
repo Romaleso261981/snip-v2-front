@@ -1,4 +1,6 @@
-import React, { FC, useState } from "react";
+import Button from "@/components/ui/Button/Button";
+import { CheckOutContext } from "@/contexts/checkOutContext";
+import React, { FC, useContext, useState, ChangeEvent } from "react";
 
 const UserInfo: FC = () => {
   const [isShowInfAboutClient, setIsShowInfAboutClient] = useState(true);
@@ -9,9 +11,17 @@ const UserInfo: FC = () => {
     email: ""
   });
 
-  console.log("userData", userData);
+  const { setUser, checkOutContext } = useContext(CheckOutContext);
 
-  const toggleShowInfAboutClient = () => {
+  console.log("checkOutContext", checkOutContext);
+
+  const handleChangeField = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+    setUser(userData);
+  };
+
+  const toggleShowAboutClient = () => {
     setIsShowInfAboutClient(!isShowInfAboutClient);
   };
 
@@ -36,8 +46,7 @@ const UserInfo: FC = () => {
                   type="text"
                   value={userData.phone}
                   name="phone"
-                  onChange={e =>
-                    setUserData({ ...userData, phone: e.target.value })}
+                  onChange={handleChangeField}
                   placeholder="Введіть номер телефону"
                 />
               </div>
@@ -54,8 +63,7 @@ const UserInfo: FC = () => {
                   type="text"
                   value={userData.surname}
                   name="surname"
-                  onChange={e =>
-                    setUserData({ ...userData, surname: e.target.value })}
+                  onChange={handleChangeField}
                   placeholder="Введіть прізвище"
                 />
               </div>
@@ -72,8 +80,7 @@ const UserInfo: FC = () => {
                   type="email"
                   value={userData.email}
                   name="email"
-                  onChange={e =>
-                    setUserData({ ...userData, email: e.target.value })}
+                  onChange={handleChangeField}
                   placeholder="Введіть електронну пошту"
                 />
               </div>
@@ -90,13 +97,15 @@ const UserInfo: FC = () => {
                   type="text"
                   value={userData.name}
                   name="name"
-                  onChange={e =>
-                    setUserData({ ...userData, name: e.target.value })}
+                  onChange={handleChangeField}
                   placeholder="Введіть ім'я"
                 />
               </div>
-              <div className="border border-gold w-48 h-7 text-center rounded-sm">
-                <button onClick={toggleShowInfAboutClient}>Згорнути</button>
+              <div
+                className="flex justify-start"
+                onClick={toggleShowAboutClient}
+              >
+                <Button>Згорнути</Button>
               </div>
             </div>
           : <div className="max-w-fit border border-gold p-3 overflow-hidden">
@@ -110,15 +119,26 @@ const UserInfo: FC = () => {
                     <span>Email:</span>
                   </div>
                   <div className="flex flex-col">
-                    <span>Василь</span>
-                    <span>Васильов</span>
-                    <span>380123456789</span>
-                    <span>example@gmail.com</span>
+                    <span>
+                      {userData.name || "Василь"}
+                    </span>
+                    <span>
+                      {userData.surname || "Васильов"}
+                    </span>
+                    <span>
+                      {userData.phone || "380123456789"}
+                    </span>
+                    <span>
+                      {userData.email || "example@gmail.com"}
+                    </span>
                   </div>
                 </div>
               </div>
-              <div className="border border-gold w-48 h-7 text-center rounded-sm">
-                <button onClick={toggleShowInfAboutClient}>Розгорнути</button>
+              <div
+                className="flex justify-start"
+                onClick={toggleShowAboutClient}
+              >
+                <Button>Розгорнути</Button>
               </div>
             </div>}
       </div>
