@@ -1,16 +1,24 @@
 "use client";
 
 import { Card } from "@/types/apiStrapiTypes";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function useBasketCart() {
-  const initialBasket = localStorage.getItem("basket");
-  const [basketItems, setBasketItems] = useState<Card[]>(
-    initialBasket ? JSON.parse(initialBasket) : []
-  );
+  const [basketItems, setBasketItems] = useState<Card[]>([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const initialBasket = localStorage.getItem("basket");
+      if (initialBasket) {
+        setBasketItems(JSON.parse(initialBasket));
+      }
+    }
+  }, []);
 
   const updateLocalStorage = (items: Card[]) => {
-    localStorage.setItem("basket", JSON.stringify(items));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("basket", JSON.stringify(items));
+    }
   };
 
   const getTotalCount = () => {

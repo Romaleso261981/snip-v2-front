@@ -34,7 +34,9 @@ export function BasketProvider({ children }: BasketProviderProps) {
   } = useBasketCart();
 
   const setLocale = (locale: string) => {
-    localStorage.setItem("locale", locale);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("locale", locale);
+    }
   };
 
   const { showBasket, handleToggleBasket } = useToggleBasket();
