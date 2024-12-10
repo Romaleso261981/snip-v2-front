@@ -2,6 +2,7 @@
 
 import { CityAddress } from "@/api/novaPost";
 import { useNovaPost } from "@/hooks/useNovaPost";
+import { Card } from "@/types/apiStrapiTypes";
 import { createContext, ReactNode, useState } from "react";
 
 type UserInfo = {
@@ -13,6 +14,7 @@ type UserInfo = {
 
 type CheckOutContextType = {
   checkOutContext: CheckOutContext | null;
+  setParchaseList: (purchaseList: Card[]) => void;
   setCheckOutContext: (context: CheckOutContext) => void;
   setAddresses: (addresses: CityAddress[]) => void;
   setUser: (user: UserInfo) => void;
@@ -26,6 +28,7 @@ type CheckOutContext = {
   deliveryAddress: CityAddress | null;
   user: UserInfo;
   totalCounter: number;
+  purchaseList: Card[];
 };
 
 type CheckOutProviderProps = {
@@ -67,10 +70,23 @@ export function CheckOutProvider({ children }: CheckOutProviderProps) {
     );
   };
 
+  const setParchaseList = (purchaseList: Card[]) => {
+    console.log("setParchaseList", purchaseList);
+
+    setCheckOutContext(
+      prevContext =>
+        ({
+          ...prevContext,
+          purchaseList
+        } as CheckOutContext)
+    );
+  };
+
   return (
     <CheckOutContext.Provider
       value={{
         checkOutContext,
+        setParchaseList,
         setCheckOutContext,
         setAddresses,
         setUser,

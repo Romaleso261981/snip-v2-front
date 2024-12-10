@@ -21,15 +21,17 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
 
-  const { data } = await getMainStrapiData(locale);
+  const { data, data_V2 } = await getMainStrapiData(locale);
+
+  console.log("New Data from data_V2", data_V2);
 
   if (!data) return <Loader />;
 
   return (
     <HomeLayout>
-      <HeroSection data={data.hero} />
-      <DescriptionSection about={data.about} button={data.button} />
-      <GallerySection data={data} />
+      <HeroSection data={data_V2.hero} />
+      <DescriptionSection about={data_V2.about} button={data_V2.button} />
+      <GallerySection gallery={data_V2.gallery} />
     </HomeLayout>
   );
 }

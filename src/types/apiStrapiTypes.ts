@@ -5,7 +5,7 @@ export type HeroStrapiData = {
 
 export type GalleryStrapiData = {
   id: string;
-  images: StrapiImage;
+  images: StrapiImage[];
 };
 
 export type StrapiImage = {
@@ -31,7 +31,7 @@ export type AboutStrapiData = {
 };
 
 export type ButtonStrapiData = {
-  isExternal: boolean;
+  isExternal?: boolean;
   link: string;
   name: string;
 };

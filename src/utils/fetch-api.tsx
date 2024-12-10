@@ -1,5 +1,5 @@
 import qs from "qs";
-import { getStrapiURL, getToken } from "./api-helpers";
+import { getStrapiURL, getStrapiURL_V2, getToken } from "./api-helpers";
 import {
   AboutStrapiResponce,
   BuyFromUsResponce,
@@ -10,6 +10,36 @@ import {
 } from "@/types/apiStrapiTypes";
 import { endpoints } from "@/configs/endpoints";
 
+export async function fetchAPI_V2(path: string, urlParamsObject = {}) {
+  try {
+    const token = getToken();
+
+    // Merge default and user options
+    const mergedOptions = {
+      next: { revalidate: 60 },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    };
+
+    // Build request URL
+    const queryString = qs.stringify(urlParamsObject);
+    const requestUrl = `${getStrapiURL_V2(
+      `${path}${queryString ? `?${queryString}` : ""}`
+    )}`;
+
+    // Trigger API call
+    const response = await fetch(requestUrl, mergedOptions);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(
+      `Please check if your server is running and you set all the required tokens.`
+    );
+  }
+}
 export async function fetchAPI(path: string, urlParamsObject = {}) {
   try {
     const token = getToken();
@@ -59,13 +89,34 @@ export async function getMainStrapiData(locale: string = "uk") {
       },
       locale: locale
     };
+    const urlParamsObject_V2 = {
+      populate: {
+        about: {
+          populate: "*"
+        },
+        button: {
+          populate: "*"
+        },
+        gallery: {
+          populate: "*"
+        },
+        hero: {
+          populate: "*"
+        }
+      },
+      locale: locale
+    };
 
     const { data }: { data: HomeStrapiResponce } = await fetchAPI(
       endpoints.home,
       urlParamsObject
     );
+    const { data: data_V2 }: { data: HomeStrapiResponce } = await fetchAPI(
+      endpoints.home,
+      urlParamsObject_V2
+    );
 
-    return { data };
+    return { data, data_V2 };
   } catch (error) {
     console.error(error);
     throw new Error(

@@ -7,6 +7,7 @@ import { BasketContext } from "@/contexts/basketContext";
 import BasketImage from "./BasketImage";
 import { useTranslations } from "next-intl";
 import { Card } from "@/types/apiStrapiTypes";
+import { CheckOutContext } from "@/contexts/checkOutContext";
 
 type BasketDescriptionProps = {
   locale?: string;
@@ -27,8 +28,11 @@ const BasketDescription: FC<BasketDescriptionProps> = ({ router }) => {
     handleToggleBasket
   } = useContext(BasketContext);
 
+  const { setParchaseList } = useContext(CheckOutContext);
+
   const checkOut = (basketItems: Card[]) => {
     console.log(basketItems);
+    setParchaseList(basketItems);
     router.push(`/${locale}/payment`);
   };
 
