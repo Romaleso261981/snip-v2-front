@@ -5,7 +5,7 @@ export type HeroStrapiData = {
 
 export type GalleryStrapiData = {
   id: string;
-  images: StrapiImage[];
+  images: StrapiImage;
 };
 
 export type StrapiImage = {
