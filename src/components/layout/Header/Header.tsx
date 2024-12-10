@@ -72,7 +72,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
         </span>
       </div>
       {isOpen && <MobileMenu setIsOpen={setIsOpen} />}
-      {showBasket && <Basket />}
+      {showBasket && <Basket router={router} />}
     </div>
   );
 };

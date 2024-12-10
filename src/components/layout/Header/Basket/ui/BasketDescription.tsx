@@ -6,14 +6,17 @@ import cross from "@/assets/mobMenu/cross-mob-menu.png";
 import { BasketContext } from "@/contexts/basketContext";
 import BasketImage from "./BasketImage";
 import { useTranslations } from "next-intl";
+import { Card } from "@/types/apiStrapiTypes";
 
 type BasketDescriptionProps = {
   locale?: string;
+  router?: any;
 };
 
-const BasketDescription: FC<BasketDescriptionProps> = () => {
+const BasketDescription: FC<BasketDescriptionProps> = ({ router }) => {
   const t = useTranslations("Basket");
-  // const router = useRouter();
+
+  const locale = router.locale;
 
   const {
     basketItems,
@@ -24,12 +27,10 @@ const BasketDescription: FC<BasketDescriptionProps> = () => {
     handleToggleBasket
   } = useContext(BasketContext);
 
-  // const checkOut = (basketItems: Card[]) => {
-  //   console.log(basketItems);
-  //   router.push({
-  //     pathname: `/${locale}/checkout`
-  //   });
-  // };
+  const checkOut = (basketItems: Card[]) => {
+    console.log(basketItems);
+    router.push(`/${locale}/payment`);
+  };
 
   if (basketItems.length === 0) {
     return (
@@ -121,9 +122,11 @@ const BasketDescription: FC<BasketDescriptionProps> = () => {
             {t("totalCoutUnion")}
           </span>
         </div>
-        <button className="flex justify-center items-center w-[80%] h-12 bc text-md bg-gold text-[#fff]">
-          {t("buttonText")}
-        </button>
+        <div onClick={() => checkOut(basketItems)}>
+          <button className="flex justify-center items-center w-[80%] h-12 bc text-md bg-gold text-[#fff]">
+            {t("buttonText")}
+          </button>
+        </div>
       </div>
     </div>
   );
