@@ -72,7 +72,7 @@ export type AboutStrapiResponce = {
   bottomSecondText: string;
   desctopSeparatorImage: StrapiImage;
   images: { images: StrapiImage[] };
-  imagesDesctop: { images: StrapiImage }[];
+  imagesDesctop: StrapiImage[];
   leftFounder: string;
   main: {
     id: string;
@@ -143,6 +143,8 @@ export type Card = {
   name: string;
   price: number;
   size: string;
+  count?: number;
+  union: string;
 };
 
 export type NaboriResponce = Card[];

@@ -1,17 +1,14 @@
-const TopDescription = ({
-  data
-}: {
-  data: {
-    main: {
-      id: string;
-      text: string;
-      title: string;
-    };
-    mainBottomText: string;
-  };
-}) => {
-  const { main: { title, text }, mainBottomText } = data;
+import { FC } from "react";
 
+type TopDescriptionProps = {
+  main: { title: string; text: string };
+  mainBottomText: string;
+};
+
+const TopDescription: FC<TopDescriptionProps> = ({
+  mainBottomText,
+  main: { text, title }
+}) => {
   return (
     <div className="flex flex-col justify-center items-center">
       <h2 className="text-xxl mb-5 ma:mb-10">

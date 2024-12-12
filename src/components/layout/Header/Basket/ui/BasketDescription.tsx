@@ -31,7 +31,6 @@ const BasketDescription: FC<BasketDescriptionProps> = ({ router }) => {
   const { setParchaseList } = useContext(CheckOutContext);
 
   const checkOut = (basketItems: Card[]) => {
-    console.log(basketItems);
     setParchaseList(basketItems);
     router.push(`/${locale}/payment`);
   };

@@ -57,8 +57,6 @@ export default function BuyFromUs() {
 
   if (isLoading) return <Loader />;
 
-  console.log("BuyFromUs data", data);
-
   return (
     <div>
       <div className="flex flex-col justify-center items-center px-8">

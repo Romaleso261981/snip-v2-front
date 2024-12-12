@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 export default async function AboutUsPage({
   params
 }: {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params;
+  const { locale } = params;
 
   const { data }: { data: AboutStrapiResponce } = await getAboutStrapiData(
     locale
@@ -29,7 +29,7 @@ export default async function AboutUsPage({
   return (
     <GeneralLayout>
       <div className="container mx-auto flex flex-col justify-center items-center w-full text-center pt-10 md:p-0">
-        <TopDescription data={data} />
+        <TopDescription main={data.main} mainBottomText={data.mainBottomText} />
         <MidleDescription data={data} />
         <BottomDescription data={data} />
       </div>
