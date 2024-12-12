@@ -34,8 +34,6 @@ export async function fetchAPI_V2(path: string, urlParamsObject = {}) {
       `${path}${queryString ? `?${queryString}` : ""}`
     )}`;
 
-    console.log("requestUrl", requestUrl);
-
     // Trigger API call
     const response = await fetch(requestUrl, mergedOptions);
     const data = await response.json();
@@ -65,8 +63,6 @@ export async function fetchAPI(path: string, urlParamsObject = {}) {
     const requestUrl = `${getStrapiURL(
       `${path}${queryString ? `?${queryString}` : ""}`
     )}`;
-
-    console.log("requestUrl", requestUrl);
 
     // Trigger API call
     const response = await fetch(requestUrl, mergedOptions);

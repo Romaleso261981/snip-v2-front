@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 export default async function AboutUsPage({
   params
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = params;
+  const { locale } = await params;
 
   const { data }: { data: AboutStrapiResponce } = await getAboutStrapiData(
     locale
