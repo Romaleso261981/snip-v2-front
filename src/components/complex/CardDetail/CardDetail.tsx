@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import AddToBasketButton from "./ui/AddToBasketButton";
 import { Card } from "@/types/apiStrapiTypes";
+import { useTranslations } from "next-intl";
 
-export default async function CardDetail({
+export default function CardDetail({
   product,
   locale
 }: {
@@ -12,6 +13,8 @@ export default async function CardDetail({
   product: Card;
 }) {
   const imageUrl = getStrapiMedia(product.image.url);
+
+  const t = useTranslations("Header");
 
   return (
     <div className="container">
@@ -46,34 +49,31 @@ export default async function CardDetail({
           <div>
             <div>
               <h4 className="py-2">
-                {product.sizeTitle}
+                {t("sizeTitle")}
               </h4>
               <p>
-                {product.sizeDescription}
+                {product.size}
               </p>
             </div>
             <div className="pt-5">
               <h4 className="py-2">
-                {product.materialTitle}
+                {t("materialTitle")}
               </h4>
               <p className="text-black">
-                {product.materialDescription}
+                {product.material}
               </p>
             </div>
             <div className="pt-5">
               <h4 className="py-2">
-                {product.materialTitle}
+                {t("includesTitle")}
               </h4>
               <p className="text-black">
-                {product.includesDescription}
+                {product.includes}
               </p>
               <Link href={"/"}>....Load more</Link>
             </div>
           </div>
-          <AddToBasketButton
-            buttonText={product.buttonText}
-            product={product}
-          />
+          <AddToBasketButton buttonText={t("addToBasket")} product={product} />
         </div>
       </div>
     </div>
