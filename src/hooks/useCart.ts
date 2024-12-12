@@ -22,7 +22,9 @@ export function useBasketCart() {
   };
 
   const getTotalCount = () => {
-    return basketItems.reduce((acc, card) => acc + card.price * card.count, 0);
+    return basketItems.reduce((acc, card) => {
+      return acc + (card.count ?? 0);
+    }, 0);
   };
 
   const removeCardById = (id: number) => {
@@ -37,7 +39,7 @@ export function useBasketCart() {
       const updatedState = isCardExist
         ? state.map(
             item =>
-              item.id === card.id ? { ...item, count: item.count + 1 } : item
+              item.id === card.id ? { ...item, count: (item.count ?? 0) + 1 } : item
           )
         : [...state, { ...card, count: 1 }];
       updateLocalStorage(updatedState);
@@ -48,7 +50,7 @@ export function useBasketCart() {
   const increaseCount = (id: number) => {
     setBasketItems(state => {
       const updatedState = state.map(
-        card => (card.id === id ? { ...card, count: card.count + 1 } : card)
+        card => (card.id === id ? { ...card, count: (card.count ?? 0) + 1 } : card)
       );
       updateLocalStorage(updatedState);
       return updatedState;
@@ -59,8 +61,8 @@ export function useBasketCart() {
     setBasketItems(state => {
       const updatedState = state.map(
         card =>
-          card.id === id && card.count > 1
-            ? { ...card, count: card.count - 1 }
+          card.id === id && (card.count ?? 0) > 1
+            ? { ...card, count: (card.count ?? 0) - 1 }
             : card
       );
       updateLocalStorage(updatedState);
