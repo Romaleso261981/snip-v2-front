@@ -1,51 +1,36 @@
-import { getStrapiMedia } from "@/utils/api-helpers";
+import { AboutStrapiResponce } from "@/types/apiStrapiTypes";
+import { getStrapiMedia_V2 } from "@/utils/api-helpers";
 import Image from "next/image";
 
 export default async function MidleDescription({
-  desctopImages,
-  mobileImage,
-  leftFounder,
-  rightFounder
+  data
 }: {
-  desctopImages: {
-    id: string;
-    url: string;
-    width: number;
-    height: number;
-    name: string;
-  }[];
-  mobileImage: {
-    id: string;
-    url: string;
-    width: number;
-    height: number;
-    name: string;
-  };
-  leftFounder: string;
-  rightFounder: string;
+  data: AboutStrapiResponce;
 }) {
+  const { rightFounder, leftFounder, images: { images }, imagesDesctop } = data;
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex md:hidden ">
         <Image
-          src={getStrapiMedia(mobileImage.url) || ""}
+          src={getStrapiMedia_V2(images[0].url) || ""}
           alt="image5"
-          width={mobileImage.width}
-          height={mobileImage.height}
+          width={images[0].width}
+          height={images[0].height}
           objectFit="cover"
         />
       </div>
       <div className="hidden md:flex flex-row gap-11 ">
-        {desctopImages.map((image, index) => {
-          const url = getStrapiMedia(image.url);
+        {imagesDesctop.map((image, index) => {
+          const url = getStrapiMedia_V2(image.images.url);
           return (
             <div key={index} className="w-full mt-10">
               <div>
                 <Image
                   src={url || ""}
-                  alt="image5"
-                  width={image.width}
-                  height={image.height}
+                  alt="images from about us"
+                  width={image.images.width}
+                  height={image.images.height}
                   objectFit="cover"
                 />
               </div>

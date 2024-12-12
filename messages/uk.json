@@ -48,7 +48,15 @@
     "examplesText": "Павук із соломи 'Класичний'"
   },
   "ProductCard": {
-    "backButtonText": "Назад"
+    "backButtonText": "Назад",
+    "currency": "ГРН",
+    "sizeTitle": "Складений виріб:",
+    "materialTitle": "Матеріал:",
+    "includesTitle": "До набору входять:",
+    "addToBasket": "Придбати"
+  },
+  "ProductsList": {
+    "currency": "ГРН"
   },
   "Basket": {
     "mainTitle": "У вашій корзині:",

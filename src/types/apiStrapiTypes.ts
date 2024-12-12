@@ -5,7 +5,7 @@ export type HeroStrapiData = {
 
 export type GalleryStrapiData = {
   id: string;
-  images: StrapiImage;
+  images: StrapiImage[];
 };
 
 export type StrapiImage = {
@@ -24,10 +24,33 @@ export type StrapiImage = {
   };
 };
 
+export type ImageResponsive = {
+  url: string;
+  width: number;
+  height: number;
+  name: string;
+  sizeInBytes: number;
+  mime: string;
+  ext: string;
+};
+
+export type StrapiImageResponsive = {
+  id: string;
+  url: string;
+  width: number;
+  height: number;
+  name: string;
+  formats: {
+    large: ImageResponsive;
+    medium: ImageResponsive;
+    small: ImageResponsive;
+    thumbnail: ImageResponsive;
+  };
+};
+
 export type AboutStrapiData = {
   title: string;
   text: string;
-  text2: string;
 };
 
 export type ButtonStrapiData = {
@@ -38,27 +61,27 @@ export type ButtonStrapiData = {
 
 export type HomeStrapiResponce = {
   about: AboutStrapiData;
-  gallery: GalleryStrapiData[];
+  gallery: GalleryStrapiData;
   button: ButtonStrapiData;
   hero: HeroStrapiData;
 };
 
 export type AboutStrapiResponce = {
+  id: number;
   bottomFirstText: string;
   bottomSecondText: string;
-  mobileImage: StrapiImage;
-  desctopImages: StrapiImage[];
+  desctopSeparatorImage: StrapiImage;
+  images: { images: StrapiImage[] };
+  imagesDesctop: { images: StrapiImage }[];
   leftFounder: string;
   main: {
     id: string;
     text: string;
-    text2: string;
     title: string;
   };
   mainBottomText: string;
   rightFounder: string;
-  separatorImage: StrapiImage;
-  separatorImage2: StrapiImage;
+  separatorImageMobile: StrapiImageResponsive;
 };
 
 export type BuyFromUsResponce = {
@@ -67,15 +90,7 @@ export type BuyFromUsResponce = {
     id: number;
     text: string;
     image: StrapiImage;
-  };
-  locale: string;
-  localizations: [
-    {
-      id: number;
-      locale: string;
-      mainBottomText: string;
-    }
-  ];
+  }[];
   main: { id: number; text: string; title: string };
   mainBottomText: string;
 };
@@ -84,20 +99,29 @@ export type DoItYourselfResponce = {
   id: number;
   main: {
     id: number;
-    text: string;
+    bottomText: string;
     title: string;
-    title2: string;
+    text: string;
+  };
+  examples: {
+    id: number;
+    image: StrapiImage;
+    title: string;
   };
 };
 
 export type InviteUsResponce = {
   data: InviteUsStrapiResponce;
-  cards: InviteUsCardsStrapiResponce[];
 };
 
 export type InviteUsStrapiResponce = {
   id: number;
   gallery: StrapiImage[];
+  examples: {
+    description: string;
+    text: string;
+    image: StrapiImage;
+  }[];
   locale: string;
   text: string;
   title: string;
@@ -113,19 +137,12 @@ export type InviteUsCardsStrapiResponce = {
 
 export type Card = {
   id: number;
-  bottomText: string;
-  buttonText: string;
   image: StrapiImage;
-  includesDescription: string;
-  includesTitle: string;
-  materialDescription: string;
-  materialTitle: string;
+  includes: string;
+  material: string;
   name: string;
-  sizeDescription: string;
-  sizeTitle: string;
-  union: string;
   price: number;
-  count: number;
+  size: string;
 };
 
 export type NaboriResponce = Card[];

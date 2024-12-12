@@ -48,7 +48,15 @@
     "examplesText": "Spider made of straw 'Classic'"
   },
   "ProductCard": {
-    "backButtonText": "Back"
+    "backButtonText": "Back",
+    "currency": "UAH",
+    "sizeTitle": "Assembled product:",
+    "materialTitle": "Material:",
+    "includesTitle": "The set includes:",
+    "addToBasket": "Purchase"
+  },
+  "ProductsList": {
+    "currency": "UAH"
   },
   "Basket": {
     "mainTitle": "In your shopping cart:",

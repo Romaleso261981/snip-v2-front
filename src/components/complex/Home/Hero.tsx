@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import defaultImageBg from "@/assets/hero/hero.jpg";
 import { HeroStrapiData } from "@/types/apiStrapiTypes";
-import { getStrapiMedia } from "@/utils/api-helpers";
+import { getStrapiMedia_V2 } from "@/utils/api-helpers";
 
 type HeroSectionProps = {
   data: HeroStrapiData;
@@ -14,7 +14,7 @@ const HeroSection: FC<HeroSectionProps> = async ({ data }) => {
   return (
     <div className="relative overflow-hidden h-screen">
       <Image
-        src={getStrapiMedia(data.image.url) ?? defaultImageBg}
+        src={getStrapiMedia_V2(data.image.url) ?? defaultImageBg}
         alt="Galery Image"
         layout="fill"
         objectFit="cover"

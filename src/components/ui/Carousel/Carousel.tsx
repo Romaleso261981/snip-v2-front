@@ -4,14 +4,14 @@ import React, { FC, useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
-import { getStrapiMedia } from "@/utils/api-helpers";
-import { GalleryStrapiData } from "@/types/apiStrapiTypes";
+import { getStrapiMedia_V2 } from "@/utils/api-helpers";
+import { StrapiImage } from "@/types/apiStrapiTypes";
 
 type EmblaCarouselProps = {
-  data: GalleryStrapiData[];
+  images: StrapiImage[];
 };
 
-const EmblaCarousel: FC<EmblaCarouselProps> = ({ data }) => {
+const EmblaCarousel: FC<EmblaCarouselProps> = ({ images }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false }, [Autoplay()]);
 
@@ -36,8 +36,8 @@ const EmblaCarousel: FC<EmblaCarouselProps> = ({ data }) => {
     <div className="relative block md:hidden">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
-          {data.map(image => {
-            const imageUrl = getStrapiMedia(image.images.url);
+          {images.map(image => {
+            const imageUrl = getStrapiMedia_V2(image.url);
             return (
               <div
                 className="flex-shrink-0 flex-grow-0 flex-basis-full min-w-0"
@@ -55,7 +55,7 @@ const EmblaCarousel: FC<EmblaCarouselProps> = ({ data }) => {
         </div>
       </div>
       <div className="absolute bottom-0 left-0 right-0 flex justify-center p-4 space-x-2">
-        {data.map((image, index) =>
+        {images.map((image, index) =>
           <button
             key={image.id}
             className={`w-2 h-2 ${selectedIndex === index

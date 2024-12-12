@@ -1,4 +1,4 @@
-import { getStrapiMedia } from "@/utils/api-helpers";
+import { getStrapiMedia_V2 } from "@/utils/api-helpers";
 import Image from "next/image";
 import Link from "next/link";
 import AddToBasketButton from "./ui/AddToBasketButton";
@@ -14,7 +14,7 @@ export default function ProductCard({
 }) {
   const t = useTranslations("ProductCard");
 
-  const imageUrl = getStrapiMedia(product.image.url);
+  const imageUrl = getStrapiMedia_V2(product.image.url);
 
   return (
     <div className="container">
@@ -46,41 +46,38 @@ export default function ProductCard({
                 {product.price}
               </span>
               <span>
-                {product.union}
+                {t("currency")}
               </span>
             </div>
           </div>
           <div>
             <div className="pt-3">
               <h4 className="py-1 text-gold">
-                {product.sizeTitle}
+                {t("sizeTitle")}
               </h4>
               <p className="text-black">
-                {product.sizeDescription}
+                {product.size}
               </p>
             </div>
             <div className="pt-3">
               <h4 className="">
-                {product.materialTitle}
+                {t("materialTitle")}
               </h4>
               <p className="text-black">
-                {product.materialDescription}
+                {product.material}
               </p>
             </div>
             <div className="pt-5">
               <h4 className="">
-                {product.materialTitle}
+                {t("includesTitle")}
               </h4>
               <p className="text-black">
-                {product.includesDescription}
+                {product.includes}
               </p>
               <Link href={"/"}>....Load more</Link>
             </div>
           </div>
-          <AddToBasketButton
-            buttonText={product.buttonText}
-            product={product}
-          />
+          <AddToBasketButton buttonText={t("addToBasket")} product={product} />
         </div>
       </div>
     </div>

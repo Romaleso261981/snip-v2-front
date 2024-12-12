@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import HomeLayout from "@/components/layout/HomeLayout/HomeLayout";
 
 import { getMainStrapiData } from "@/utils/fetch-api";
-import Loader from "@/components/Loader";
+import Loader from "@/components/ui/Loader";
 import HeroSection from "@/components/complex/Home/Hero";
 import DescriptionSection from "@/components/complex/Home/Description";
 import GallerySection from "@/components/complex/Home/Gallery";
@@ -21,11 +21,9 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
 
-  const { data, data_V2 } = await getMainStrapiData(locale);
+  const { data_V2 } = await getMainStrapiData(locale);
 
-  console.log("New Data from data_V2", data_V2);
-
-  if (!data) return <Loader />;
+  if (!data_V2) return <Loader />;
 
   return (
     <HomeLayout>

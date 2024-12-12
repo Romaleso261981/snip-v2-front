@@ -7,7 +7,8 @@ const nextConfig = {
   images: {
     domains: [
       "intuitive-spontaneity-snip.up.railway.app",
-      "strapi-cms-production-f73b.up.railway.app"
+      "strapi-cms-production-f73b.up.railway.app",
+      "via.placeholder.com"
     ]
   },
   webpack(config) {

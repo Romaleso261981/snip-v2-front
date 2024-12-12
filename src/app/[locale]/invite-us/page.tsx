@@ -18,15 +18,12 @@ export default async function Home({
 }) {
   const { locale } = await params;
 
-  const {
-    cards,
-    data: { gallery, text, title }
-  }: InviteUsResponce = await getInviteUsStrapiData(locale);
+  const { data }: InviteUsResponce = await getInviteUsStrapiData(locale);
 
   return (
     <GeneralLayout>
-      <InviteUsDescription gallery={gallery} text={text} title={title} />
-      <InviteUsCardList cards={cards} />
+      <InviteUsDescription data={data} />
+      <InviteUsCardList examples={data.examples} />
     </GeneralLayout>
   );
 }

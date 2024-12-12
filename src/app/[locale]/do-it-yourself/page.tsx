@@ -1,30 +1,18 @@
-"use client";
-
-import Delivery from "@/components/complex/сheckout/ui/Delivery";
-import Payment from "@/components/complex/сheckout/ui/Payment";
+import DoItYourself from "@/components/complex/DoItYourself/DoItYourself";
 import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
-import { CheckOutSteps } from "@/types/enums";
-import { useState } from "react";
+import { getDoItYourselfStrapiData } from "@/utils/fetch-api";
 
-export default function CheckOut() {
-  const [currentStep, setCurrentStep] = useState<keyof typeof CheckOutSteps>(
-    CheckOutSteps.Delivery
-  );
-
-  const getCurrentStep = (currentStep: keyof typeof CheckOutSteps) => {
-    switch (currentStep) {
-      case CheckOutSteps.Delivery:
-        return <Delivery setCurrentStep={setCurrentStep} />;
-      case CheckOutSteps.Payment:
-        return <Payment setCurrentStep={setCurrentStep} />;
-      default:
-        return <h1>Not found</h1>;
-    }
-  };
+export default async function CheckOut({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const { data } = await getDoItYourselfStrapiData(locale);
 
   return (
     <GeneralLayout>
-      {getCurrentStep(currentStep)}
+      <DoItYourself data={data} />
     </GeneralLayout>
   );
 }

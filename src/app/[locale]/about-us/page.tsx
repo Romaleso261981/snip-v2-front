@@ -1,10 +1,11 @@
 import { Metadata } from "next";
 import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
 import { getAboutStrapiData } from "@/utils/fetch-api";
-import Loader from "@/components/Loader";
+import Loader from "@/components/ui/Loader";
 import TopDescription from "@/components/complex/About/TopDescription";
 import MidleDescription from "@/components/complex/About/MidleDescription";
 import BottomDescription from "@/components/complex/About/BottomDescription";
+import { AboutStrapiResponce } from "@/types/apiStrapiTypes";
 
 export const metadata: Metadata = {
   title: "About US",
@@ -19,25 +20,18 @@ export default async function AboutUsPage({
 }) {
   const { locale } = await params;
 
-  const { data } = await getAboutStrapiData(locale);
+  const { data }: { data: AboutStrapiResponce } = await getAboutStrapiData(
+    locale
+  );
 
   if (!data) return <Loader />;
+
   return (
     <GeneralLayout>
       <div className="container mx-auto flex flex-col justify-center items-center w-full text-center pt-10 md:p-0">
-        <TopDescription main={data.main} />
-        <MidleDescription
-          rightFounder={data.rightFounder}
-          leftFounder={data.leftFounder}
-          mobileImage={data.mobileImage}
-          desctopImages={data.desctopImages}
-        />
-        <BottomDescription
-          bottomFirstText={data.bottomFirstText}
-          bottomSecondText={data.bottomSecondText}
-          separatorImage={data.separatorImage}
-          separatorImage2={data.separatorImage2}
-        />
+        <TopDescription data={data} />
+        <MidleDescription data={data} />
+        <BottomDescription data={data} />
       </div>
     </GeneralLayout>
   );

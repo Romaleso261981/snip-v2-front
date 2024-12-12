@@ -1,13 +1,17 @@
 const TopDescription = ({
-  main: { title, text, text2 }
+  data
 }: {
-  main: {
-    id: string;
-    text: string;
-    text2: string;
-    title: string;
+  data: {
+    main: {
+      id: string;
+      text: string;
+      title: string;
+    };
+    mainBottomText: string;
   };
 }) => {
+  const { main: { title, text }, mainBottomText } = data;
+
   return (
     <div className="flex flex-col justify-center items-center">
       <h2 className="text-xxl mb-5 ma:mb-10">
@@ -18,7 +22,7 @@ const TopDescription = ({
           {text}
         </p>
         <p className="mb-10 ma:mb-20">
-          {text2}
+          {mainBottomText}
         </p>
       </div>
     </div>
