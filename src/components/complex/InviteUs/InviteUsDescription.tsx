@@ -15,12 +15,12 @@ const InviteUsDescription: FC<InviteUsDescriptionProps> = ({ data }) => {
 
   const t = useTranslations("InviteUs");
   return (
-    <div className="container mx-auto mt-10 md:w-full sm:max-w-3xl md:my-24">
-      <div className="flex flex-col justify-center items-center w-full text-center p-4 pb-8 ">
-        <h2 className="font-medium text-xxl">
+    <div className="container mx-auto md:w-full sm:max-w-3xl md:my-24">
+      <div className="flex flex-col  justify-center items-center w-full text-center">
+        <h2 className="font-normal py-6 text-xxl">
           {title ? title : t("title")}
         </h2>
-        <p className="w-full text-black font-medium text-md py-4 px-3">
+        <p className="w-4/5 text-black font-medium text-md px-3">
           {text ? text : t("text")}
         </p>
       </div>
