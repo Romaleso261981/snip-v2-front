@@ -6,7 +6,7 @@ export default function GeneralLayout({ children }: { children: ReactNode }) {
   return (
     <div className="pb-10 text-gold">
       <Header className="text-gold" />
-      <main>
+      <main className="container mx-auto px-4">
         {children}
       </main>
       <Footer />
