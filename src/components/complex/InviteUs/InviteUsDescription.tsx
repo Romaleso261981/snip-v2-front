@@ -20,7 +20,7 @@ const InviteUsDescription: FC<InviteUsDescriptionProps> = ({ data }) => {
         <h2 className="font-normal py-6 text-xxl">
           {title ? title : t("title")}
         </h2>
-        <p className="w-4/5 text-black font-medium text-md px-3">
+        <p className="w-4/5 text-slate-600 font-medium text-md px-3">
           {text ? text : t("text")}
         </p>
       </div>

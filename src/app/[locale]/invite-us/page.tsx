@@ -20,10 +20,12 @@ export default async function Home({
 
   const { data }: InviteUsResponce = await getInviteUsStrapiData(locale);
 
+  console.log(data);
+
   return (
     <GeneralLayout>
       <InviteUsDescription data={data} />
-      <InviteUsCardList examples={data.examples} />
+      <InviteUsCardList gallery={data.gallery} examples={data.examples} />
     </GeneralLayout>
   );
 }
