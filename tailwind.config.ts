@@ -25,8 +25,12 @@ const config: Config = {
         sm: ["14px", { lineHeight: "120%" }],
         xs: ["12px", { lineHeight: "14.4px" }],
       },
+      animation: {
+        'spin-slow': 'spin 4s linear infinite', // додали кастомну анімацію
+      },
     },
   },
   plugins: [],
 };
+
 export default config;
