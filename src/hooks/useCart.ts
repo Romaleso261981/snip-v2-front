@@ -23,7 +23,7 @@ export function useBasketCart() {
 
   const getTotalCount = () => {
     return basketItems.reduce((acc, card) => {
-      return acc + (card.count ?? 0);
+      return acc + (card.price) * (card.count ?? 0);
     }, 0);
   };
 

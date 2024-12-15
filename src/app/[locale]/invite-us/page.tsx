@@ -1,4 +1,5 @@
 import InviteUsCardList from "@/components/complex/InviteUs/InviteUsCardList";
+import InviteUsCardListExample from "@/components/complex/InviteUs/InviteUsCardListExample";
 import InviteUsDescription from "@/components/complex/InviteUs/InviteUsDescription";
 import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
 import { InviteUsResponce } from "@/types/apiStrapiTypes";
@@ -20,11 +21,10 @@ export default async function Home({
 
   const { data }: InviteUsResponce = await getInviteUsStrapiData(locale);
 
-  console.log(data);
-
   return (
     <GeneralLayout>
       <InviteUsDescription data={data} />
+      <InviteUsCardListExample examples={data.examples} />
       <InviteUsCardList gallery={data.gallery} examples={data.examples} />
     </GeneralLayout>
   );

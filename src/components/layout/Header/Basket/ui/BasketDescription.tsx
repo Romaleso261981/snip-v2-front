@@ -114,11 +114,11 @@ const BasketDescription: FC<BasketDescriptionProps> = ({ router }) => {
             </div>
           )}
         </div>
-        <div className="flex flex-row py-6">
-          <h4>
+        <div className="flex w-full gap-1 flex-row py-6">
+          <h4 className="">
             {t("toBePaid")}
           </h4>
-          <p>
+          <p className="text-black text-base">
             {getTotalCount()}
           </p>
           <span>
@@ -126,7 +126,7 @@ const BasketDescription: FC<BasketDescriptionProps> = ({ router }) => {
           </span>
         </div>
         <div onClick={() => checkOut(basketItems)}>
-          <button className="flex justify-center items-center w-[80%] h-12 bc text-md bg-gold text-[#fff]">
+          <button className="flex justify-center items-center w-full h-12 px-2 text-md bg-gold text-[#fff]">
             {t("buttonText")}
           </button>
         </div>
