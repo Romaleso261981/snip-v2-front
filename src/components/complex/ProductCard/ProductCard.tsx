@@ -1,9 +1,9 @@
 import { getStrapiMedia_V2 } from "@/utils/api-helpers";
 import Image from "next/image";
 import Link from "next/link";
-import AddToBasketButton from "./ui/AddToBasketButton";
 import { Card } from "@/types/apiStrapiTypes";
 import { useTranslations } from "next-intl";
+import AddToBasketButton from "./ui/AddToBasketButton";
 
 export default function ProductCard({
   product,
@@ -15,6 +15,8 @@ export default function ProductCard({
   const t = useTranslations("ProductCard");
 
   const imageUrl = getStrapiMedia_V2(product.image.url);
+
+  console.log("product", product);
 
   return (
     <div className="container">

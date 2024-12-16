@@ -74,7 +74,7 @@ const BasketDescription: FC<BasketDescriptionProps> = ({ router }) => {
                 <p className="pb-8">
                   {card.name}
                 </p>
-                <div className="w-2/3 flex flex-row pb-1">
+                <div className="w-full flex flex-row pb-1">
                   <h4>
                     {t("count")}
                   </h4>
