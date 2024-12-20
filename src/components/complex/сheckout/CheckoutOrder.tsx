@@ -4,6 +4,7 @@ import React, { FC, useState } from "react";
 import CitySelectionModal from "./ui/CitySelectionModal";
 import UserInfo from "./ui/UserInfo";
 import { CityAddress } from "@/api/novaPost";
+import Delivery from "./ui/Delivery";
 
 export type DeliveryAddres = {
   city: string;
@@ -42,6 +43,7 @@ const CheckoutOrder: FC = () => {
           Змінити
         </button>
       </div>
+      <Delivery />
       {isShowCitySelectionModal &&
         <CitySelectionModal
           toggleShowCitySelectionModal={toggleShowCitySelectionModal}

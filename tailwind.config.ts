@@ -14,7 +14,7 @@ const config: Config = {
         blue: "#F0E2C9",
         darkBrown: "#C5A262",
         white: "#F3F2EE",
-        gold: "#9F8652",
+        gold: { DEFAULT: "#9F8652", light: "#C3A47E", dark: "#7F7045", },
       },
       fontSize: {
         xxxl: ["40px", { lineHeight: "120%" }],
@@ -26,7 +26,7 @@ const config: Config = {
         xs: ["12px", { lineHeight: "14.4px" }],
       },
       animation: {
-        'spin-slow': 'spin 4s linear infinite', // додали кастомну анімацію
+        'spin-slow': 'spin 4s linear infinite',
       },
     },
   },

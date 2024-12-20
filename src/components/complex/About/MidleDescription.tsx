@@ -1,8 +1,11 @@
+"use client";
+
 import { AboutStrapiResponce } from "@/types/apiStrapiTypes";
 import { getStrapiMedia_V2 } from "@/utils/api-helpers";
+import TextTruncate from "@/utils/truncateText";
 import Image from "next/image";
 
-export default async function MidleDescription({
+export default function MidleDescription({
   data
 }: {
   data: AboutStrapiResponce;
@@ -39,12 +42,20 @@ export default async function MidleDescription({
         })}
       </div>
       <div className="flex flex-col justify-center items-center mt-20 md:flex-row md:justify-between md:px-3">
-        <p className="border-gold border-t-2 py-6 w-11/12 px-2 md:w-2/6 md:h-full">
-          {leftFounder}
-        </p>
-        <p className="border-gold border-t-2 py-6 w-11/12 px-2 md:w-2/6 md:h-full">
-          {rightFounder}
-        </p>
+        <div className="border-gold border-t-2 py-6 w-11/12 px-2 md:w-2/6 md:h-full">
+          <TextTruncate
+            text={leftFounder}
+            maxLength={150}
+            linkColorClass="text-gold"
+          />
+        </div>
+        <div className="border-gold border-t-2 py-6 w-11/12 px-2 md:w-2/6 md:h-full">
+          <TextTruncate
+            text={rightFounder}
+            maxLength={150}
+            linkColorClass="text-gold"
+          />
+        </div>
       </div>
     </div>
   );

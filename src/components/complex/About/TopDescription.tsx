@@ -1,3 +1,12 @@
+import Container from "@/components/custom/Container";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from "@/components/ui/breadcrumb/breadcrumb";
+import Link from "next/link";
 import { FC } from "react";
 
 type TopDescriptionProps = {
@@ -11,6 +20,21 @@ const TopDescription: FC<TopDescriptionProps> = ({
 }) => {
   return (
     <div className="flex flex-col justify-center items-center">
+      <Container>
+        <Breadcrumb>
+          <BreadcrumbList className="capitalize flex flex-wrap">
+            <Link href="/uk/" className="text-sm hover:text-gold">
+              Home
+            </Link>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage className="text-sm font-bold hover:text-gold ">
+                about-us
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </Container>
       <h2 className="text-xxl mb-5 ma:mb-10">
         {title}
       </h2>

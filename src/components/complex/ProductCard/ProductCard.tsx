@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Card } from "@/types/apiStrapiTypes";
 import { useTranslations } from "next-intl";
 import AddToBasketButton from "./ui/AddToBasketButton";
+import TextTruncate from "@/utils/truncateText";
 
 export default function ProductCard({
   product,
@@ -73,10 +74,13 @@ export default function ProductCard({
               <h4 className="">
                 {t("includesTitle")}
               </h4>
-              <p className="text-black">
-                {product.includes}
-              </p>
-              <Link href={"/"}>....Load more</Link>
+              <div className="text-black">
+                <TextTruncate
+                  text={product.includes}
+                  maxLength={150}
+                  linkColorClass="text-gold"
+                />
+              </div>
             </div>
           </div>
           <AddToBasketButton buttonText={t("addToBasket")} product={product} />

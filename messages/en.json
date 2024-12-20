@@ -56,7 +56,9 @@
     "addToBasket": "Purchase"
   },
   "ProductsList": {
-    "currency": "UAH"
+    "currency": "UAH",
+    "products": "Products",
+    "showing": "Showing"
   },
   "Basket": {
     "mainTitle": "In your shopping cart:",

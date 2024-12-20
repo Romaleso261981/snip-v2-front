@@ -56,7 +56,9 @@
     "addToBasket": "Придбати"
   },
   "ProductsList": {
-    "currency": "ГРН"
+    "currency": "ГРН",
+    "products": "продуктів",
+    "showing": "Показано"
   },
   "Basket": {
     "mainTitle": "У вашій корзині:",

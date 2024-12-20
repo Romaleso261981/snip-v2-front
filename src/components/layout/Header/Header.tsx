@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import clsx from "clsx";
 
-import { Routes } from "@/const/routes";
 import MobileMenu from "./MobileMenu";
 import BurgerMenuIcon from "@/assets/icons/burger-menu.svg";
 import LogoIcon from "@/assets/icons/logo.svg";
@@ -49,7 +48,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
       <div onClick={() => setIsOpen(true)}>
         <BurgerMenuIcon className="cursor-pointer" />
       </div>
-      <Link href={Routes.Home} className="flex flex-col items-center ml-20">
+      <Link href={"/uk/"} className="flex flex-col items-center ml-20">
         <LogoIcon className="w-9 h-9" />
         <span className="text-xs">
           {t("title")}

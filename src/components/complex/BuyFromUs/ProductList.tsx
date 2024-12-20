@@ -5,44 +5,81 @@ import { getStrapiMedia_V2 } from "@/utils/api-helpers";
 import Link from "next/link";
 import { Card, NaboriResponce } from "@/types/apiStrapiTypes";
 import { useTranslations } from "use-intl";
+import usePagination from "@/hooks/usePagination";
+import { Pagination } from "@mui/material";
+import { useState } from "react";
 
 type CardListProps = {
   cards: NaboriResponce;
 };
 
 export default function ProductList({ cards }: CardListProps) {
+  const [page, setPage] = useState(1);
+  const perpage = 5;
+  const count = Math.ceil(cards.length / perpage);
   const t = useTranslations("ProductsList");
+  const DATA = usePagination(cards, perpage);
+
+  const cardList = DATA.currentData();
+
+  const handleChange = (e: React.ChangeEvent<unknown>, p: number) => {
+    setPage(p);
+    DATA.jump(p);
+  };
 
   return (
-    <div className="w-full text-center text-gold grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-5 gap-3 justify-center border-gold mt-15 mb-14 md:my-5">
-      {cards.map((card: Card) => {
-        const imageUrl = getStrapiMedia_V2(card.image.url);
-        return (
-          <Link
-            href={`product/${card.id}`}
-            key={card.id}
-            className="flex items-center justify-center w-full"
-          >
-            <div className="flex flex-col items-center justify-center h-full w-full border border-gold p-4 rounded-sm shadow-lg 2xl:p-2 sm:justify-between">
-              {imageUrl &&
-                <Image
-                  src={imageUrl || "defaultImageUrl"}
-                  alt={"none provided"}
-                  width={card.image.width}
-                  height={card.image.height}
-                />}
-              <div className="flex items-center gap-2 py-5 md:flex-col">
-                <h4 className="font-medium text-sm">
-                  {card.name}
-                </h4>
-                <span>
-                  {card.price} {t("currency")}
-                </span>
+    <div>
+      <div className="w-full text-center text-gold grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-5 gap-3 justify-center border-gold mt-15 mb-14 md:my-5">
+        {cardList.map((card: Card) => {
+          const imageUrl = getStrapiMedia_V2(card.image.url);
+          return (
+            <Link
+              href={`product/${card.id}`}
+              key={card.id}
+              className="flex items-center justify-center w-full"
+            >
+              <div className="flex flex-col items-center justify-center h-full w-full border border-gold p-4 rounded-sm shadow-lg 2xl:p-2 sm:justify-between">
+                {imageUrl &&
+                  <Image
+                    src={imageUrl || "defaultImageUrl"}
+                    alt={"none provided"}
+                    width={card.image.width}
+                    height={card.image.height}
+                  />}
+                <div className="flex items-center gap-2 py-5 md:flex-col">
+                  <h4 className="font-medium text-sm">
+                    {card.name}
+                  </h4>
+                  <span>
+                    {card.price} {t("currency")}
+                  </span>
+                </div>
               </div>
-            </div>
-          </Link>
-        );
-      })}
+            </Link>
+          );
+        })}
+      </div>
+      {/* pagination */}
+      <div className="py-10 px-5 flex flex-row justify-around mt-auto">
+        <Pagination
+          count={count}
+          page={page}
+          color="standard"
+          variant="outlined"
+          shape="rounded"
+          onChange={handleChange}
+        />
+
+        <div className="flex ms-auto">
+          {t("showing")} {DATA.maxPage === page
+            ? cards.length
+            : perpage * page}{" "}
+          of
+          <div className="flex flex-row gap-2 ml-2 text-gold">
+            <h4>{cards.length}</h4> <span>{t("products")}</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
