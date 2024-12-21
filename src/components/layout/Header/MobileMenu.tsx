@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 import cross from "@/assets/mobMenu/cross-mob-menu.png";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 type MobMenuProps = {
   setIsOpen: (value: boolean) => void;
@@ -112,48 +113,54 @@ const MobileMenu: FC<MobMenuProps> = ({ setIsOpen }) => {
   };
 
   return (
-    <div className="absolute w-full top-0 left-0 z-20 flex flex-col justify-between items-start text-center p-4 pb-8 bg-white md:w-1/5">
-      <div
-        className="flex gap-5 flex-row-reverse mb-14"
-        onClick={() => setIsOpen(false)}
-      >
-        <span className="text-gold font-bold">
-          {strapiData.mainTitle}
-        </span>
-        <Image src={cross} alt="cross" />
-      </div>
-      <div className="flex flex-col justify-start items-start mb-40">
-        <ul className="flex flex-col justify-center items-start text-gold">
-          {strapiData.linksNav.map(item =>
-            <li
-              key={item.id}
-              className="width-[80px] height-[22px] pb-3 hover:translate-x-1 duration-300"
-              onClick={() => handleLocaleChange(item.href)}
-            >
-              <span className="cursor-pointer">
+    <Backdrop
+      sx={theme => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
+      open={true}
+    >
+      <div className="absolute w-full top-0 left-0 z-20 flex flex-col justify-between items-start text-center p-4 pb-8 bg-white md:w-1/5">
+        <div
+          className="flex gap-5 flex-row-reverse mb-14"
+          onClick={() => setIsOpen(false)}
+        >
+          <span className="text-gold font-bold">
+            {strapiData.mainTitle}
+          </span>
+          <Image src={cross} alt="cross" />
+        </div>
+        <div className="flex flex-col justify-start items-start mb-40">
+          <ul className="flex flex-col justify-center items-start text-gold">
+            {strapiData.linksNav.map(item =>
+              <li
+                key={item.id}
+                className="width-[80px] height-[22px] pb-3 hover:translate-x-1 duration-300"
+                onClick={() => handleLocaleChange(item.href)}
+              >
+                <span className="cursor-pointer">
+                  {item.title}
+                </span>
+              </li>
+            )}
+          </ul>
+        </div>
+        <div className="flex flex-col justify-start items-start">
+          <nav className="flex flex-col justify-start items-start text-gold">
+            <h3 className="width-[80px] height-[22px] mb-[24px] text-gold font-montserrat font-weight-500 leading-19.2px text-center">
+              {strapiData.contactTitle}
+            </h3>
+            {strapiData.linksContact.map(item =>
+              <Link
+                key={item.id}
+                href={item.href}
+                className="text-gold font-montserrat font-weight-500 leading-19.2px mb-2"
+              >
                 {item.title}
-              </span>
-            </li>
-          )}
-        </ul>
+              </Link>
+            )}
+          </nav>
+        </div>
       </div>
-      <div className="flex flex-col justify-start items-start">
-        <nav className="flex flex-col justify-start items-start text-gold">
-          <h3 className="width-[80px] height-[22px] mb-[24px] text-gold font-montserrat font-weight-500 leading-19.2px text-center">
-            {strapiData.contactTitle}
-          </h3>
-          {strapiData.linksContact.map(item =>
-            <Link
-              key={item.id}
-              href={item.href}
-              className="text-gold font-montserrat font-weight-500 leading-19.2px mb-2"
-            >
-              {item.title}
-            </Link>
-          )}
-        </nav>
-      </div>
-    </div>
+      <CircularProgress color="inherit" />
+    </Backdrop>
   );
 };
 

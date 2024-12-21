@@ -22,11 +22,8 @@ export default async function page({
 
   return (
     <GeneralLayout>
-      <BuyFromUsDescription
-        description={data.main.text}
-        title={data.main.title}
-      />
-      <ProductList cards={naboris} />
+      <BuyFromUsDescription data={data} cards={naboris} />
+      <ProductList />
     </GeneralLayout>
   );
 }

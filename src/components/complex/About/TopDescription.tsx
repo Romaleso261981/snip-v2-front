@@ -5,7 +5,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator
-} from "@/components/ui/breadcrumb/breadcrumb";
+} from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import { FC } from "react";
 

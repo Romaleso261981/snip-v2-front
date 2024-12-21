@@ -12,7 +12,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator
-} from "@/components/ui/breadcrumb/breadcrumb";
+} from "@/components/ui/breadcrumb";
 import Link from "next/link";
 
 export default function DoItYourself({ data }: { data: DoItYourselfResponce }) {

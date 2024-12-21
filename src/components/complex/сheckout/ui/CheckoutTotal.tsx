@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/ui/Button/Button";
+import Button from "@/components/ui/Button";
 import { CheckOutContext } from "@/contexts/checkOutContext";
 import React, { useContext } from "react";
 

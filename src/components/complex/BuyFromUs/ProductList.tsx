@@ -3,17 +3,16 @@
 import Image from "next/image";
 import { getStrapiMedia_V2 } from "@/utils/api-helpers";
 import Link from "next/link";
-import { Card, NaboriResponce } from "@/types/apiStrapiTypes";
+import { Card } from "@/types/apiStrapiTypes";
 import { useTranslations } from "use-intl";
 import usePagination from "@/hooks/usePagination";
 import { Pagination } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CardsContext } from "@/contexts/cardContext";
 
-type CardListProps = {
-  cards: NaboriResponce;
-};
+export default function ProductList() {
+  const { cardItems: cards } = useContext(CardsContext);
 
-export default function ProductList({ cards }: CardListProps) {
   const [page, setPage] = useState(1);
   const perpage = 5;
   const count = Math.ceil(cards.length / perpage);
@@ -60,7 +59,7 @@ export default function ProductList({ cards }: CardListProps) {
         })}
       </div>
       {/* pagination */}
-      <div className="py-10 px-5 flex flex-row justify-around mt-auto">
+      <div className="flex flex-col gap-3 mb-7 justify-center items-center mt-auto md:flex-row md:justify-around md:py-10 md:px-5">
         <Pagination
           count={count}
           page={page}
@@ -70,12 +69,12 @@ export default function ProductList({ cards }: CardListProps) {
           onChange={handleChange}
         />
 
-        <div className="flex ms-auto">
+        <div className="flex flex-row text-center md:ms-auto">
           {t("showing")} {DATA.maxPage === page
             ? cards.length
             : perpage * page}{" "}
           of
-          <div className="flex flex-row gap-2 ml-2 text-gold">
+          <div className="flex flex-row text-center gap-4 ml-2 text-gold">
             <h4>{cards.length}</h4> <span>{t("products")}</span>
           </div>
         </div>

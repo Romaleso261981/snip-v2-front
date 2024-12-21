@@ -9,7 +9,7 @@ export default function Container({
   className?: string;
 }) {
   return (
-    <div className={cn("container h-full w-full my-4 md:mb-0", className)}>
+    <div className={cn("h-full w-full my-4 md:mb-0", className)}>
       {children}
     </div>
   );

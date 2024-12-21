@@ -1,5 +1,5 @@
 import Loader from "@/components/ui/Loader";
-import EmblaCarousel from "@/components/ui/Carousel/Carousel";
+import EmblaCarousel from "@/components/ui/Carousel";
 import { GalleryStrapiData } from "@/types/apiStrapiTypes";
 import { getStrapiMedia_V2 } from "@/utils/api-helpers";
 import Image from "next/image";

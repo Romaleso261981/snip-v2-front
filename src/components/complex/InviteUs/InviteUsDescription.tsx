@@ -5,7 +5,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator
-} from "@/components/ui/breadcrumb/breadcrumb";
+} from "@/components/ui/breadcrumb";
 import { StrapiImage } from "@/types/apiStrapiTypes";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
