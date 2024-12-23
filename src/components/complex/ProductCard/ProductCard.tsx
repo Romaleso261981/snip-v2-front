@@ -17,8 +17,6 @@ export default function ProductCard({
 
   const imageUrl = getStrapiMedia_V2(product.image.url);
 
-  console.log("product", product);
-
   return (
     <div className="container">
       <div className="w-full flex flex-row md:pl-10">

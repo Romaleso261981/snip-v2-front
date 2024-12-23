@@ -2,6 +2,7 @@
 
 import { Card } from "@/types/apiStrapiTypes";
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 export function useBasketCart() {
   const [basketItems, setBasketItems] = useState<Card[]>([]);
@@ -29,6 +30,7 @@ export function useBasketCart() {
 
   const removeCardById = (id: number) => {
     const newCards = basketItems.filter(card => card.id !== id);
+    toast.success('Product removed');
     setBasketItems(newCards);
     updateLocalStorage(newCards);
   };
@@ -43,6 +45,7 @@ export function useBasketCart() {
           )
         : [...state, { ...card, count: 1 }];
       updateLocalStorage(updatedState);
+      toast.success('Product added to basket');
       return updatedState;
     });
   };

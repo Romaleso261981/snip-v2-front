@@ -71,8 +71,6 @@ export function CheckOutProvider({ children }: CheckOutProviderProps) {
   };
 
   const setParchaseList = (purchaseList: Card[]) => {
-    console.log("setParchaseList", purchaseList);
-
     setCheckOutContext(
       prevContext =>
         ({

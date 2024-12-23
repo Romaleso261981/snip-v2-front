@@ -67,6 +67,7 @@
     "toBePaid": "До сплати:",
     "totalCoutUnion": "Грн.",
     "buttonText": "Оформити замовлення.",
-    "cardbuttonText": "Видалити."
+    "cardbuttonText": "Видалити.",
+    "productRemoved": "Товар видалено з кошика."
   }
 }

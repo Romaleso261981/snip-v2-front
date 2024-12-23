@@ -67,6 +67,7 @@
     "toBePaid": "To be paid:",
     "totalCoutUnion": "Grn.",
     "buttonText": "Make an order.",
-    "cardbuttonText": "Remove."
+    "cardbuttonText": "Remove.",
+    "productRemoved": "Product removed from cart."
   }
 }

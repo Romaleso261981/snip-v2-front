@@ -8,6 +8,8 @@ import BasketImage from "./BasketImage";
 import { useTranslations } from "next-intl";
 import { Card } from "@/types/apiStrapiTypes";
 import { CheckOutContext } from "@/contexts/checkOutContext";
+import DeleteButton from "@/components/ui/DeleteButton";
+import toast from "react-hot-toast";
 
 type BasketDescriptionProps = {
   locale?: string;
@@ -32,13 +34,14 @@ const BasketDescription: FC<BasketDescriptionProps> = ({ router }) => {
 
   const checkOut = (basketItems: Card[]) => {
     setParchaseList(basketItems);
-    router.push(`/${locale}/payment`);
+    toast.error(`Payment failed ${locale} 😔`);
+    // router.push(`/${locale}/payment`);
   };
 
   if (basketItems.length === 0) {
     return (
-      <div className="fixed h-full top-0 right-0 p-2 z-20 bg-white text-gold md:w-2/6 md:p-6">
-        <div className="flex flex-col justify-between items-start text-center p-2 pb-8 h-full">
+      <div className="fixed w-full h-full top-0 right-0 p-2 z-20 bg-white text-gold md:w-2/6 md:p-6">
+        <div className="flex flex-col justify-start items-start text-center p-2 pb-8 h-full">
           <div
             className="flex gap-5 flex-row-reverse mb-10 pl-3 pt-3 md:p-0"
             onClick={() => handleToggleBasket()}
@@ -52,7 +55,7 @@ const BasketDescription: FC<BasketDescriptionProps> = ({ router }) => {
   }
 
   return (
-    <div className="fixed h-full top-0 right-0 p-2 z-20 bg-white text-gold md:w-2/6 md:p-6">
+    <div className="fixed w-full h-full top-0 right-0 p-2 z-20 bg-white text-gold md:w-2/6 md:p-6">
       <div className="flex flex-col justify-between items-start text-center p-2 pb-8 h-full">
         <div
           className="flex gap-5 flex-row-reverse mb-10 pl-3 pt-3 md:p-0"
@@ -107,9 +110,14 @@ const BasketDescription: FC<BasketDescriptionProps> = ({ router }) => {
                     {card.union}
                   </span>
                 </div>
-                <button onClick={() => removeCardById(card.id)}>
+                <DeleteButton
+                  label={t("cardbuttonText")}
+                  onDelete={removeCardById}
+                  cardId={card.id}
+                />
+                {/* <button onClick={() => removeCardById(card.id)}>
                   {t("cardbuttonText")}
-                </button>
+                </button> */}
               </div>
             </div>
           )}
