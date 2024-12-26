@@ -4,7 +4,7 @@ import { DoItYourselfResponce } from "@/types/apiStrapiTypes";
 import { useTranslations } from "next-intl";
 
 import defaultImage from "@/assets/doItYourself/bg.png";
-import { getStrapiMedia_V2 } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/utils/api-helpers";
 import Container from "@/components/custom/Container";
 import {
   Breadcrumb,
@@ -18,7 +18,7 @@ import Link from "next/link";
 export default function DoItYourself({ data }: { data: DoItYourselfResponce }) {
   const t = useTranslations("DoItYourself");
 
-  const url = data ? getStrapiMedia_V2(data.examples[0].image.url) : "";
+  const url = data ? getStrapiMedia(data.examples[0].image.url) : "";
   return (
     <div>
       <Container>

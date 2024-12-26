@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
+import Filter from "@/components/ui/Filter";
 import SearchBar from "@/components/ui/SearchBar";
 import { CardsContext } from "@/contexts/cardContext";
 import { BuyFromUsResponce, NaboriResponce } from "@/types/apiStrapiTypes";
@@ -52,6 +53,7 @@ export default function BuyFromUsDescription({
         </Container>
         <SearchBar setCardItems={setCardItems} cardItems={cardItems} />
       </div>
+      <Filter />
       <div>
         <div className="flex flex-col justify-center items-center px-8">
           <h3 className="font-montserrat font-weight-500 text-2xl pb-4">

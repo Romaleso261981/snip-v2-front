@@ -1,4 +1,4 @@
-import { getStrapiMedia_V2 } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/utils/api-helpers";
 import Image from "next/image";
 import Link from "next/link";
 import { Card } from "@/types/apiStrapiTypes";
@@ -15,7 +15,7 @@ export default function ProductCard({
 }) {
   const t = useTranslations("ProductCard");
 
-  const imageUrl = getStrapiMedia_V2(product.image.url);
+  const imageUrl = getStrapiMedia(product.image.url);
 
   return (
     <div className="container">

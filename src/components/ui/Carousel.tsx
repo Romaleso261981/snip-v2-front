@@ -4,7 +4,7 @@ import React, { FC, useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
-import { getStrapiMedia_V2 } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/utils/api-helpers";
 import { StrapiImage } from "@/types/apiStrapiTypes";
 
 type EmblaCarouselProps = {
@@ -37,7 +37,7 @@ const EmblaCarousel: FC<EmblaCarouselProps> = ({ images }) => {
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {images.map(image => {
-            const imageUrl = getStrapiMedia_V2(image.url);
+            const imageUrl = getStrapiMedia(image.url);
             return (
               <div
                 className="flex-shrink-0 flex-grow-0 flex-basis-full min-w-0"

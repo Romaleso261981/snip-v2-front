@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import defaultImageBg from "@/assets/hero/hero.jpg";
 import { HeroStrapiData } from "@/types/apiStrapiTypes";
-import { getStrapiMedia_V2 } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/utils/api-helpers";
 import { FC } from "react";
 
 type HeroSectionProps = {
@@ -10,7 +10,7 @@ type HeroSectionProps = {
 };
 
 const HeroSection: FC<HeroSectionProps> = async ({ data }) => {
-  const url = getStrapiMedia_V2(data.image.url) || defaultImageBg;
+  const url = getStrapiMedia(data.image.url) || defaultImageBg;
 
   return (
     <div className="relative overflow-hidden h-screen">

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { getStrapiMedia_V2 } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/utils/api-helpers";
 import Link from "next/link";
 import { Card } from "@/types/apiStrapiTypes";
 import { useTranslations } from "use-intl";
@@ -24,13 +24,14 @@ export default function ProductList() {
   const handleChange = (e: React.ChangeEvent<unknown>, p: number) => {
     setPage(p);
     DATA.jump(p);
+    // scrollTop();
   };
 
   return (
     <div>
       <div className="w-full text-center text-gold grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-5 gap-3 justify-center border-gold mt-15 mb-14 md:my-5">
         {cardList.map((card: Card) => {
-          const imageUrl = getStrapiMedia_V2(card.image.url);
+          const imageUrl = getStrapiMedia(card.image.url);
           return (
             <Link
               href={`product/${card.id}`}
@@ -66,7 +67,7 @@ export default function ProductList() {
           color="standard"
           variant="outlined"
           shape="rounded"
-          onChange={handleChange}
+          onChange={(e, p) => handleChange(e, p)}
         />
 
         <div className="flex flex-row text-center md:ms-auto">

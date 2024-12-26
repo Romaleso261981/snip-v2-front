@@ -3,7 +3,7 @@ import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
 import Loader from "@/components/ui/Loader";
 import { endpoints } from "@/configs/endpoints";
 import { NaboriResponce } from "@/types/apiStrapiTypes";
-import { fetchAPI_V2 } from "@/utils/fetch-api";
+import { fetchAPI } from "@/utils/fetch-api";
 
 export default async function Page({
   params
@@ -17,7 +17,7 @@ export default async function Page({
     locale: locale
   };
 
-  const { data }: { data: NaboriResponce } = await fetchAPI_V2(
+  const { data }: { data: NaboriResponce } = await fetchAPI(
     endpoints.naboris,
     urlParamsNabori
   );

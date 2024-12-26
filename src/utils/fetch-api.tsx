@@ -1,10 +1,5 @@
 import qs from "qs";
-import {
-  getStrapiURL,
-  getStrapiURL_V2,
-  getToken,
-  getToken_V2
-} from "./api-helpers";
+import { getStrapiURL, getToken } from "./api-helpers";
 import {
   AboutStrapiResponce,
   BuyFromUsResponce,
@@ -15,41 +10,10 @@ import {
 } from "@/types/apiStrapiTypes";
 import { endpoints } from "@/configs/endpoints";
 
-export async function fetchAPI_V2(path: string, urlParamsObject = {}) {
-  try {
-    const token = getToken_V2();
-
-    // Merge default and user options
-    const mergedOptions = {
-      next: { revalidate: 60 },
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      }
-    };
-
-    // Build request URL
-    const queryString = qs.stringify(urlParamsObject);
-    const requestUrl = `${getStrapiURL_V2(
-      `${path}${queryString ? `?${queryString}` : ""}`
-    )}`;
-
-    // Trigger API call
-    const response = await fetch(requestUrl, mergedOptions);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    throw new Error(
-      `Please check if your server is running and you set all the required tokens.`
-    );
-  }
-}
 export async function fetchAPI(path: string, urlParamsObject = {}) {
   try {
     const token = getToken();
 
-    // Merge default and user options
     const mergedOptions = {
       next: { revalidate: 60 },
       headers: {
@@ -58,13 +22,11 @@ export async function fetchAPI(path: string, urlParamsObject = {}) {
       }
     };
 
-    // Build request URL
     const queryString = qs.stringify(urlParamsObject);
     const requestUrl = `${getStrapiURL(
       `${path}${queryString ? `?${queryString}` : ""}`
     )}`;
 
-    // Trigger API call
     const response = await fetch(requestUrl, mergedOptions);
     const data = await response.json();
     return data;
@@ -77,7 +39,7 @@ export async function fetchAPI(path: string, urlParamsObject = {}) {
 }
 export async function getMainStrapiData(locale: string = "uk") {
   try {
-    const urlParamsObject_V2 = {
+    const urlParamsObject = {
       populate: {
         about: {
           populate: "*"
@@ -95,12 +57,12 @@ export async function getMainStrapiData(locale: string = "uk") {
       locale: locale
     };
 
-    const { data: data_V2 }: { data: HomeStrapiResponce } = await fetchAPI_V2(
+    const { data }: { data: HomeStrapiResponce } = await fetchAPI(
       endpoints.home,
-      urlParamsObject_V2
+      urlParamsObject
     );
 
-    return { data_V2 };
+    return { data };
   } catch (error) {
     console.error(error);
     throw new Error(
@@ -132,7 +94,7 @@ export async function getAboutStrapiData(locale: string = "uk") {
       locale: locale
     };
 
-    const { data }: { data: AboutStrapiResponce } = await fetchAPI_V2(
+    const { data }: { data: AboutStrapiResponce } = await fetchAPI(
       endpoints.about,
       urlParamsObject
     );
@@ -156,7 +118,7 @@ export async function getDoItYourselfStrapiData(locale: string = "uk") {
       locale: locale
     };
 
-    const { data }: { data: DoItYourselfResponce } = await fetchAPI_V2(
+    const { data }: { data: DoItYourselfResponce } = await fetchAPI(
       endpoints.doItYourself,
       urlParamsObject
     );
@@ -171,7 +133,7 @@ export async function getDoItYourselfStrapiData(locale: string = "uk") {
 }
 export async function getInviteUsStrapiData(locale: string = "uk") {
   try {
-    const urlParamsObject_V2 = {
+    const urlParamsObject = {
       populate: {
         examples: {
           populate: "*"
@@ -183,9 +145,9 @@ export async function getInviteUsStrapiData(locale: string = "uk") {
       locale: locale
     };
 
-    const { data }: { data: InviteUsStrapiResponce } = await fetchAPI_V2(
+    const { data }: { data: InviteUsStrapiResponce } = await fetchAPI(
       endpoints.inviteUs,
-      urlParamsObject_V2
+      urlParamsObject
     );
 
     return {
@@ -210,12 +172,12 @@ export async function getByFromUsStrapiData(locale: string = "uk") {
       locale: locale
     };
 
-    const { data }: { data: BuyFromUsResponce } = await fetchAPI_V2(
+    const { data }: { data: BuyFromUsResponce } = await fetchAPI(
       endpoints.byFromUs,
       urlParamsObject
     );
 
-    const { data: naboris }: { data: NaboriResponce } = await fetchAPI_V2(
+    const { data: naboris }: { data: NaboriResponce } = await fetchAPI(
       endpoints.naboris,
       urlParamsNabori
     );

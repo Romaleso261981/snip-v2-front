@@ -1,7 +1,7 @@
 "use client";
 
 import { AboutStrapiResponce } from "@/types/apiStrapiTypes";
-import { getStrapiMedia_V2 } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/utils/api-helpers";
 import TextTruncate from "@/utils/truncateText";
 import Image from "next/image";
 
@@ -16,7 +16,7 @@ export default function MidleDescription({
     <div className="flex flex-col justify-center items-center">
       <div className="flex md:hidden ">
         <Image
-          src={getStrapiMedia_V2(images[0].url) || ""}
+          src={getStrapiMedia(images[0].url) || ""}
           alt="image5"
           width={images[0].width}
           height={images[0].height}
@@ -25,7 +25,7 @@ export default function MidleDescription({
       </div>
       <div className="hidden md:flex flex-row justify-around w-full">
         {imagesDesctop.map((image, index) => {
-          const url = getStrapiMedia_V2(image.url);
+          const url = getStrapiMedia(image.url);
           return (
             <div key={index} className="w-full flex justify-center mt-10">
               <div>

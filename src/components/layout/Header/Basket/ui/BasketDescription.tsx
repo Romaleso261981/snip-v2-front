@@ -9,7 +9,6 @@ import { useTranslations } from "next-intl";
 import { Card } from "@/types/apiStrapiTypes";
 import { CheckOutContext } from "@/contexts/checkOutContext";
 import DeleteButton from "@/components/ui/DeleteButton";
-import toast from "react-hot-toast";
 
 type BasketDescriptionProps = {
   locale?: string;
@@ -34,8 +33,7 @@ const BasketDescription: FC<BasketDescriptionProps> = ({ router }) => {
 
   const checkOut = (basketItems: Card[]) => {
     setParchaseList(basketItems);
-    toast.error(`Payment failed ${locale} 😔`);
-    // router.push(`/${locale}/payment`);
+    router.push(`/${locale}/payment`);
   };
 
   if (basketItems.length === 0) {

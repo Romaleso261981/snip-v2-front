@@ -135,6 +135,19 @@ export type InviteUsCardsStrapiResponce = {
   buttontext: string;
 };
 
+export type CartProductType = {
+  id: number;
+  image: StrapiImage;
+  includes: string;
+  material: string;
+  name: string;
+  price: number;
+  size: string;
+  quantity: number;
+  count?: number;
+  union: string;
+};
+
 export type Card = {
   id: number;
   image: StrapiImage;

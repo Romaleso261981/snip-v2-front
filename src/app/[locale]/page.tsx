@@ -7,6 +7,7 @@ import Loader from "@/components/ui/Loader";
 import HeroSection from "@/components/complex/Home/Hero";
 import DescriptionSection from "@/components/complex/Home/Description";
 import GallerySection from "@/components/complex/Home/Gallery";
+import Reviews from "@/components/ui/Reviews";
 
 export const metadata: Metadata = {
   title: "СНІП",
@@ -21,15 +22,16 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
 
-  const { data_V2 } = await getMainStrapiData(locale);
+  const { data } = await getMainStrapiData(locale);
 
-  if (!data_V2) return <Loader />;
+  if (!data) return <Loader />;
 
   return (
     <HomeLayout>
-      <HeroSection data={data_V2.hero} />
-      <DescriptionSection about={data_V2.about} button={data_V2.button} />
-      <GallerySection gallery={data_V2.gallery} />
+      <HeroSection data={data.hero} />
+      <DescriptionSection about={data.about} button={data.button} />
+      <GallerySection gallery={data.gallery} />
+      <Reviews />
     </HomeLayout>
   );
 }

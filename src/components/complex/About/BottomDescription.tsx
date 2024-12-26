@@ -1,5 +1,5 @@
 import { AboutStrapiResponce } from "@/types/apiStrapiTypes";
-import { getStrapiMedia_V2 } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/utils/api-helpers";
 import Image from "next/image";
 
 export default async function BottomDescription({
@@ -18,7 +18,7 @@ export default async function BottomDescription({
     <div className="flex flex-col justify-center items-center">
       <div className="hidden md:flex">
         <Image
-          src={getStrapiMedia_V2(desctopSeparatorImage.url) || ""}
+          src={getStrapiMedia(desctopSeparatorImage.url) || ""}
           alt="Separator"
           width={2400}
           height={10}
@@ -28,7 +28,7 @@ export default async function BottomDescription({
       </div>
       <div className="flex md:hidden">
         <Image
-          src={getStrapiMedia_V2(separatorImageMobile.url) || ""}
+          src={getStrapiMedia(separatorImageMobile.url) || ""}
           width={2400}
           height={separatorImageMobile.height}
           objectFit="cover"

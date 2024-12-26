@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FC } from "react";
-import { getStrapiMedia_V2 } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/utils/api-helpers";
 import { useTranslations } from "next-intl";
 import { StrapiImage } from "@/types/apiStrapiTypes";
 
@@ -18,7 +18,7 @@ const InviteUsCardListExample: FC<InviteUsCardListProps> = ({ examples }) => {
   return (
     <div className="flex flex-wrap justify-around items-start w-full text-center sm:hidden md:mb-16">
       {examples.map((example, index) => {
-        const imageUrl = getStrapiMedia_V2(example.image.url);
+        const imageUrl = getStrapiMedia(example.image.url);
         return (
           <article
             key={index}

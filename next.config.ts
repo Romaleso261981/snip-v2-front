@@ -6,9 +6,9 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   images: {
     domains: [
-      "intuitive-spontaneity-snip.up.railway.app",
       "strapi-cms-production-f73b.up.railway.app",
-      "via.placeholder.com"
+      "via.placeholder.com",
+      "randomuser.me"
     ]
   },
   webpack(config) {

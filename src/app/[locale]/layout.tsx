@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
+import { Toaster } from "@/components/ui/sonner";
+
 import "@/app/globals.css";
 import { ReactQueryProvider } from "@/lib/react-query";
 import { BasketProvider } from "@/contexts/basketContext";
@@ -28,6 +30,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
               <NextIntlClientProvider messages={messages}>
                 <ReactQueryProvider>
                   {children}
+                  <Toaster
+                    duration={3000}
+                    closeButton={true}
+                    position="top-center"
+                  />
                 </ReactQueryProvider>
               </NextIntlClientProvider>
             </BasketProvider>

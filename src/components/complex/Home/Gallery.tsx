@@ -1,7 +1,7 @@
 import Loader from "@/components/ui/Loader";
 import EmblaCarousel from "@/components/ui/Carousel";
 import { GalleryStrapiData } from "@/types/apiStrapiTypes";
-import { getStrapiMedia_V2 } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/utils/api-helpers";
 import Image from "next/image";
 import { FC } from "react";
 
@@ -20,7 +20,7 @@ const GallerySection: FC<GallerySectionProps> = ({ gallery }) => {
             <div className="w-full sm:w-1/2 md:w-1/3 p-2" key={image.id}>
               <div className="relative w-full h-0 pb-[66.66%]">
                 <Image
-                  src={getStrapiMedia_V2(image.url) || ""}
+                  src={getStrapiMedia(image.url) || ""}
                   alt="Gallery Image"
                   layout="fill"
                   objectFit="cover"

@@ -2,26 +2,10 @@ export function getStrapiURL(path = "") {
   return `${process.env.NEXT_PUBLIC_STRAPI_URL ||
     "http://localhost:1337"}${path}`;
 }
-export function getStrapiURL_V2(path = "") {
-  return `${process.env.NEXT_PUBLIC_STRAPI_URL_V2 ||
-    "http://localhost:1337"}${path}`;
-}
 
 export const getToken = () => {
   return process.env.NEXT_PUBLIC_STRAPI_API_TOKEN || null;
 };
-export const getToken_V2 = () => {
-  return process.env.NEXT_PUBLIC_STRAPI_API_TOKEN_V2 || null;
-};
-
-export function getStrapiMedia_V2(url: string | null) {
-  if (url == null) {
-    return null;
-  }
-
-  // Otherwise prepend the URL path with the Strapi URL
-  return `${process.env.NEXT_PUBLIC_STRAPI_URL_IMG_V2}${url}`;
-}
 
 export function getStrapiMedia(url: string | null) {
   if (url == null) {
