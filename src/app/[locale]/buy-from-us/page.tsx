@@ -1,7 +1,8 @@
 import BuyFromUsDescription from "@/components/complex/BuyFromUs/BuyFromUsDescription";
 import ProductList from "@/components/complex/BuyFromUs/ProductList";
 import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
-import { getByFromUsStrapiData } from "@/utils/fetch-api";
+import { SearchParams } from "@/types/apiStrapiTypes";
+import { getByFromUsStrapiData, getNaborisData } from "@/utils/fetch-api";
 import { Metadata } from "next";
 import React from "react";
 
@@ -12,13 +13,19 @@ export const metadata: Metadata = {
 };
 
 export default async function page({
-  params
+  params,
+  searchParams
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<SearchParams>;
 }) {
   const { locale } = await params;
+  const sp = await searchParams;
 
-  const { data, naboris } = await getByFromUsStrapiData(locale);
+  const { data } = await getByFromUsStrapiData(locale);
+  const { data: naboris } = await getNaborisData(locale, sp);
+
+  console.log("data", naboris);
 
   return (
     <GeneralLayout>

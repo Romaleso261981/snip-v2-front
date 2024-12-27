@@ -3,14 +3,20 @@ import { getStrapiURL, getToken } from "./api-helpers";
 import {
   AboutStrapiResponce,
   BuyFromUsResponce,
+  Card,
   DoItYourselfResponce,
   HomeStrapiResponce,
   InviteUsStrapiResponce,
-  NaboriResponce
+  NaboriResponce,
+  SearchParams
 } from "@/types/apiStrapiTypes";
 import { endpoints } from "@/configs/endpoints";
 
-export async function fetchAPI(path: string, urlParamsObject = {}) {
+export async function fetchAPI(
+  path: string,
+  urlParamsObject = {},
+  searchParams: SearchParams = {}
+) {
   try {
     const token = getToken();
 
@@ -29,6 +35,35 @@ export async function fetchAPI(path: string, urlParamsObject = {}) {
 
     const response = await fetch(requestUrl, mergedOptions);
     const data = await response.json();
+
+    if (searchParams.limit) {
+      data.data.splice(searchParams.limit);
+    }
+
+    if (searchParams.start) {
+      data.data.splice(0, searchParams.start);
+    }
+
+    if (searchParams.sort === "asc_price") {
+      data.data.sort((a: Card, b: Card) => a.price - b.price);
+    } else if (searchParams.sort === "desc_price") {
+      data.data.sort((a: Card, b: Card) => b.price - a.price);
+    }
+
+    if (searchParams.sort === "asc_lastUpdated") {
+      data.data.sort((a: Card, b: Card) => {
+        const dateA = new Date(a.updatedAt);
+        const dateB = new Date(b.updatedAt);
+        return dateB.getTime() - dateA.getTime();
+      });
+    } else if (searchParams.sort === "desc_lastUpdated") {
+      data.data.sort((a: Card, b: Card) => {
+        const dateA = new Date(a.updatedAt);
+        const dateB = new Date(b.updatedAt);
+        return dateA.getTime() - dateB.getTime();
+      });
+    }
+
     return data;
   } catch (error) {
     console.error(error);
@@ -37,6 +72,7 @@ export async function fetchAPI(path: string, urlParamsObject = {}) {
     );
   }
 }
+
 export async function getMainStrapiData(locale: string = "uk") {
   try {
     const urlParamsObject = {
@@ -70,6 +106,7 @@ export async function getMainStrapiData(locale: string = "uk") {
     );
   }
 }
+
 export async function getAboutStrapiData(locale: string = "uk") {
   try {
     const urlParamsObject = {
@@ -90,7 +127,6 @@ export async function getAboutStrapiData(locale: string = "uk") {
           populate: "*"
         }
       },
-
       locale: locale
     };
 
@@ -107,6 +143,7 @@ export async function getAboutStrapiData(locale: string = "uk") {
     );
   }
 }
+
 export async function getDoItYourselfStrapiData(locale: string = "uk") {
   try {
     const urlParamsObject = {
@@ -114,7 +151,6 @@ export async function getDoItYourselfStrapiData(locale: string = "uk") {
         main: { populate: "*" },
         examples: { populate: "*" }
       },
-
       locale: locale
     };
 
@@ -131,6 +167,7 @@ export async function getDoItYourselfStrapiData(locale: string = "uk") {
     );
   }
 }
+
 export async function getInviteUsStrapiData(locale: string = "uk") {
   try {
     const urlParamsObject = {
@@ -150,9 +187,7 @@ export async function getInviteUsStrapiData(locale: string = "uk") {
       urlParamsObject
     );
 
-    return {
-      data
-    };
+    return { data };
   } catch (error) {
     console.error(error);
     throw new Error(
@@ -160,14 +195,10 @@ export async function getInviteUsStrapiData(locale: string = "uk") {
     );
   }
 }
+
 export async function getByFromUsStrapiData(locale: string = "uk") {
   try {
     const urlParamsObject = {
-      populate: "*",
-      locale: locale
-    };
-
-    const urlParamsNabori = {
       populate: "*",
       locale: locale
     };
@@ -177,12 +208,32 @@ export async function getByFromUsStrapiData(locale: string = "uk") {
       urlParamsObject
     );
 
-    const { data: naboris }: { data: NaboriResponce } = await fetchAPI(
+    return { data };
+  } catch (error) {
+    console.error(error);
+    throw new Error(
+      `Please check if your server is running and you set all the required tokens.`
+    );
+  }
+}
+
+export async function getNaborisData(
+  locale: string = "uk",
+  searchParams: SearchParams
+) {
+  try {
+    const urlParamsNabori = {
+      populate: "*",
+      locale: locale
+    };
+
+    const { data }: { data: NaboriResponce } = await fetchAPI(
       endpoints.naboris,
-      urlParamsNabori
+      urlParamsNabori,
+      searchParams
     );
 
-    return { data, naboris };
+    return { data };
   } catch (error) {
     console.error(error);
     throw new Error(

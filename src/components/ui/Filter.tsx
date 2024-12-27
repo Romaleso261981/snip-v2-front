@@ -25,9 +25,9 @@ const Filter = () => {
           className="py-2 px-4 rounded-sm text-xs font-medium bg-[#EBEDED]"
           onChange={handleFilterChange}
         >
-          <option>Type</option>
-          <option value="physical">Physical</option>
-          <option value="digital">Digital</option>
+          <option>Тип</option>
+          <option value="products">Готові вироби</option>
+          <option value="sets">Набори</option>
         </select>
 
         {/* TODO: Filter Categories */}
@@ -36,9 +36,11 @@ const Filter = () => {
           className="py-2 px-4 rounded-sm text-xs font-medium bg-[#EBEDED]"
           onChange={handleFilterChange}
         >
-          <option>Category</option>
-          <option value="new">New Arival</option>
-          <option value="popular">Popular</option>
+          <option>Категорії</option>
+          <option value="handmade">Ручна робота</option>
+          <option value="popular">Найпоширены</option>
+          <option value="trending">Трендові</option>
+          <option value="top_rated">Топ продажу</option>
         </select>
         <select
           name="category"
@@ -51,11 +53,15 @@ const Filter = () => {
           className="py-2 px-4 rounded-sm text-xs font-medium bg-[#EBEDED]"
           onChange={handleFilterChange}
         >
-          <option>Sort By</option>
-          <option value="asc_price">Price (low to high)</option>
-          <option value="desc_price">Price (high to low)</option>
-          <option value="asc_lastUpdated">Newest</option>
-          <option value="desc_lastUpdated">Oldest</option>
+          <option>Сортування</option>
+          <option value="asc_price">
+            По вартості (від меншого до більшого)
+          </option>
+          <option value="desc_price">
+            По вартості (від більшого до меншого)
+          </option>
+          <option value="asc_lastUpdated">Найновіші</option>
+          <option value="desc_lastUpdated">Найстаріші</option>
         </select>
       </div>
 
@@ -63,14 +69,14 @@ const Filter = () => {
         <input
           type="text"
           name="min"
-          placeholder="min price"
+          placeholder="мін ціна"
           className="text-xs rounded-sm h-8 bg-white pl-2 w-24 ring-1"
           onChange={handleFilterChange}
         />
         <input
           type="text"
           name="max"
-          placeholder="max price"
+          placeholder="макс ціна"
           className="text-xs rounded-sm h-8 bg-white px-2 w-24 ring-1 border-none"
           onChange={handleFilterChange}
         />

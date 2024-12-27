@@ -19,7 +19,6 @@ export const metadata: Metadata = {
 
 export default function HomePage({ data }: { data: HomeStrapiResponce }) {
   const { user } = useContext(UserContext);
-  console.log(user);
 
   const router = useRouter();
 
@@ -29,7 +28,6 @@ export default function HomePage({ data }: { data: HomeStrapiResponce }) {
     () => {
       if (!user.isLoggedIn) {
         router.push(`/${locale}/login`);
-        console.log("router.push('/login');");
       }
     },
     [router, user.isLoggedIn]

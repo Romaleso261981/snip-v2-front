@@ -158,6 +158,8 @@ export type Card = {
   size: string;
   count?: number;
   union: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type NaboriResponce = Card[];
@@ -168,4 +170,11 @@ export type User = {
   password: string;
   emailCode: string;
   isLoggedIn: boolean;
+};
+
+export type SearchParams = {
+  sort?: string;
+  limit?: number;
+  start?: number;
+  popular?: string;
 };
