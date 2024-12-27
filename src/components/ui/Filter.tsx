@@ -1,11 +1,14 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Filter = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
+
+  const t = useTranslations("Filter");
 
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
@@ -25,9 +28,15 @@ const Filter = () => {
           className="py-2 px-4 rounded-sm text-xs font-medium bg-[#EBEDED]"
           onChange={handleFilterChange}
         >
-          <option>Тип</option>
-          <option value="products">Готові вироби</option>
-          <option value="sets">Набори</option>
+          <option>
+            {t("type.type")}
+          </option>
+          <option value="products">
+            {t("type.products")}
+          </option>
+          <option value="sets">
+            {t("type.sets")}
+          </option>
         </select>
 
         {/* TODO: Filter Categories */}
@@ -36,11 +45,24 @@ const Filter = () => {
           className="py-2 px-4 rounded-sm text-xs font-medium bg-[#EBEDED]"
           onChange={handleFilterChange}
         >
-          <option>Категорії</option>
-          <option value="handmade">Ручна робота</option>
-          <option value="popular">Найпоширены</option>
-          <option value="trending">Трендові</option>
-          <option value="top_rated">Топ продажу</option>
+          <option>
+            {t("categorys.title")}
+          </option>
+          <option value="handmade">
+            {t("categorys.handmade")}
+          </option>
+          <option value="spiders">
+            {t("categorys.spiders")}
+          </option>
+          <option value="popular">
+            {t("categorys.popular")}
+          </option>
+          <option value="trending">
+            {t("categorys.trending")}
+          </option>
+          <option value="top_rated">
+            {t("categorys.top_rated")}
+          </option>
         </select>
         <select
           name="category"
@@ -53,15 +75,21 @@ const Filter = () => {
           className="py-2 px-4 rounded-sm text-xs font-medium bg-[#EBEDED]"
           onChange={handleFilterChange}
         >
-          <option>Сортування</option>
+          <option>
+            {t("sort.title")}
+          </option>
           <option value="asc_price">
-            По вартості (від меншого до більшого)
+            {t("sort.mostExpensive")}
           </option>
           <option value="desc_price">
-            По вартості (від більшого до меншого)
+            {t("sort.cheapest")}
           </option>
-          <option value="asc_lastUpdated">Найновіші</option>
-          <option value="desc_lastUpdated">Найстаріші</option>
+          <option value="asc_lastUpdated">
+            {t("sort.newest")}
+          </option>
+          <option value="desc_lastUpdated">
+            {t("sort.oldest")}
+          </option>
         </select>
       </div>
 

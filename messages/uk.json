@@ -69,5 +69,27 @@
     "buttonText": "Оформити замовлення.",
     "cardbuttonText": "Видалити.",
     "productRemoved": "Товар видалено з кошика."
+  },
+  "Filter": {
+    "type": {
+      "type": "Тип",
+      "products": "Продукти",
+      "sets": "Набори"
+    },
+    "categorys": {
+      "title": "Категорії",
+      "handmade": "Ручна робота",
+      "spiders": "Павуки",
+      "popular": "Популярні",
+      "trending": "Трендові",
+      "top_rated": "Топ рейтинг"
+    },
+    "sort": {
+      "title": "Сортувати за",
+      "mostExpensive": "Найдорожчі",
+      "cheapest": "Найдешевші",
+      "newest": "Найновіші",
+      "oldest": "Найстаріші"
+    }
   }
 }

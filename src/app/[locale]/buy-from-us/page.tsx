@@ -25,8 +25,6 @@ export default async function page({
   const { data } = await getByFromUsStrapiData(locale);
   const { data: naboris } = await getNaborisData(locale, sp);
 
-  console.log("data", naboris);
-
   return (
     <GeneralLayout>
       <BuyFromUsDescription data={data} cards={naboris} />

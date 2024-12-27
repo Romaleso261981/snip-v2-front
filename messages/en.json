@@ -69,5 +69,27 @@
     "buttonText": "Make an order.",
     "cardbuttonText": "Remove.",
     "productRemoved": "Product removed from cart."
+  },
+  "Filter": {
+    "type": {
+      "type": "Type",
+      "products": "Products",
+      "sets": "Sets"
+    },
+    "categorys": {
+      "title": "Category:",
+      "handmade": "Handmade",
+      "spiders": "Spiders",
+      "popular": "Popular",
+      "trending": "Trending",
+      "top_rated": "Top rated"
+    },
+    "sort": {
+      "title": "Sort by",
+      "mostExpensive": "Most expensive",
+      "cheapest": "Cheapest",
+      "newest": "Newest",
+      "oldest": "Oldest"
+    }
   }
 }
