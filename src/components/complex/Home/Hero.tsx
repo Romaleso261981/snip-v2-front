@@ -9,7 +9,7 @@ type HeroSectionProps = {
   data: HeroStrapiData;
 };
 
-const HeroSection: FC<HeroSectionProps> = async ({ data }) => {
+const HeroSection: FC<HeroSectionProps> = ({ data }) => {
   const url = getStrapiMedia(data.image.url) || defaultImageBg;
 
   return (

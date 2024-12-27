@@ -1,16 +1,15 @@
 "use client";
-import { useContext, useEffect } from "react";
+import { Suspense, useContext, useEffect } from "react";
 import { Metadata } from "next";
 
-import HomeLayout from "@/components/layout/HomeLayout/HomeLayout";
 import Loader from "@/components/ui/Loader";
 import HeroSection from "@/components/complex/Home/Hero";
 import DescriptionSection from "@/components/complex/Home/Description";
 import GallerySection from "@/components/complex/Home/Gallery";
 import Reviews from "@/components/ui/Reviews";
 import { UserContext } from "@/contexts/userContext";
-import { useRouter } from "next/router";
 import { HomeStrapiResponce } from "@/types/apiStrapiTypes";
+import { useRouter } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "СНІП",
@@ -20,25 +19,30 @@ export const metadata: Metadata = {
 
 export default function HomePage({ data }: { data: HomeStrapiResponce }) {
   const { user } = useContext(UserContext);
+  console.log(user);
+
   const router = useRouter();
+
+  const locale = "uk";
 
   useEffect(
     () => {
       if (!user.isLoggedIn) {
-        router.push("/login");
+        router.push(`/${locale}/login`);
+        console.log("router.push('/login');");
       }
     },
-    [user, router]
+    [router, user.isLoggedIn]
   );
 
   if (!data) return <Loader />;
 
   return (
-    <HomeLayout>
+    <Suspense fallback={<Loader />}>
       <HeroSection data={data.hero} />
       <DescriptionSection about={data.about} button={data.button} />
       <GallerySection gallery={data.gallery} />
       <Reviews />
-    </HomeLayout>
+    </Suspense>
   );
 }

@@ -1,6 +1,8 @@
 "use client";
 
+import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { UserContext } from "@/contexts/userContext";
 import { useState } from "react";
 
 enum MODE {
@@ -19,6 +21,7 @@ enum LoginState {
 
 const LoginPage = () => {
   const router = useRouter();
+  const { user, setUser } = useContext(UserContext);
 
   const [mode, setMode] = useState(MODE.LOGIN);
   const [username, setUsername] = useState("");
@@ -29,18 +32,15 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  // Sample user for demonstration purposes
-  const user = {
-    email,
-    username,
-    password,
-    emailCode,
-    isLoggedIn: false
-  };
-
-  if (user.isLoggedIn) {
-    router.push("/");
-  }
+  // Перевірка, чи користувач вже увійшов
+  useEffect(
+    () => {
+      if (user.isLoggedIn) {
+        router.push("/");
+      }
+    },
+    [user.isLoggedIn, router]
+  );
 
   const formTitle = {
     [MODE.LOGIN]: "Log in",
@@ -86,6 +86,7 @@ const LoginPage = () => {
         case LoginState.SUCCESS:
           setMessage("Successful! You are being redirected.");
           const tokens = "tokens";
+          setUser({ email, username, password, emailCode, isLoggedIn: true });
           localStorage.setItem("tokens", tokens);
           router.push("/");
           break;

@@ -6,6 +6,7 @@ import { createContext, ReactNode, useState } from "react";
 type UserContextType = {
   user: User;
   setUser: (cardItems: User) => void;
+  updateUserField: (field: keyof User, value: any) => void;
 };
 
 type UserProviderProps = {
@@ -23,9 +24,31 @@ export function UserProvider({ children }: UserProviderProps) {
     isLoggedIn: false
   });
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  useEffect(
+    () => {
+      localStorage.setItem("user", JSON.stringify(user));
+    },
+    [user]
+  );
+
+  const updateUserField = (field: keyof User, value: any) => {
+    setUser(prevUser => ({
+      ...prevUser,
+      [field]: value
+    }));
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, updateUserField }}>
       {children}
     </UserContext.Provider>
   );
 }
+import { useEffect } from "react";
