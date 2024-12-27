@@ -161,3 +161,11 @@ export type Card = {
 };
 
 export type NaboriResponce = Card[];
+
+export type User = {
+  email: string;
+  username: string;
+  password: string;
+  emailCode: string;
+  isLoggedIn: boolean;
+};
