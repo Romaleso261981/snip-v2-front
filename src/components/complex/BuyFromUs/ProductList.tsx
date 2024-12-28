@@ -11,13 +11,12 @@ import { useContext, useState } from "react";
 import { CardsContext } from "@/contexts/cardContext";
 
 export default function ProductList() {
-  const { cardItems: cards } = useContext(CardsContext);
+  const { cardItems: cards, itemPerpage } = useContext(CardsContext);
 
   const [page, setPage] = useState(1);
-  const perpage = 5;
-  const count = Math.ceil(cards.length / perpage);
+  const count = Math.ceil(cards.length / itemPerpage);
   const t = useTranslations("ProductsList");
-  const DATA = usePagination(cards, perpage);
+  const DATA = usePagination(cards, itemPerpage);
 
   const cardList = DATA.currentData();
 
@@ -71,10 +70,8 @@ export default function ProductList() {
         />
 
         <div className="flex flex-row text-center md:ms-auto">
-          {t("showing")} {DATA.maxPage === page
-            ? cards.length
-            : perpage * page}{" "}
-          of
+          {t("showing")}{" "}
+          {DATA.maxPage === page ? cards.length : itemPerpage * page} of
           <div className="flex flex-row text-center gap-4 ml-2 text-gold">
             <h4>{cards.length}</h4> <span>{t("products")}</span>
           </div>

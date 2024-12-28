@@ -20,10 +20,9 @@ export default async function page({
   searchParams: Promise<SearchParams>;
 }) {
   const { locale } = await params;
-  const sp = await searchParams;
 
   const { data } = await getByFromUsStrapiData(locale);
-  const { data: naboris } = await getNaborisData(locale, sp);
+  const { data: naboris } = await getNaborisData(locale, await searchParams);
 
   return (
     <GeneralLayout>

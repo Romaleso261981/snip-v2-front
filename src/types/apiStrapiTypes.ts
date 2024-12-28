@@ -178,3 +178,8 @@ export type SearchParams = {
   start?: number;
   popular?: string;
 };
+
+export type Images = {
+  _id: number;
+  url: string;
+}[];

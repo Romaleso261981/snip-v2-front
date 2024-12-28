@@ -45,7 +45,6 @@ export function useBasketCart() {
           )
         : [...state, { ...card, count: 1 }];
       updateLocalStorage(updatedState);
-      toast.success('Product added to basket');
       return updatedState;
     });
   };

@@ -8,7 +8,8 @@ const nextConfig = {
     domains: [
       "strapi-cms-production-f73b.up.railway.app",
       "via.placeholder.com",
-      "randomuser.me"
+      "randomuser.me",
+      "snip-v2-front.vercel.app"
     ]
   },
   webpack(config) {

@@ -29,6 +29,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/types/*.d.ts"
-  ],
+, "src/components/ui/success.jsx"  ],
   "exclude": ["node_modules"]
 }

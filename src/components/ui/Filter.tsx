@@ -78,10 +78,10 @@ const Filter = () => {
           <option>
             {t("sort.title")}
           </option>
-          <option value="asc_price">
+          <option value="desc_price">
             {t("sort.mostExpensive")}
           </option>
-          <option value="desc_price">
+          <option value="asc_price">
             {t("sort.cheapest")}
           </option>
           <option value="asc_lastUpdated">
