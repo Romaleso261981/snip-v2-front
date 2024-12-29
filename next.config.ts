@@ -9,7 +9,8 @@ const nextConfig = {
       "strapi-cms-production-f73b.up.railway.app",
       "via.placeholder.com",
       "randomuser.me",
-      "snip-v2-front.vercel.app"
+      "snip-v2-front.vercel.app",
+      "cdn-icons-png.flaticon.com"
     ]
   },
   webpack(config) {
