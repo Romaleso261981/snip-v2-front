@@ -16,13 +16,13 @@ export function ProductTabs({
   return (
     <Tabs defaultValue="descriptions" className={`${className}`}>
       <TabsList className="grid grid-cols-3 w-fit bg-transparent overflow-auto">
-        <TabsTrigger className="w-fit lg:w-80" value="descriptions">
+        <TabsTrigger className="w-auto lg:w-80" value="descriptions">
           Опис
         </TabsTrigger>
-        <TabsTrigger className="w-fit lg:w-80" value="additionnal">
-          Додаткова інформація
+        <TabsTrigger className="w-auto lg:w-80" value="additionnal">
+          Додатково
         </TabsTrigger>
-        <TabsTrigger className="w-fit lg:w-80" value="reviews">
+        <TabsTrigger className="w-auto lg:w-80" value="reviews">
           Відгуки
         </TabsTrigger>
       </TabsList>
