@@ -22,7 +22,7 @@ const Filter = () => {
   return (
     <div className="my-5 flex flex-col justify-start items-start sm:justify-between sm:items-center sm:flex-row">
       <div className="flex h-auto gap-6 flex-wrap sm:h-8">
-        <select
+        {/* <select
           name="type"
           id=""
           className="py-2 px-4 rounded-sm text-xs font-medium bg-[#EBEDED]"
@@ -37,10 +37,10 @@ const Filter = () => {
           <option value="sets">
             {t("type.sets")}
           </option>
-        </select>
+        </select> */}
 
         {/* TODO: Filter Categories */}
-        <select
+        {/* <select
           name="popular"
           className="py-2 px-4 rounded-sm text-xs font-medium bg-[#EBEDED]"
           onChange={handleFilterChange}
@@ -63,13 +63,15 @@ const Filter = () => {
           <option value="top_rated">
             {t("categorys.top_rated")}
           </option>
-        </select>
-        <select
+        </select> */}
+        {/* TODO: All filters */}
+        {/* <select
           name="category"
           className="py-2 px-4 rounded-sm text-xs font-medium bg-[#EBEDED]"
         >
           <option>All Filters</option>
-        </select>
+        </select> */}
+        {/* TODO: Sort */}
         <select
           name="sort"
           className="py-2 px-4 rounded-sm text-xs font-medium bg-[#EBEDED]"

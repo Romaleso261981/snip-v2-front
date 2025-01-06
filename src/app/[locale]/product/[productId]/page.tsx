@@ -1,4 +1,5 @@
 import ProductCard from "@/components/complex/ProductCard/ProductCard";
+import { ProductTabs } from "@/components/complex/ProductCard/ProductTabs";
 import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
 import Loader from "@/components/ui/Loader";
 import { endpoints } from "@/configs/endpoints";
@@ -29,6 +30,7 @@ export default async function Page({
   return (
     <GeneralLayout>
       <ProductCard product={currentProduct} locale={locale} />
+      <ProductTabs className="my-10" product={currentProduct} />
     </GeneralLayout>
   );
 }

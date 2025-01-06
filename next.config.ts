@@ -10,7 +10,8 @@ const nextConfig = {
       "via.placeholder.com",
       "randomuser.me",
       "snip-v2-front.vercel.app",
-      "cdn-icons-png.flaticon.com"
+      "cdn-icons-png.flaticon.com",
+      "randomuser.me"
     ]
   },
   webpack(config) {

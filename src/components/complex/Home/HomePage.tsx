@@ -6,10 +6,11 @@ import Loader from "@/components/ui/Loader";
 import HeroSection from "@/components/complex/Home/Hero";
 import DescriptionSection from "@/components/complex/Home/Description";
 import GallerySection from "@/components/complex/Home/Gallery";
-import Reviews from "@/components/ui/Reviews";
 import { UserContext } from "@/contexts/userContext";
 import { HomeStrapiResponce } from "@/types/apiStrapiTypes";
 import { useRouter } from "next/navigation";
+import Reviews from "../review/Reviews";
+import { reviews } from "@/mockData";
 
 export const metadata: Metadata = {
   title: "СНІП",
@@ -40,7 +41,7 @@ export default function HomePage({ data }: { data: HomeStrapiResponce }) {
       <HeroSection data={data.hero} />
       <DescriptionSection about={data.about} button={data.button} />
       <GallerySection gallery={data.gallery} />
-      <Reviews />
+      <Reviews reviews={reviews} />
     </Suspense>
   );
 }
