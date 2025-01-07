@@ -53,7 +53,15 @@
     "sizeTitle": "Assembled product:",
     "materialTitle": "Material:",
     "includesTitle": "The set includes:",
-    "addToBasket": "Purchase"
+    "addToBasket": "Purchase",
+    "reviews": "reviews",
+    "tabs": {
+      "description": "description",
+      "additionally": "additionally",
+      "reviews": "reviews",
+      "material": "material",
+      "size": "size"
+    }
   },
   "ProductsList": {
     "currency": "UAH",

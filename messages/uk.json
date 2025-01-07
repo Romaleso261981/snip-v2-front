@@ -53,7 +53,15 @@
     "sizeTitle": "Складений виріб:",
     "materialTitle": "Матеріал:",
     "includesTitle": "До набору входять:",
-    "addToBasket": "Придбати"
+    "addToBasket": "Придбати",
+    "reviews": "перегляди",
+    "tabs": {
+      "description": "Опис",
+      "additionally": "додатково",
+      "reviews": "перегляди",
+      "material": "матеріал",
+      "size": "розмір"
+    }
   },
   "ProductsList": {
     "currency": "ГРН",

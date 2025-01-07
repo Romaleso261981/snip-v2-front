@@ -1,11 +1,13 @@
 // import { getStrapiMedia } from "@/utils/api-helpers";
+import { Rating } from "@mui/material";
+
 import Link from "next/link";
 import { Card } from "@/types/apiStrapiTypes";
 import { useTranslations } from "next-intl";
 import AddToBasketButton from "./ui/AddToBasketButton";
 import TextTruncate from "@/utils/truncateText";
 import ProductImages from "@/components/ui/ProductImages";
-import { imagesCardDetail } from "@/mockData";
+import { imagesCardDetail, reviews } from "@/mockData";
 
 export default function ProductCard({
   product,
@@ -77,6 +79,21 @@ export default function ProductCard({
             </div>
           </div>
           <AddToBasketButton buttonText={t("addToBasket")} product={product} />
+          <div className="w-full flex items-start justify-start">
+            <div className="inline-flex pt-6 text-slate-700 items-center gap-4">
+              <Rating
+                name="product rating"
+                readOnly
+                value={reviews.length ? reviews.length : 0}
+                precision={0.5}
+                style={{ color: "orange" }}
+              />
+              <div className="flex gap-4 text-xl text-gray-400">
+                <strong>{reviews.length ? reviews.length : 0}</strong> (
+                {5} {t("reviews")})
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

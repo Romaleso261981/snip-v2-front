@@ -40,11 +40,13 @@ export default async function Page({
 export async function generateMetadata({
   params
 }: {
-  params: { slug: string; productId: string; locale: string };
+  params: Promise<{ productId: string; locale: string }>;
 }) {
+  const { productId, locale } = await params;
+
   const urlParamsNabori = {
     populate: "*",
-    locale: params.locale
+    locale: locale
   };
 
   const { data }: { data: NaboriResponce } = await fetchAPI(
@@ -52,9 +54,7 @@ export async function generateMetadata({
     urlParamsNabori
   );
 
-  const currentProduct = data.find(
-    product => product.id === Number(params.productId)
-  );
+  const currentProduct = data.find(product => product.id === Number(productId));
 
   if (!currentProduct) return;
 
