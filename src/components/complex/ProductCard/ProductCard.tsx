@@ -1,33 +1,11 @@
 // import { getStrapiMedia } from "@/utils/api-helpers";
 import Link from "next/link";
-import { Card, Images } from "@/types/apiStrapiTypes";
+import { Card } from "@/types/apiStrapiTypes";
 import { useTranslations } from "next-intl";
 import AddToBasketButton from "./ui/AddToBasketButton";
 import TextTruncate from "@/utils/truncateText";
 import ProductImages from "@/components/ui/ProductImages";
-
-export const images: Images = [
-  {
-    _id: 1,
-    url:
-      "https://snip-v2-front.vercel.app/_next/image?url=https%3A%2F%2Fstrapi-cms-production-f73b.up.railway.app%2Fuploads%2Fimg3_b552ed9284.png&w=384&q=75"
-  },
-  {
-    _id: 2,
-    url:
-      "https://snip-v2-front.vercel.app/_next/image?url=https%3A%2F%2Fstrapi-cms-production-f73b.up.railway.app%2Fuploads%2Fimg2_44b84723d7.png&w=384&q=75"
-  },
-  {
-    _id: 3,
-    url:
-      "https://snip-v2-front.vercel.app/_next/image?url=https%3A%2F%2Fstrapi-cms-production-f73b.up.railway.app%2Fuploads%2FFrame_b7cf290f04.jpg&w=750&q=75"
-  },
-  {
-    _id: 4,
-    url:
-      "https://snip-v2-front.vercel.app/_next/image?url=https%3A%2F%2Fstrapi-cms-production-f73b.up.railway.app%2Fuploads%2Fimg1_12cc9e31db.png&w=384&q=75"
-  }
-];
+import { imagesCardDetail } from "@/mockData";
 
 export default function ProductCard({
   product,
@@ -52,7 +30,7 @@ export default function ProductCard({
       </div>
       <div className="flex flex-col md:flex-row-reverse items-center w-full justify-around ">
         <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">
-          <ProductImages images={images} />
+          <ProductImages images={imagesCardDetail} />
         </div>
         <div className="flex flex-col justify-center items-center py-5 md:px-10">
           <div className="w-full flex flex-col items-start justify-start font-weight-500 text-black ">

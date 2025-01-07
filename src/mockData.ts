@@ -161,6 +161,7 @@
 //   }
 // ];
 
+import { Images } from "./types/apiStrapiTypes";
 import { Product, Review } from "./types/types";
 
 export const reviews: Review[] = [
@@ -381,3 +382,26 @@ export const productMock = {
     }
   ]
 };
+
+export const imagesCardDetail: Images = [
+  {
+    _id: 1,
+    url:
+      "https://snip-v2-front.vercel.app/_next/image?url=https%3A%2F%2Fstrapi-cms-production-f73b.up.railway.app%2Fuploads%2Fimg3_b552ed9284.png&w=384&q=75"
+  },
+  {
+    _id: 2,
+    url:
+      "https://snip-v2-front.vercel.app/_next/image?url=https%3A%2F%2Fstrapi-cms-production-f73b.up.railway.app%2Fuploads%2Fimg2_44b84723d7.png&w=384&q=75"
+  },
+  {
+    _id: 3,
+    url:
+      "https://snip-v2-front.vercel.app/_next/image?url=https%3A%2F%2Fstrapi-cms-production-f73b.up.railway.app%2Fuploads%2FFrame_b7cf290f04.jpg&w=750&q=75"
+  },
+  {
+    _id: 4,
+    url:
+      "https://snip-v2-front.vercel.app/_next/image?url=https%3A%2F%2Fstrapi-cms-production-f73b.up.railway.app%2Fuploads%2Fimg1_12cc9e31db.png&w=384&q=75"
+  }
+];

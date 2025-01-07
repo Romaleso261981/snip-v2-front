@@ -4,6 +4,7 @@ import GeneralLayout from "@/components/layout/GeneralLayout/GeneralLayout";
 import Loader from "@/components/ui/Loader";
 import { endpoints } from "@/configs/endpoints";
 import { NaboriResponce } from "@/types/apiStrapiTypes";
+import { getStrapiMedia } from "@/utils/api-helpers";
 import { fetchAPI } from "@/utils/fetch-api";
 
 export default async function Page({
@@ -33,4 +34,38 @@ export default async function Page({
       <ProductTabs className="my-10" product={currentProduct} />
     </GeneralLayout>
   );
+}
+
+// or Dynamic metadata
+export async function generateMetadata({
+  params
+}: {
+  params: { slug: string; productId: string; locale: string };
+}) {
+  const urlParamsNabori = {
+    populate: "*",
+    locale: params.locale
+  };
+
+  const { data }: { data: NaboriResponce } = await fetchAPI(
+    endpoints.naboris,
+    urlParamsNabori
+  );
+
+  const currentProduct = data.find(
+    product => product.id === Number(params.productId)
+  );
+
+  if (!currentProduct) return;
+
+  const icon = getStrapiMedia(currentProduct.image.url);
+
+  return {
+    title: currentProduct.name,
+    description: currentProduct.includes,
+    icons: {
+      icon: icon,
+      size: "sm"
+    }
+  };
 }
